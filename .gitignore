@@ -64,3 +64,4 @@ crashlytics-build.properties
 # Custom ignores
 [Aa]ssets/Runtime Node Editor/
 [Aa]ssets/StandaloneFileBrowser/
+[Uu]tils/
