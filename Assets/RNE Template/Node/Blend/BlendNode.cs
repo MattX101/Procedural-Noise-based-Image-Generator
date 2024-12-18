@@ -1,5 +1,6 @@
 using RNE.Template.Node.Pointer;
 using RNE.Template.Node.Pointer.Value;
+using Utils.Colors.Blend;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,8 @@ namespace RNE.Template.Node
         private RawImage _image;
 
         private Color[] _result;
+
+        private delegate Color BlendFormula(Color a, Color b);
 
         protected override void CodeToExecute()
         {
@@ -26,7 +29,12 @@ namespace RNE.Template.Node
                 Color[] b = PointerValue.GetColorArray(Inputs[1]);
 
                 _result = new Color[a.Length];
-                Blend(a, b);
+
+                BlendFormula formula = GetFormula(Elements.dropdowns[0].value);
+                for (int i = 0; i < a.Length; i++)
+                {
+                    _result[i] = formula(a[i], b[i]);
+                }
             }
             else
             {
@@ -55,79 +63,52 @@ namespace RNE.Template.Node
             Outputs[0].GetComponent<ColorArrayOutputPointer>().Reset();
         }
 
-        private void Blend(Color[] a, Color[] b)
+        private BlendFormula GetFormula(int index)
         {
-            switch (Elements.dropdowns[0].value)
+            return index switch
             {
-                case 0:
-                    Add(a, b);
-                    break;
-                case 1:
-                    Subtract(a, b);
-                    break;
-                case 2:
-                    Multiply(a, b);
-                    break;
-                case 3:
-                    Divide(a, b);
-                    break;
-                case 4:
-                    Average(a, b);
-                    break;
-                default:
-                    break;
-            }
-        }
+                /// Arithmetic
+                (int)Blends.Add => Mix.Add,
+                (int)Blends.Subtract => Mix.Subtract,
+                (int)Blends.Multiply => Mix.Multiply,
+                (int)Blends.Divide => Mix.Divide,
+                (int)Blends.Average => Mix.Average,
 
-        private void Add(Color[] a, Color[] b)
-        {
-            for (int i = 0; i < a.Length; i++)
-            {
-                _result[i].r = Mathf.Clamp01(a[i].r + b[i].r);
-                _result[i].g = Mathf.Clamp01(a[i].g + b[i].g);
-                _result[i].b = Mathf.Clamp01(a[i].b + b[i].b);
-                _result[i].a = 1;
-            }
-        }
-        private void Subtract(Color[] a, Color[] b)
-        {
-            for (int i = 0; i < a.Length; i++)
-            {
-                _result[i].r = Mathf.Clamp01(a[i].r - b[i].r);
-                _result[i].g = Mathf.Clamp01(a[i].g - b[i].g);
-                _result[i].b = Mathf.Clamp01(a[i].b - b[i].b);
-                _result[i].a = 1;
-            }
-        }
-        private void Multiply(Color[] a, Color[] b)
-        {
-            for (int i = 0; i < a.Length; i++)
-            {
-                _result[i].r = Mathf.Clamp01(a[i].r * b[i].r);
-                _result[i].g = Mathf.Clamp01(a[i].g * b[i].g);
-                _result[i].b = Mathf.Clamp01(a[i].b * b[i].b);
-                _result[i].a = 1;
-            }
-        }
-        private void Divide(Color[] a, Color[] b)
-        {
-            for (int i = 0; i < a.Length; i++)
-            {
-                _result[i].r = Mathf.Clamp01(a[i].r / b[i].r);
-                _result[i].g = Mathf.Clamp01(a[i].g / b[i].g);
-                _result[i].b = Mathf.Clamp01(a[i].b / b[i].b);
-                _result[i].a = 1;
-            }
-        }
-        private void Average(Color[] a, Color[] b)
-        {
-            for (int i = 0; i < a.Length; i++)
-            {
-                _result[i].r = Mathf.Clamp01((a[i].r + b[i].r) / 2);
-                _result[i].g = Mathf.Clamp01((a[i].g + b[i].g) / 2);
-                _result[i].b = Mathf.Clamp01((a[i].b + b[i].b) / 2);
-                _result[i].a = 1;
-            }
+                /// Darken
+                (int)Blends.Darken => Mix.Darken,
+                (int)Blends.ColourBurn => Mix.ColorBurn,
+                (int)Blends.LinearBurn => Mix.LinearBurn,
+                (int)Blends.GammaDark => Mix.GammaDark,
+
+                /// Lighten
+                (int)Blends.Lighten => Mix.Lighten,
+                (int)Blends.Shine => Mix.Shine,
+                (int)Blends.ColourDodge => Mix.ColourDodge,
+                (int)Blends.Screen => Mix.Screen,
+                (int)Blends.Overlay => Mix.Overlay,
+                (int)Blends.SoftLight => Mix.SoftLight,
+                (int)Blends.HardLight => Mix.HardLight,
+                // Vivid Light
+                (int)Blends.LinearLight => Mix.LinearLight,
+                // Pin Light
+                (int)Blends.HardMix => Mix.HardMix,
+                (int)Blends.Tint => Mix.Tint,
+                (int)Blends.GammaLight => Mix.GammaLight,
+                (int)Blends.GammaIllumination => Mix.GammaIllumination,
+
+                /// Other
+                (int)Blends.Exclusion => Mix.Exclusion,
+                (int)Blends.Difference => Mix.Difference,
+                (int)Blends.Negation => Mix.Negation,
+
+                ///
+                (int)Blends.Hue => Mix.Hue,
+                (int)Blends.Saturation => Mix.Saturation,
+                (int)Blends.Color => Mix.Color,
+                (int)Blends.Luminosity => Mix.Luminosity,
+
+                _ => Mix.Add
+            };
         }
     }
 }

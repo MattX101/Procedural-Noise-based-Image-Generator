@@ -98,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
       propertyPath: m_Options.m_Options.Array.size
-      value: 5
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
       propertyPath: m_Options.m_Options.Array.data[0].m_Text
@@ -119,6 +119,98 @@ PrefabInstance:
     - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
       propertyPath: m_Options.m_Options.Array.data[4].m_Text
       value: Average
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[5].m_Text
+      value: Darken
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[6].m_Text
+      value: Colour Burn
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[7].m_Text
+      value: Linear Burn
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[8].m_Text
+      value: Gamma Dark
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[9].m_Text
+      value: Lighten
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[10].m_Text
+      value: Shine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[11].m_Text
+      value: Colour Dodge
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[12].m_Text
+      value: Screen
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[13].m_Text
+      value: Overlay
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[14].m_Text
+      value: Soft Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[15].m_Text
+      value: Hard Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[16].m_Text
+      value: Linear Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[17].m_Text
+      value: Hard Mix
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[18].m_Text
+      value: Tint
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[19].m_Text
+      value: Gamma Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[20].m_Text
+      value: Gamma Illumination
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[21].m_Text
+      value: Exclusion
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[22].m_Text
+      value: Difference
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[23].m_Text
+      value: Negation
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[24].m_Text
+      value: Hue
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[25].m_Text
+      value: Saturation
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[26].m_Text
+      value: Colour
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[27].m_Text
+      value: Luminosity
       objectReference: {fileID: 0}
     - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
