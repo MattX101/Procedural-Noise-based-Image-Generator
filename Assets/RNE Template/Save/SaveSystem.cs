@@ -1,6 +1,6 @@
 using RuntimeNodeEditor.Input;
 using RuntimeNodeEditor.UI.Canvas.Node.Save;
-using Utils.IO.Selection;
+using Utils.IO;
 using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
@@ -31,7 +31,7 @@ namespace RNE.Template.Save
 
         public void SaveAs()
         {
-            _saveDirectory = _iOSelection.SaveFile("Save", SaveExtension);
+            _saveDirectory = _iOSelection.SelectSavePath("Save", SaveExtension);
 
             WriteData();
         }

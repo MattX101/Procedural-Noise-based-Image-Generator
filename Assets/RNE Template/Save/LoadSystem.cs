@@ -36,7 +36,7 @@ namespace RNE.Template.Save
                 return;
             }
 
-            string path = _iOSelection.SelectFile(SaveExtension);
+            string path = _iOSelection.SelectSingleFile(SaveExtension);
 
             if (path == null)
             {

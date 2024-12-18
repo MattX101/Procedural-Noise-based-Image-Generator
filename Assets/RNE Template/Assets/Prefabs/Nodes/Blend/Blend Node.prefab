@@ -120,6 +120,34 @@ PrefabInstance:
       propertyPath: m_Options.m_Options.Array.data[4].m_Text
       value: Average
       objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6752805409827909473}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnValueChangeReset
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RuntimeNodeEditor.Node.Node, RuntimeNodeEditor.Node
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
