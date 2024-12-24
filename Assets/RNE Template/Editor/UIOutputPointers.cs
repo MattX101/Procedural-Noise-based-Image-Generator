@@ -54,9 +54,6 @@ namespace RNE.Template.Editor
 
         [MenuItem(GameObjectPath + "Pointers/Output/Color", false, 7), MenuItem(AssetsPath + "Pointers/Output/Color", false, 7)]
         private static void CreateColorOutputPointer() => CreateUIPrefab(OutputPointersPath + "Color Output Pointer");
-
-        [MenuItem(GameObjectPath + "Pointers/Output/Texture", false, 8), MenuItem(AssetsPath + "Pointers/Output/Texture", false, 8)]
-        private static void CreateTextureOutputPointer() => CreateUIPrefab(OutputPointersPath + "Texture Output Pointer");
     }
 }
 #endif

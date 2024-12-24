@@ -24,7 +24,6 @@ namespace RNE.Template.Save
         [SerializeField]
         private RuntimeNodeEditor.UI.Tooltip.Window.Window onOpenWindow;
 
-        // TODO - Fix On Open bug
         public void Load()
         {
             Node[] nodes = nodesObject.GetComponentsInChildren<Node>();
@@ -59,7 +58,6 @@ namespace RNE.Template.Save
             if (nodes.Length == 0)
                 return;
 
-            // TODO - Saving connections currently cuases an error on load
             LoadConnections(ref position, nodes, data);
 
             nodeExecution.Execute(nodes);

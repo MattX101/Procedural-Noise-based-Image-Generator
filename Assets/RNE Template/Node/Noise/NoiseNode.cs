@@ -1,5 +1,7 @@
 using RNE.Template.Node.Pointer;
 using RNE.Template.Node.Pointer.Value;
+using Utils.Noise;
+using Utils.Noise.Profiles;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,52 +12,236 @@ namespace RNE.Template.Node
         [SerializeField]
         private RawImage _image;
 
+        private float[] _values;
         private Color[] _result;
 
         protected override void CodeToExecute()
         {
-            ExecuteInputConnection(0);
+            for (int i = 0; i < Inputs.Count; i++)
+            {
+                ExecuteInputConnection(i);
+            }
 
-            System.Random rand = new System.Random(PointerValue.GetInt(Inputs[0]));
-            float xOffset = rand.Next(-10000, 10000);
-            float yOffset = rand.Next(-10000, 10000);
+            NoiseProfile noiseProfile = new NoiseProfile();
+
+            switch (Elements.dropdowns[0].value)
+            {
+                case 0:
+                    noiseProfile.SetNoiseType_Perlin();
+                    break;
+                case 1:
+                    noiseProfile.SetNoiseType_OpenSimplex();
+                    break;
+                case 2:
+                    noiseProfile.SetNoiseType_OpenSimplexS();
+                    break;
+                case 3:
+                    noiseProfile.SetNoiseType_Value();
+                    break;
+                case 4:
+                    noiseProfile.SetNoiseType_ValueCubic();
+                    break;
+                default:
+                    noiseProfile.SetNoiseType_Perlin();
+                    break;
+            }
+
+            switch (Elements.dropdowns[1].value)
+            {
+                case 0:
+                    noiseProfile.SetFractalType_FBm();
+                    break;
+                case 1:
+                    noiseProfile.SetFractalType_Ridged();
+                    break;
+                case 2:
+                    noiseProfile.SetFractalType_PingPong();
+                    break;
+                default:
+                    noiseProfile.SetFractalType_FBm();
+                    break;
+            };
+
+            // Seed
+            if (Inputs[0].ConnectedOutputPointer)
+            {
+                PointerValue.GetInt(Inputs[0], ref noiseProfile.seed);
+                Elements.SetInputField(Elements.inputFields[0], PointerValue.GetInt(Inputs[0]).ToString());
+            }
+            else
+            {
+                noiseProfile.seed = int.Parse(Elements.inputFields[0].text);
+            }
+
+            // Universal Scale
+            if (Inputs[1].ConnectedOutputPointer)
+            {
+                PointerValue.GetFloat(Inputs[1], ref noiseProfile.universalScale);
+                Elements.SetInputField(Elements.inputFields[1], PointerValue.GetFloat(Inputs[1]).ToString());
+            }
+            else
+            {
+                noiseProfile.universalScale = float.Parse(Elements.inputFields[1].text);
+            }
+
+            // Toggle 3D
+            bool is3D = false;
+            if (Inputs[2].ConnectedOutputPointer)
+            {
+                is3D = PointerValue.GetBool(Inputs[2]);
+                Elements.SetBoolean(Elements.buttons[0], PointerValue.GetBool(Inputs[2]));
+            }
+            else
+            {
+                is3D = Elements.buttons[0].isOn;
+            }
+
+            // Scale
+            if (Inputs[3].ConnectedOutputPointer)
+            {
+                PointerValue.GetVector3(Inputs[3], ref noiseProfile.scale);
+
+                Elements.SetInputField(Elements.inputFields[2], noiseProfile.scale.x.ToString());
+                Elements.SetInputField(Elements.inputFields[3], noiseProfile.scale.y.ToString());
+                Elements.SetInputField(Elements.inputFields[4], noiseProfile.scale.z.ToString());
+            }
+            else
+            {
+                noiseProfile.scale.x = float.Parse(Elements.inputFields[2].text);
+                noiseProfile.scale.y = float.Parse(Elements.inputFields[3].text);
+                noiseProfile.scale.z = float.Parse(Elements.inputFields[4].text);
+            }
+
+            // Offset
+            if (Inputs[4].ConnectedOutputPointer)
+            {
+                PointerValue.GetVector3(Inputs[4], ref noiseProfile.offset);
+
+                Elements.SetInputField(Elements.inputFields[5], noiseProfile.offset.x.ToString());
+                Elements.SetInputField(Elements.inputFields[6], noiseProfile.offset.y.ToString());
+                Elements.SetInputField(Elements.inputFields[7], noiseProfile.offset.z.ToString());
+            }
+            else
+            {
+                noiseProfile.offset.x = float.Parse(Elements.inputFields[5].text);
+                noiseProfile.offset.y = float.Parse(Elements.inputFields[6].text);
+                noiseProfile.offset.z = float.Parse(Elements.inputFields[7].text);
+            }
+
+            // Octaves
+            if (Inputs[5].ConnectedOutputPointer)
+            {
+                PointerValue.GetInt(Inputs[5], ref noiseProfile.octaves);
+                Elements.SetSlider(Elements.sliders[0], PointerValue.GetInt(Inputs[5]));
+            }
+            else
+            {
+                noiseProfile.octaves = (int)Elements.sliders[0].value;
+            }
+
+            // Lacunarity
+            if (Inputs[6].ConnectedOutputPointer)
+            {
+                PointerValue.GetFloat(Inputs[6], ref noiseProfile.lacunarity);
+                Elements.SetSlider(Elements.sliders[1], PointerValue.GetFloat(Inputs[6]));
+            }
+            else
+            {
+                noiseProfile.lacunarity = Elements.sliders[1].value;
+            }
+
+            // Gain
+            if (Inputs[7].ConnectedOutputPointer)
+            {
+                PointerValue.GetFloat(Inputs[7], ref noiseProfile.gain);
+                Elements.SetSlider(Elements.sliders[2], PointerValue.GetFloat(Inputs[7]));
+            }
+            else
+            {
+                noiseProfile.gain = Elements.sliders[2].value;
+            }
+
+            // Weighted Stregth
+            if (Inputs[8].ConnectedOutputPointer)
+            {
+                PointerValue.GetFloat(Inputs[8], ref noiseProfile.weightedStregth);
+                Elements.SetSlider(Elements.sliders[3], PointerValue.GetFloat(Inputs[8]));
+            }
+            else
+            {
+                noiseProfile.weightedStregth = Elements.sliders[3].value;
+            }
+
+            // Ping Pong
+            if (Inputs[9].ConnectedOutputPointer)
+            {
+                PointerValue.GetFloat(Inputs[9], ref noiseProfile.pingPongStregth);
+                Elements.SetInputField(Elements.inputFields[8], PointerValue.GetFloat(Inputs[9]).ToString());
+            }
+            else
+            {
+                noiseProfile.pingPongStregth = float.Parse(Elements.inputFields[8].text);
+            }
 
             int res = 128;
+            _values = new float[res * res];
             _result = new Color[res * res];
 
-            float s = 0.025f;
+            noiseProfile.warp = Inputs[10].ConnectedOutputPointer;
+            noiseProfile.Init();
+
+            FastNoise2D fastNoise = new FastNoise2D();
+
+            if (Inputs[10].ConnectedOutputPointer)
+            {
+                WarpProfile warpProfile = PointerValue.GetWarpProfile(Inputs[10]);
+
+                warpProfile.Init(noiseProfile);
+
+                if (is3D)
+                {
+                    fastNoise.WarpedNoise3DToMap2D(ref _values, res, res, noiseProfile, warpProfile);
+                }
+                else
+                {
+                    fastNoise.WarpedNoise2DToMap2D(ref _values, res, res, noiseProfile, warpProfile);
+                }
+            }
+            else
+            {
+                if (is3D)
+                {
+                    fastNoise.Noise3DToMap2D(ref _values, res, res, noiseProfile);
+                }
+                else
+                {
+                    fastNoise.Noise2DToMap2D(ref _values, res, res, noiseProfile);
+                }
+            }
 
             for (int y = 0, i = 0; y < res; y++)
             {
                 for (int x = 0; x < res; x++, i++)
                 {
-                    _result[i] = Color.white * Mathf.PerlinNoise((x + xOffset) * s, (y + yOffset) * s);
+                    _result[i] = Color.white * new Color(_values[i], _values[i], _values[i], 1);
                     _result[i].a = 1;
                 }
             }
 
             Texture2D texture = new Texture2D(res, res);
+            texture.wrapMode = TextureWrapMode.Clamp;
+            texture.filterMode = FilterMode.Point;
             texture.SetPixels(_result);
             texture.Apply();
-            _image.texture = texture;
-        }
 
-        protected override void DataToGetAndSet()
-        {
+            _image.texture = texture;
+
             Outputs[0].GetComponent<ColorArrayOutputPointer>().Values = _result;
-            Elements.SetInputField(Elements.inputFields[0], PointerValue.GetInt(Inputs[0]).ToString());
         }
 
         protected override void CodeToReset()
         {
-            if (_result != null)
-            {
-                int length = _result.Length;
-                _result = new Color[length];
-            }
-
             Outputs[0].GetComponent<ColorArrayOutputPointer>().Reset();
-            Elements.SetInputField(Elements.inputFields[0], PointerValue.GetInt(Inputs[0]).ToString());
         }
     }
 }

@@ -3,7 +3,9 @@
     "rootNamespace": "RNE.Template.Node.Pointer",
     "references": [
         "GUID:971907e042dcd334289fba405f52b119",
-        "GUID:b16b6ce5e0775e343b616f7ce3837b3a"
+        "GUID:b16b6ce5e0775e343b616f7ce3837b3a",
+        "GUID:a75163b6c3636d14d9cadbd65b4e1d6d",
+        "GUID:52e98eac364459c438271a819ba926cc"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

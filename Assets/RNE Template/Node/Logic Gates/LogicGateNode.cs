@@ -19,10 +19,7 @@ namespace RNE.Template.Node
         {
             ExecuteInputConnection(0);
             ExecuteInputConnection(1);
-        }
 
-        protected override void DataToGetAndSet()
-        {
             bool a = false;
             if (Inputs[0].ConnectedOutputPointer)
             {

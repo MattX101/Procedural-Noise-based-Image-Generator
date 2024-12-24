@@ -13,13 +13,8 @@ namespace RNE.Template.Node
             ExecuteInputConnection(1);
             ExecuteInputConnection(2);
             ExecuteInputConnection(3);
-        }
-
-        protected override void DataToGetAndSet()
-        {
-            Vector3 v = Vector3.zero;
-
-            v = PointerValue.GetVector3(Inputs[0]);
+            
+            Vector3 v = PointerValue.GetVector3(Inputs[0]);
 
             PointerValue.GetFloat(Inputs[1], ref v.x);
             PointerValue.GetFloat(Inputs[2], ref v.y);

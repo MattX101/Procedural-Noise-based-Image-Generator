@@ -45,10 +45,7 @@ namespace RNE.Template.Node
             texture.SetPixels(_result);
             texture.Apply();
             _image.texture = texture;
-        }
 
-        protected override void DataToGetAndSet()
-        {
             Outputs[0].GetComponent<ColorArrayOutputPointer>().Values = _result;
         }
 

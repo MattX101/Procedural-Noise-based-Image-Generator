@@ -12,11 +12,13 @@ namespace RNE.Template.Node
 
         protected override void CodeToExecute()
         {
-            if (Inputs[0])
+            if (Inputs[0].ConnectedOutputPointer != null)
             {
                 ExecuteInputConnection(0);
 
                 Texture2D texture = new Texture2D(128, 128);
+                texture.wrapMode = TextureWrapMode.Clamp;
+                texture.filterMode = FilterMode.Point;
                 texture.SetPixels(PointerValue.GetColorArray(Inputs[0]));
                 texture.Apply();
 

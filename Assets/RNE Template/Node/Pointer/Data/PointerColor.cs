@@ -17,7 +17,6 @@ namespace RNE.Template.Node.Pointer.Data
                 ValueType.String => Colors.String,
                 ValueType.Bool => Colors.Bool,
                 ValueType.Color => Colors.Color,
-                ValueType.ColorArray => Colors.ColorArray,
                 _ => Colors.Null
             };
         }

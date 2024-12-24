@@ -8,10 +8,6 @@ namespace RNE.Template.Node
         protected override void CodeToExecute()
         {
             ExecuteInputConnection(0);
-        }
-
-        protected override void DataToGetAndSet()
-        {
             Elements.SetBoolean(Elements.buttons[0], PointerValue.GetBool(Inputs[0]));
         }
     }

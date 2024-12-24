@@ -38,13 +38,13 @@ namespace RNE.Template.Node
             }
 
             Texture2D texture = new Texture2D(128, 128);
+            texture.wrapMode = TextureWrapMode.Clamp;
+            texture.filterMode = FilterMode.Point;
             texture.SetPixels(_result);
             texture.Apply();
-            _image.texture = texture;
-        }
 
-        protected override void DataToGetAndSet()
-        {
+            _image.texture = texture;
+
             Outputs[0].GetComponent<ColorArrayOutputPointer>().Values = _result;
         }
 

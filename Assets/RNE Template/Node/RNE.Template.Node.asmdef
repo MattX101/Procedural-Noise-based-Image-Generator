@@ -2,12 +2,15 @@
     "name": "RNE.Template.Node",
     "rootNamespace": "RNE.Template.Node",
     "references": [
-        "GUID:971907e042dcd334289fba405f52b119",
-        "GUID:9337d4506e8f8e3459d9df69b4e76df0",
         "GUID:dc71d4e70a7f5154196ea46513c5d4f2",
+        "GUID:b16b6ce5e0775e343b616f7ce3837b3a",
+        "GUID:9337d4506e8f8e3459d9df69b4e76df0",
+        "GUID:971907e042dcd334289fba405f52b119",
         "GUID:456b2fb18c4dc974294da24465e19126",
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:78c8be47f0c2d954aaeb8a0120df8ce5"
+        "GUID:a75163b6c3636d14d9cadbd65b4e1d6d",
+        "GUID:78c8be47f0c2d954aaeb8a0120df8ce5",
+        "GUID:52e98eac364459c438271a819ba926cc"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

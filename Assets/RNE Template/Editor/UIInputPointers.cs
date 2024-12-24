@@ -17,6 +17,9 @@ namespace RNE.Template.Editor
         
         [MenuItem(GameObjectPath + "Pointers/Input/Int/Mini Int", false, 0), MenuItem(AssetsPath + "Pointers/Input/Int/Mini Int", false, 0)]
         private static void CreateMiniIntInputPointer() => CreateUIPrefab(InputPointersPath + "Int/Mini Int Input Pointer");
+
+        [MenuItem(GameObjectPath + "Pointers/Input/Int/Int Slider", false, 0), MenuItem(AssetsPath + "Pointers/Input/Int/Int Slider", false, 0)]
+        private static void CreateIntSliderInputPointer() => CreateUIPrefab(InputPointersPath + "Int/Int Slider Input Pointer");
         // ---
 
         // ---
@@ -29,6 +32,9 @@ namespace RNE.Template.Editor
 
         [MenuItem(GameObjectPath + "Pointers/Input/Float/Mini Float", false, 1), MenuItem(AssetsPath + "Pointers/Input/Float/Mini Float", false, 1)]
         private static void CreateMiniFloatInputPointer() => CreateUIPrefab(InputPointersPath + "Float/Mini Float Input Pointer");
+
+        [MenuItem(GameObjectPath + "Pointers/Input/Float/Float Slider", false, 1), MenuItem(AssetsPath + "Pointers/Input/Float/Float Slider", false, 1)]
+        private static void CreateFloatSliderInputPointer() => CreateUIPrefab(InputPointersPath + "Float/Float Slider Input Pointer");
         // ---
 
         [MenuItem(GameObjectPath + "Pointers/Input/Vector2", false, 2), MenuItem(AssetsPath + "Pointers/Input/Vector2", false, 2)]
@@ -54,9 +60,6 @@ namespace RNE.Template.Editor
 
         [MenuItem(GameObjectPath + "Pointers/Input/Color", false, 7), MenuItem(AssetsPath + "Pointers/Input/Color", false, 7)]
         private static void CreateColorInputPointer() => CreateUIPrefab(InputPointersPath + "Color Input Pointer");
-
-        [MenuItem(GameObjectPath + "Pointers/Input/Texture", false, 8), MenuItem(AssetsPath + "Pointers/Input/Texture", false, 8)]
-        private static void CreateTextureInputPointer() => CreateUIPrefab(InputPointersPath + "Texture Input Pointer");
     }
 }
 #endif

@@ -14,15 +14,5 @@ namespace RNE.Template.Node.Pointer
         {
             ValueTypeIndex = (int)ValueType.Char;
         }
-
-        public override void DisableUIElement()
-        {
-            _inputfield.Disable();
-        }
-
-        public override void EnableUIElement()
-        {
-            _inputfield.Enable();
-        }
     }
 }

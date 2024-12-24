@@ -9,11 +9,6 @@ namespace RNE.Template.Editor
         private const string GameObjectPath = "GameObject/RNE Template/";
         private const string AssetsPath = "Assets/Create/RNE Template/";
 
-        private const string ElementsPath = "Assets/RNE Template/Assets/Prefabs/Elements/";
-
-        [MenuItem(GameObjectPath + "Elements/Colour Picker", false, 2), MenuItem(AssetsPath + "Elements/Colour Picker", false, 2)]
-        private static void CreateColourPicker() => CreateUIPrefab(ElementsPath + "Colour Picker");
-
         private static void CreateUIPrefab(string path)
         {
             GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path + ".prefab");
