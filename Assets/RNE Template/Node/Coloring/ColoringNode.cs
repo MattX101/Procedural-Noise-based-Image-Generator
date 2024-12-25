@@ -14,27 +14,40 @@ namespace RNE.Template.Node
 
         protected override void CodeToExecute()
         {
-            if (!Inputs[0])
-                return;
+            _result = new Color[128 * 128];
 
-            ExecuteInputConnection(0);
-            ExecuteInputConnection(1);
-
-            if (Inputs[1])
+            if (!Inputs[0].ConnectedOutputPointer && !Inputs[1].ConnectedOutputPointer)
             {
-                Color[] input = PointerValue.GetColorArray(Inputs[0]);
-                _result = new Color[input.Length];
+                for (int i = 0; i < _result.Length; i++)
+                {
+                    _result[i] = Color.black;
+                }
+            }
+            else if (Inputs[0].ConnectedOutputPointer && !Inputs[1].ConnectedOutputPointer)
+            {
+                ExecuteInputConnection(0);
+                _result = PointerValue.GetColorArray(Inputs[0]);
+            }
+            else if (!Inputs[0].ConnectedOutputPointer && Inputs[1].ConnectedOutputPointer)
+            {
+                ExecuteInputConnection(1);
+                for (int i = 0; i < _result.Length; i++)
+                {
+                    _result[i] = Color.black;
+                }
+            }
+            else
+            {
+                ExecuteInputConnection(0);
+                ExecuteInputConnection(1);
 
+                Color[] input = PointerValue.GetColorArray(Inputs[0]);
                 Color mod = PointerValue.GetColor(Inputs[1]);
 
                 for (int i = 0; i < input.Length; i++)
                 {
                     _result[i] = input[i] * mod;
                 }
-            }
-            else
-            {
-                _result = PointerValue.GetColorArray(Inputs[0]);
             }
 
             Texture2D texture = new Texture2D(128, 128);

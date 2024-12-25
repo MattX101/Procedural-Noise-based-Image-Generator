@@ -17,18 +17,32 @@ namespace RNE.Template.Node
 
         protected override void CodeToExecute()
         {
-            if (!Inputs[0])
-                return;
+            _result = new Color[128 * 128];
 
-            ExecuteInputConnection(0);
-            ExecuteInputConnection(1);
-
-            if (Inputs[1])
+            if (!Inputs[0].ConnectedOutputPointer && !Inputs[1].ConnectedOutputPointer)
             {
+                for (int i = 0; i < _result.Length; i++)
+                {
+                    _result[i] = Color.black;
+                }
+            }
+            else if (Inputs[0].ConnectedOutputPointer && !Inputs[1].ConnectedOutputPointer)
+            {
+                ExecuteInputConnection(0);
+                _result = PointerValue.GetColorArray(Inputs[0]);
+            }
+            else if (!Inputs[0].ConnectedOutputPointer && Inputs[1].ConnectedOutputPointer)
+            {
+                ExecuteInputConnection(1);
+                _result = PointerValue.GetColorArray(Inputs[1]);
+            }
+            else
+            {
+                ExecuteInputConnection(0);
+                ExecuteInputConnection(1);
+
                 Color[] a = PointerValue.GetColorArray(Inputs[0]);
                 Color[] b = PointerValue.GetColorArray(Inputs[1]);
-
-                _result = new Color[a.Length];
 
                 BlendFormula formula = GetFormula(Elements.dropdowns[0].value);
                 for (int i = 0; i < a.Length; i++)
@@ -36,14 +50,13 @@ namespace RNE.Template.Node
                     _result[i] = formula(a[i], b[i]);
                 }
             }
-            else
-            {
-                _result = PointerValue.GetColorArray(Inputs[0]);
-            }
 
             Texture2D texture = new Texture2D(128, 128);
+            texture.wrapMode = TextureWrapMode.Clamp;
+            texture.filterMode = FilterMode.Point;
             texture.SetPixels(_result);
             texture.Apply();
+
             _image.texture = texture;
 
             Outputs[0].GetComponent<ColorArrayOutputPointer>().Values = _result;
