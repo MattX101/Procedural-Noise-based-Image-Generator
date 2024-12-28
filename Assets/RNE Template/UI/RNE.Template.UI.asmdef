@@ -1,0 +1,16 @@
+{
+    "name": "RNE.Template.UI",
+    "rootNamespace": "RNE.Template.UI",
+    "references": [
+        "GUID:b16b6ce5e0775e343b616f7ce3837b3a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
