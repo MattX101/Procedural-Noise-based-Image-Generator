@@ -7,6 +7,12 @@ namespace RNE.Template.UI
 {
     public class UIColourGradient : UIColourPicker
     {
+        public Gradient Gradient
+        {
+            get;
+            private set;
+        }
+
         [SerializeField]
         private RawImage _gradientPreview;
 
@@ -16,7 +22,7 @@ namespace RNE.Template.UI
         private int _currentActivePoint = 0;
         private int _activePoints = 2;
 
-        private const int MaxGradientPoints = 8; 
+        private const int MaxGradientPoints = 8;
 
         public void ChangePreviewImage(Image image)
         {
@@ -32,7 +38,7 @@ namespace RNE.Template.UI
 
         public void GeneratePreviewGradient()
         {
-            Gradient gradient = new Gradient();
+            Gradient = new Gradient();
 
             List<GradientColorKey> keys = new List<GradientColorKey>();
             for (int i = 0; i < MaxGradientPoints; i++)
@@ -53,12 +59,12 @@ namespace RNE.Template.UI
                 new GradientAlphaKey(1, 1)
             };
 
-            gradient.SetKeys(keys.ToArray(), alpha);
+            Gradient.SetKeys(keys.ToArray(), alpha);
 
             Color[] gradientPreview = new Color[100];
             for (int i = 0; i < gradientPreview.Length; i++)
             {
-                gradientPreview[i] = gradient.Evaluate((float)i / gradientPreview.Length);
+                gradientPreview[i] = Gradient.Evaluate((float)i / gradientPreview.Length);
             }
 
             Texture2D texture = new Texture2D(100, 1);

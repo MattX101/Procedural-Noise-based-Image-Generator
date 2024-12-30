@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RNE.Template.Node.Pointer
 {
-    public class ColorGradienyOutputPointer : OutputPointer
+    public class ColorGradientOutputPointer : OutputPointer
     {
         public Gradient Value;
 
