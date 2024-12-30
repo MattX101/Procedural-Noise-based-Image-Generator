@@ -15,6 +15,7 @@ namespace RNE.Template.Node.Pointer.Data
         internal static readonly Color Color = Color.magenta;
         internal static readonly Color ColorGradient = Color.cyan;
         internal static readonly Color ColorArray = new(1.0f, 0.5f, 1.0f);
+        internal static readonly Color CellularProfile = new(1.0f, 0.375f, 0.0f);
         internal static readonly Color NoiseWarpProfile = new(0.375f, 0.125f, 0.5f);
     }
 }

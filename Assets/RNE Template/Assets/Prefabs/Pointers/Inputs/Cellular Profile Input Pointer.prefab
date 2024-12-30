@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7640773847558854817
+--- !u!1001 &1232316345838896773
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -18,15 +18,15 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: ae2d786bfa9015a4d9123025b923f530, type: 3}
     - target: {fileID: 1717212673196743418, guid: b486b2df916f50c49bafc6a6a0f26b37, type: 3}
       propertyPath: m_Color.b
-      value: 0.57
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1717212673196743418, guid: b486b2df916f50c49bafc6a6a0f26b37, type: 3}
       propertyPath: m_Color.g
-      value: 0.14535
+      value: 0.3764706
       objectReference: {fileID: 0}
     - target: {fileID: 1717212673196743418, guid: b486b2df916f50c49bafc6a6a0f26b37, type: 3}
       propertyPath: m_Color.r
-      value: 0.42845014
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3645904283315270803, guid: b486b2df916f50c49bafc6a6a0f26b37, type: 3}
       propertyPath: m_Pivot.x
@@ -94,7 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3645904283315270803, guid: b486b2df916f50c49bafc6a6a0f26b37, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3645904283315270803, guid: b486b2df916f50c49bafc6a6a0f26b37, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -110,7 +110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6814967068420172704, guid: b486b2df916f50c49bafc6a6a0f26b37, type: 3}
       propertyPath: m_Name
-      value: Warp Settings Pointer Variant
+      value: Cellular Profile Input Pointer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -118,23 +118,23 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6814967068420172704, guid: b486b2df916f50c49bafc6a6a0f26b37, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4847026289818502764}
+      addedObject: {fileID: 3354630770561670576}
   m_SourcePrefab: {fileID: 100100000, guid: b486b2df916f50c49bafc6a6a0f26b37, type: 3}
---- !u!1 &3790582992472929025 stripped
+--- !u!1 &5731307022277274917 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6814967068420172704, guid: b486b2df916f50c49bafc6a6a0f26b37, type: 3}
-  m_PrefabInstance: {fileID: 7640773847558854817}
+  m_PrefabInstance: {fileID: 1232316345838896773}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4847026289818502764
+--- !u!114 &3354630770561670576
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3790582992472929025}
+  m_GameObject: {fileID: 5731307022277274917}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc3a454580244d645aa20f9159adc991, type: 3}
+  m_Script: {fileID: 11500000, guid: eb471bb74b54f4f49bd1e56f9bbb3fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _node: {fileID: 0}

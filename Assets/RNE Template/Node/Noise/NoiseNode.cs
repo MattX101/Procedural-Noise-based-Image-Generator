@@ -41,6 +41,9 @@ namespace RNE.Template.Node
                 case 4:
                     noiseProfile.SetNoiseType_ValueCubic();
                     break;
+                case 5:
+                    noiseProfile.SetNoiseType_Cellular();
+                    break;
                 default:
                     noiseProfile.SetNoiseType_Perlin();
                     break;
@@ -183,18 +186,46 @@ namespace RNE.Template.Node
                 noiseProfile.pingPongStregth = float.Parse(Elements.inputFields[8].text);
             }
 
+            // Cellular Profile
+            if (Inputs[10].ConnectedOutputPointer)
+            {
+                switch (Inputs[10].ConnectedOutputPointer.Node.Elements.dropdowns[0].value)
+                {
+                    case 0: noiseProfile.SetCellular_Cell(); break;
+                    case 1: noiseProfile.SetCellular_Distance(); break;
+                    case 2: noiseProfile.SetCellular_Distance2(); break;
+                    case 3: noiseProfile.SetCellular_Distance2Add(); break;
+                    case 4: noiseProfile.SetCellular_Distance2Sub(); break;
+                    case 5: noiseProfile.SetCellular_Distance2Mul(); break;
+                    case 6: noiseProfile.SetCellular_Distance2Div(); break;
+                    default: noiseProfile.SetCellular_Cell(); break;
+                }
+
+                switch (Inputs[10].ConnectedOutputPointer.Node.Elements.dropdowns[1].value)
+                {
+                    case 0: noiseProfile.SetCellularDistanceFunction_Euclidean(); break;
+                    case 1: noiseProfile.SetCellularDistanceFunction_EuclideanSq(); break;
+                    case 2: noiseProfile.SetCellularDistanceFunction_Manhattan(); break;
+                    case 3: noiseProfile.SetCellularDistanceFunction_Hybrid(); break;
+                    default: noiseProfile.SetCellularDistanceFunction_Euclidean(); break;
+                }
+
+                noiseProfile.jitter = Inputs[10].ConnectedOutputPointer.Node.Elements.sliders[0].value;
+            }
+            //
+
             int res = 128;
             _values = new float[res * res];
             _result = new Color[res * res];
 
-            noiseProfile.warp = Inputs[10].ConnectedOutputPointer;
+            noiseProfile.warp = Inputs[11].ConnectedOutputPointer;
             noiseProfile.Init();
 
             FastNoise2D fastNoise = new FastNoise2D();
 
-            if (Inputs[10].ConnectedOutputPointer)
+            if (Inputs[11].ConnectedOutputPointer)
             {
-                WarpProfile warpProfile = PointerValue.GetWarpProfile(Inputs[10]);
+                WarpProfile warpProfile = PointerValue.GetWarpProfile(Inputs[11]);
 
                 warpProfile.Init(noiseProfile);
 

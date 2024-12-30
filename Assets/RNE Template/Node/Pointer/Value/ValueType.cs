@@ -13,6 +13,7 @@ namespace RNE.Template.Node.Pointer.Value
         Color,
         ColorGradient,
         ColorArray,
+        CellularProfile,
         NoiseWarpProfile
     };
 }

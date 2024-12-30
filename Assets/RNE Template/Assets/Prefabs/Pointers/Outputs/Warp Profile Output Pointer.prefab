@@ -110,7 +110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6814967068420172704, guid: b486b2df916f50c49bafc6a6a0f26b37, type: 3}
       propertyPath: m_Name
-      value: Warp Settings Output Pointer
+      value: Warp Profile Output Pointer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -138,3 +138,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _node: {fileID: 0}
+  WarpProfile:
+    seed: 0
+    universalScale: 1
+    scale: {x: 1, y: 1, z: 1}
+    offset: {x: 0, y: 0, z: 0}
+    type: 3
+    fractal: 1
+    octaves: 3
+    lacunarity: 2
+    gain: 0.5
+    weightedStregth: 0
+    pingPongStregth: 2
+    cellularReturn: 1
+    cellularDistance: 0
+    jitter: 1
+    warpAmp: 1
