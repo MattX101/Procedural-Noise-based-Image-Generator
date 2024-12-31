@@ -54,6 +54,15 @@ namespace RNE.Template.Editor
 
         [MenuItem(GameObjectPath + "Pointers/Output/Color", false, 7), MenuItem(AssetsPath + "Pointers/Output/Color", false, 7)]
         private static void CreateColorOutputPointer() => CreateUIPrefab(OutputPointersPath + "Color Output Pointer");
+
+        [MenuItem(GameObjectPath + "Pointers/Output/Warp Profile", false, 8), MenuItem(AssetsPath + "Pointers/Output/Warp Profile", false, 8)]
+        private static void CreateWarpProfileOutputPointer() => CreateUIPrefab(OutputPointersPath + "Warp Profile Output Pointer");
+
+        [MenuItem(GameObjectPath + "Pointers/Output/Cellular Profile", false, 9), MenuItem(AssetsPath + "Pointers/Output/Cellular Profile", false, 9)]
+        private static void CreateCellularProfileOutputPointer() => CreateUIPrefab(OutputPointersPath + "Cellular Profile Output Pointer");
+
+        [MenuItem(GameObjectPath + "Pointers/Output/Color Gradient", false, 10), MenuItem(AssetsPath + "Pointers/Output/Color Gradient", false, 10)]
+        private static void CreateColorGradientOutputPointer() => CreateUIPrefab(OutputPointersPath + "Color Gradient Output Pointer");
     }
 }
 #endif
