@@ -27,14 +27,7 @@ namespace RNE.Template.Node
                 }
 
                 Outputs[0].GetComponent<ColorArrayOutputPointer>().Values = colors;
-
-                Texture2D texture = new Texture2D(128, 128);
-                texture.SetPixels(colors);
-                texture.wrapMode = TextureWrapMode.Clamp;
-                texture.filterMode = FilterMode.Point;
-                texture.Apply();
-
-                _image.texture = texture;
+                _image.texture = PreviewTexture.Generate(colors);
             }
         }
 

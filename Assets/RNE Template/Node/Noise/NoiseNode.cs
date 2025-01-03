@@ -214,9 +214,8 @@ namespace RNE.Template.Node
             }
             //
 
-            int res = 128;
-            _values = new float[res * res];
-            _result = new Color[res * res];
+            _values = new float[PreviewTexture.Length];
+            _result = new Color[PreviewTexture.Length];
 
             noiseProfile.warp = Inputs[11].ConnectedOutputPointer;
             noiseProfile.Init();
@@ -231,42 +230,32 @@ namespace RNE.Template.Node
 
                 if (is3D)
                 {
-                    fastNoise.WarpedNoise3DToMap2D(ref _values, res, res, noiseProfile, warpProfile);
+                    fastNoise.WarpedNoise3DToMap2D(ref _values, PreviewTexture.Resolution, PreviewTexture.Resolution, noiseProfile, warpProfile);
                 }
                 else
                 {
-                    fastNoise.WarpedNoise2DToMap2D(ref _values, res, res, noiseProfile, warpProfile);
+                    fastNoise.WarpedNoise2DToMap2D(ref _values, PreviewTexture.Resolution, PreviewTexture.Resolution, noiseProfile, warpProfile);
                 }
             }
             else
             {
                 if (is3D)
                 {
-                    fastNoise.Noise3DToMap2D(ref _values, res, res, noiseProfile);
+                    fastNoise.Noise3DToMap2D(ref _values, PreviewTexture.Resolution, PreviewTexture.Resolution, noiseProfile);
                 }
                 else
                 {
-                    fastNoise.Noise2DToMap2D(ref _values, res, res, noiseProfile);
+                    fastNoise.Noise2DToMap2D(ref _values, PreviewTexture.Resolution, PreviewTexture.Resolution, noiseProfile);
                 }
             }
 
-            for (int y = 0, i = 0; y < res; y++)
+            for (int i = 0; i < PreviewTexture.Length; i++)
             {
-                for (int x = 0; x < res; x++, i++)
-                {
-                    _result[i] = Color.white * new Color(_values[i], _values[i], _values[i], 1);
-                    _result[i].a = 1;
-                }
+                _result[i] = Color.white * new Color(_values[i], _values[i], _values[i], 1);
+                _result[i].a = 1;
             }
 
-            Texture2D texture = new Texture2D(res, res);
-            texture.wrapMode = TextureWrapMode.Clamp;
-            texture.filterMode = FilterMode.Point;
-            texture.SetPixels(_result);
-            texture.Apply();
-
-            _image.texture = texture;
-
+            _image.texture = PreviewTexture.Generate(_result);
             Outputs[0].GetComponent<ColorArrayOutputPointer>().Values = _result;
         }
 
