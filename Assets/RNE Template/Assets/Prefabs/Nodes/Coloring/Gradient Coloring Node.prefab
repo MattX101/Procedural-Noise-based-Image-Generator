@@ -451,6 +451,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 199668000988325517, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 199668000988325517, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2506695100062174658, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -483,6 +491,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5767747812867517698, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
+      propertyPath: m_text
+      value: Gradient Coloring
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767747812867517698, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
+      propertyPath: m_fontSize
+      value: 27.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767747812867517698, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767747812867517698, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767747812867517698, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6617470509058496232, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
       propertyPath: m_Size.x
       value: 270
@@ -493,7 +521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6986467484705591435, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
       propertyPath: _nodeTitle
-      value: Coloring
+      value: Gradient Coloring
       objectReference: {fileID: 0}
     - target: {fileID: 6986467484705591435, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
       propertyPath: id.Array.size
