@@ -1,5 +1,6 @@
 ﻿using RNE.Template.Node.Pointer;
 using RNE.Template.Node.Pointer.Value;
+using RNE.Template.Node.Seed;
 using Utils.Noise.Profiles;
 
 namespace RNE.Template.Node
@@ -30,6 +31,7 @@ namespace RNE.Template.Node
             {
                 _warpProfile.seed = int.Parse(Elements.inputFields[0].text);
             }
+            _warpProfile.seed += SeedData.Seed;
 
             // Universal Scale
             if (Inputs[1].ConnectedOutputPointer)

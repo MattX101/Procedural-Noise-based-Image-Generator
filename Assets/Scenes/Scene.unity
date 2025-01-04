@@ -5036,6 +5036,7 @@ GameObject:
   - component: {fileID: 1131921008}
   - component: {fileID: 1131921007}
   - component: {fileID: 1131921006}
+  - component: {fileID: 1131921009}
   m_Layer: 5
   m_Name: 'Randomize Button '
   m_TagString: Untagged
@@ -5105,7 +5106,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1131921007}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1131921009}
+        m_TargetAssemblyTypeName: RNE.Template.Node.SeedManager, RNE.Template.Node
+        m_MethodName: Generate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1777772070}
+        m_TargetAssemblyTypeName: RuntimeNodeEditor.Node.NodeExecution, RuntimeNodeEditor.Node
+        m_MethodName: Execute
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1131921007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5144,6 +5169,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1131921004}
   m_CullTransparentMesh: 1
+--- !u!114 &1131921009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131921004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 331bb6627574a4d4ebe45f5950d7ddc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1135396349
 GameObject:
   m_ObjectHideFlags: 0
@@ -7207,6 +7244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f92d25b03039f3e47bb8f11375951e59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _nodesParent: {fileID: 1777772063}
 --- !u!114 &1777772071
 MonoBehaviour:
   m_ObjectHideFlags: 0

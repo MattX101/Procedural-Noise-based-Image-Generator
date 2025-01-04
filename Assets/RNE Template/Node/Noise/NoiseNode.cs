@@ -1,5 +1,6 @@
 using RNE.Template.Node.Pointer;
 using RNE.Template.Node.Pointer.Value;
+using RNE.Template.Node.Seed;
 using Utils.Noise;
 using Utils.Noise.Profiles;
 using UnityEngine;
@@ -75,6 +76,7 @@ namespace RNE.Template.Node
             {
                 noiseProfile.seed = int.Parse(Elements.inputFields[0].text);
             }
+            noiseProfile.seed += SeedData.Seed;
 
             // Universal Scale
             if (Inputs[1].ConnectedOutputPointer)
