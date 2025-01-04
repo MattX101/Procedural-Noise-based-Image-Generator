@@ -1,15 +1,11 @@
 ﻿using RNE.Template.Node.Pointer;
 using RNE.Template.Node.Pointer.Value;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace RNE.Template.Node
 {
-    public class GradientColoringNode : RuntimeNodeEditor.Node.Node
+    public class GradientColoringNode : NodeWithPreview
     {
-        [SerializeField]
-        private RawImage _image;
-
         private Color[] _result;
 
         protected override void CodeToExecute()
@@ -50,7 +46,7 @@ namespace RNE.Template.Node
                 }
             }
 
-            _image.texture = PreviewTexture.Generate(_result);
+            SetPreview(PreviewTexture.Generate(_result));
             Outputs[0].GetComponent<ColorArrayOutputPointer>().Values = _result;
         }
 

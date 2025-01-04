@@ -2,15 +2,11 @@ using RNE.Template.Node.Pointer;
 using RNE.Template.Node.Pointer.Value;
 using Utils.Colors.Blend;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace RNE.Template.Node
 {
-    public class BlendNode : RuntimeNodeEditor.Node.Node
+    public class BlendNode : NodeWithPreview
     {
-        [SerializeField]
-        private RawImage _image;
-
         private Color[] _result;
 
         private delegate Color BlendFormula(Color a, Color b);
@@ -51,7 +47,7 @@ namespace RNE.Template.Node
                 }
             }
 
-            _image.texture = PreviewTexture.Generate(_result);
+            SetPreview(PreviewTexture.Generate(_result));
             Outputs[0].GetComponent<ColorArrayOutputPointer>().Values = _result;
         }
 

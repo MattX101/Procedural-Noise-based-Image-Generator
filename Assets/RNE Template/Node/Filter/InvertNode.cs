@@ -1,15 +1,11 @@
-﻿using UnityEngine.UI;
-using UnityEngine;
-using RNE.Template.Node.Pointer;
+﻿using RNE.Template.Node.Pointer;
 using RNE.Template.Node.Pointer.Value;
+using UnityEngine;
 
 namespace RNE.Template.Node
 {
-    public class InvertNode : RuntimeNodeEditor.Node.Node
+    public class InvertNode : NodeWithPreview
     {
-        [SerializeField]
-        private RawImage _image;
-
         protected override void CodeToExecute()
         {
             ExecuteInputConnection(0);
@@ -25,7 +21,7 @@ namespace RNE.Template.Node
                 }
 
                 Outputs[0].GetComponent<ColorArrayOutputPointer>().Values = colors;
-                _image.texture = PreviewTexture.Generate(colors);
+                SetPreview(PreviewTexture.Generate(colors));
             }
         }
 

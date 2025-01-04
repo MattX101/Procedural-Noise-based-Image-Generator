@@ -4,15 +4,11 @@ using RNE.Template.Node.Seed;
 using Utils.Noise;
 using Utils.Noise.Profiles;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace RNE.Template.Node
 {
-    public class NoiseNode : RuntimeNodeEditor.Node.Node
+    public class NoiseNode : NodeWithPreview
     {
-        [SerializeField]
-        private RawImage _image;
-
         private float[] _values;
         private Color[] _result;
 
@@ -257,7 +253,7 @@ namespace RNE.Template.Node
                 _result[i].a = 1;
             }
 
-            _image.texture = PreviewTexture.Generate(_result);
+            SetPreview(PreviewTexture.Generate(_result));
             Outputs[0].GetComponent<ColorArrayOutputPointer>().Values = _result;
         }
 

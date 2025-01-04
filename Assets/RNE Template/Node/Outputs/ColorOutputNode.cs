@@ -1,11 +1,10 @@
 using RNE.Template.Node.Pointer.Value;
-using RuntimeNodeEditor.Node;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace RNE.Template.Node
 {
-    public class ColorOutputNode : EndNode
+    public class ColorOutputNode : RuntimeNodeEditor.Node.Node
     {
         [SerializeField] private RawImage _image;
 

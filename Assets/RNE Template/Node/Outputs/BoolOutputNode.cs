@@ -1,9 +1,8 @@
 using RNE.Template.Node.Pointer.Value;
-using RuntimeNodeEditor.Node;
 
 namespace RNE.Template.Node
 {
-    public class BoolOutputNode : EndNode
+    public class BoolOutputNode : RuntimeNodeEditor.Node.Node
     {
         protected override void CodeToExecute()
         {

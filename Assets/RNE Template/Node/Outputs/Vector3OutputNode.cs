@@ -1,10 +1,9 @@
 using RNE.Template.Node.Pointer.Value;
-using RuntimeNodeEditor.Node;
 using UnityEngine;
 
 namespace RNE.Template.Node
 {
-    public class Vector3OutputNode : EndNode
+    public class Vector3OutputNode : RuntimeNodeEditor.Node.Node
     {
         protected override void CodeToExecute()
         {
