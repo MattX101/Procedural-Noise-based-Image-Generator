@@ -135,12 +135,12 @@ namespace RNE.Template.Node
             // Weighted Stregth
             if (Inputs[9].ConnectedOutputPointer)
             {
-                PointerValue.GetFloat(Inputs[9], ref _warpProfile.weightedStregth);
+                PointerValue.GetFloat(Inputs[9], ref _warpProfile.weightedStrength);
                 Elements.SetSlider(Elements.sliders[3], PointerValue.GetFloat(Inputs[9]));
             }
             else
             {
-                _warpProfile.weightedStregth = Elements.sliders[3].value;
+                _warpProfile.weightedStrength = Elements.sliders[3].value;
             }
 
             Outputs[0].GetComponent<WarpProfileOutputPointer>().WarpProfile = _warpProfile;

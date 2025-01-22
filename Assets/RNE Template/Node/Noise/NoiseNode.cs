@@ -20,6 +20,7 @@ namespace RNE.Template.Node
             }
 
             NoiseProfile noiseProfile = new NoiseProfile();
+            WarpProfile warpProfile = null;
 
             switch (Elements.dropdowns[0].value)
             {
@@ -165,23 +166,23 @@ namespace RNE.Template.Node
             // Weighted Stregth
             if (Inputs[8].ConnectedOutputPointer)
             {
-                PointerValue.GetFloat(Inputs[8], ref noiseProfile.weightedStregth);
+                PointerValue.GetFloat(Inputs[8], ref noiseProfile.weightedStrength);
                 Elements.SetSlider(Elements.sliders[3], PointerValue.GetFloat(Inputs[8]));
             }
             else
             {
-                noiseProfile.weightedStregth = Elements.sliders[3].value;
+                noiseProfile.weightedStrength = Elements.sliders[3].value;
             }
 
             // Ping Pong
             if (Inputs[9].ConnectedOutputPointer)
             {
-                PointerValue.GetFloat(Inputs[9], ref noiseProfile.pingPongStregth);
+                PointerValue.GetFloat(Inputs[9], ref noiseProfile.pingPongStrength);
                 Elements.SetInputField(Elements.inputFields[8], PointerValue.GetFloat(Inputs[9]).ToString());
             }
             else
             {
-                noiseProfile.pingPongStregth = float.Parse(Elements.inputFields[8].text);
+                noiseProfile.pingPongStrength = float.Parse(Elements.inputFields[8].text);
             }
 
             // Cellular Profile
@@ -218,34 +219,13 @@ namespace RNE.Template.Node
             noiseProfile.warp = Inputs[11].ConnectedOutputPointer;
             noiseProfile.Init();
 
-            FastNoise2D fastNoise = new FastNoise2D();
-
             if (Inputs[11].ConnectedOutputPointer)
             {
-                WarpProfile warpProfile = PointerValue.GetWarpProfile(Inputs[11]);
-
-                warpProfile.Init(noiseProfile);
-
-                if (is3D)
-                {
-                    fastNoise.WarpedNoise3DToMap2D(ref _values, PreviewTexture.Resolution, PreviewTexture.Resolution, noiseProfile, warpProfile);
-                }
-                else
-                {
-                    fastNoise.WarpedNoise2DToMap2D(ref _values, PreviewTexture.Resolution, PreviewTexture.Resolution, noiseProfile, warpProfile);
-                }
+                warpProfile = PointerValue.GetWarpProfile(Inputs[11]);
+                warpProfile.Init();
             }
-            else
-            {
-                if (is3D)
-                {
-                    fastNoise.Noise3DToMap2D(ref _values, PreviewTexture.Resolution, PreviewTexture.Resolution, noiseProfile);
-                }
-                else
-                {
-                    fastNoise.Noise2DToMap2D(ref _values, PreviewTexture.Resolution, PreviewTexture.Resolution, noiseProfile);
-                }
-            }
+
+            FastNoise2DCPU.GenerateNoise2D(ref _values, PreviewTexture.Resolution, PreviewTexture.Resolution, is3D, noiseProfile, warpProfile);
 
             for (int i = 0; i < PreviewTexture.Length; i++)
             {

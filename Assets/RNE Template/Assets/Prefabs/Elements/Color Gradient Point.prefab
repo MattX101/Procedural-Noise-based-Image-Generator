@@ -136,10 +136,15 @@ PrefabInstance:
       propertyPath: _handle
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8298028042216796896, guid: 390adc2d886578e4aa93e880d02ea719, type: 3}
+      propertyPath: _background
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6566889504571806143, guid: 390adc2d886578e4aa93e880d02ea719, type: 3}
     - {fileID: 1991384231761341875, guid: 390adc2d886578e4aa93e880d02ea719, type: 3}
+    - {fileID: 4668891671480727773, guid: 390adc2d886578e4aa93e880d02ea719, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1474265885487193713, guid: 390adc2d886578e4aa93e880d02ea719, type: 3}

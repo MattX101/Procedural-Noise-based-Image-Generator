@@ -3143,7 +3143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WindowObject: {fileID: 784078129}
-  _togglePreviewIcon: {fileID: 784078134}
+  _togglePreviewIcon: {fileID: 1183710267}
 --- !u!222 &784078133
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4567,7 +4567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6627968040566517458, guid: 3b5e0a3fae870fe478026d62e08ffd6a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7165453647058578162, guid: 3b5e0a3fae870fe478026d62e08ffd6a, type: 3}
       propertyPath: m_SizeDelta.x
@@ -4936,7 +4936,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5853239373712218634, guid: d3b9463e2872b0e418e7ef815b5b5fc1, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8910014796204091438, guid: d3b9463e2872b0e418e7ef815b5b5fc1, type: 3}
       propertyPath: tab

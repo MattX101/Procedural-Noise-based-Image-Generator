@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace RNE.Template.UI
 {
-    public class UIColourGradient : UIColourPicker
+    public class UIColorGradient : UIColourPicker
     {
         public Gradient Gradient
         {
@@ -30,8 +30,7 @@ namespace RNE.Template.UI
 
             SetImage(image);
 
-            Color color = image.color;
-            SetSliders(color.r, color.g, color.b);
+            SetSliders(image.color.r, image.color.g, image.color.b);
             
             OnSliderValueChange();
         }

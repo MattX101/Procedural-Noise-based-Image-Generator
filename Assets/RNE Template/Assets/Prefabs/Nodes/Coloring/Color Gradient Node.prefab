@@ -187,7 +187,7 @@ MonoBehaviour:
     - {fileID: 3141169932798275640}
     - {fileID: 2910066988679848164}
     - {fileID: 8980388058558309074}
-  _uiColourGradient: {fileID: 5470381833825657795}
+  _uiColorGradient: {fileID: 5470381833825657795}
 --- !u!1001 &1745525390406369161
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -730,7 +730,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8669014806868588153, guid: fe294f2529342dc4c8344b4f41973c50, type: 3}
       propertyPath: m_Name
-      value: Colour Gradient
+      value: Color Gradient
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
