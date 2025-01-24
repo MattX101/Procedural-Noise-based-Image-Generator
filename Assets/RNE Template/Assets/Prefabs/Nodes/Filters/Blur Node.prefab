@@ -364,6 +364,7 @@ MonoBehaviour:
     inputFields: []
     sliders: []
   _image: {fileID: 7703154440790783747}
+  _shader: {fileID: 7200000, guid: 013aa471d01555044a49a6ab28d2442c, type: 3}
 --- !u!224 &7886569812852281003 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5461863840995386727, guid: 6e972d1ca6051d84998bc927e5362a04, type: 3}

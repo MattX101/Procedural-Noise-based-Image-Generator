@@ -94,7 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3645904283315270803, guid: b486b2df916f50c49bafc6a6a0f26b37, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3645904283315270803, guid: b486b2df916f50c49bafc6a6a0f26b37, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -110,7 +110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6814967068420172704, guid: b486b2df916f50c49bafc6a6a0f26b37, type: 3}
       propertyPath: m_Name
-      value: Cellular Profile Output Pointer Variant
+      value: Cellular Profile Output Pointer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

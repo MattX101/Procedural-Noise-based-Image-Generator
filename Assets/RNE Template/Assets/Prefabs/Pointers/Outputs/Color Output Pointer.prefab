@@ -86,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3645904283315270803, guid: b486b2df916f50c49bafc6a6a0f26b37, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 450
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3645904283315270803, guid: b486b2df916f50c49bafc6a6a0f26b37, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -161,4 +161,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4b40c4202fced49bf2d00ea6655cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _node: {fileID: 0}
   Value: {r: 0, g: 0, b: 0, a: 1}

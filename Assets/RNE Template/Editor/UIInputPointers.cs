@@ -64,13 +64,16 @@ namespace RNE.Template.Editor
         [MenuItem(GameObjectPath + "Pointers/Input/Texture", false, 8), MenuItem(AssetsPath + "Pointers/Input/Texture", false, 8)]
         private static void CreateTextureInputPointer() => CreateUIPrefab(InputPointersPath + "Texture Input Pointer");
 
-        [MenuItem(GameObjectPath + "Pointers/Input/Warp Profile", false, 9), MenuItem(AssetsPath + "Pointers/Input/Warp Profile", false, 9)]
+        [MenuItem(GameObjectPath + "Pointers/Input/Noise", false, 9), MenuItem(AssetsPath + "Pointers/Input/Noise", false, 9)]
+        private static void CreateNoiseInputPointer() => CreateUIPrefab(InputPointersPath + "Noise Input Pointer");
+
+        [MenuItem(GameObjectPath + "Pointers/Input/Warp Profile", false, 10), MenuItem(AssetsPath + "Pointers/Input/Warp Profile", false, 10)]
         private static void CreateWarpProfileInputPointer() => CreateUIPrefab(InputPointersPath + "Warp Profile Input Pointer");
 
-        [MenuItem(GameObjectPath + "Pointers/Input/Cellular Profile", false, 10), MenuItem(AssetsPath + "Pointers/Input/Cellular Profile", false, 10)]
+        [MenuItem(GameObjectPath + "Pointers/Input/Cellular Profile", false, 11), MenuItem(AssetsPath + "Pointers/Input/Cellular Profile", false, 11)]
         private static void CreateCellularProfileInputPointer() => CreateUIPrefab(InputPointersPath + "Cellular Profile Input Pointer");
         
-        [MenuItem(GameObjectPath + "Pointers/Input/Color Gradient", false, 11), MenuItem(AssetsPath + "Pointers/Input/Color Gradient", false, 11)]
+        [MenuItem(GameObjectPath + "Pointers/Input/Color Gradient", false, 12), MenuItem(AssetsPath + "Pointers/Input/Color Gradient", false, 12)]
         private static void CreateColorGradientInputPointer() => CreateUIPrefab(InputPointersPath + "Color Gradient Input Pointer");
     }
 }

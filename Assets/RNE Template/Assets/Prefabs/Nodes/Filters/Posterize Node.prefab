@@ -553,6 +553,7 @@ MonoBehaviour:
     sliders:
     - {fileID: 7002333825234374858}
   _image: {fileID: 7703154440790783747}
+  _shader: {fileID: 7200000, guid: 330a18e079ca744478b67bd7dd940d61, type: 3}
 --- !u!224 &7886569812852281003 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5461863840995386727, guid: 6e972d1ca6051d84998bc927e5362a04, type: 3}

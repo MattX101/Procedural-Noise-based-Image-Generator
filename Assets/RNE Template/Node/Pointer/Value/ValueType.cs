@@ -12,7 +12,8 @@ namespace RNE.Template.Node.Pointer.Value
         Bool,
         Color,
         ColorGradient,
-        ColorArray,
+        Noise,
+        Texture,
         CellularProfile,
         NoiseWarpProfile
     };

@@ -1,0 +1,12 @@
+#pragma kernel Invert
+
+RWStructuredBuffer<float4> colors;
+
+[numthreads(1024,1,1)]
+void Invert(uint3 id : SV_DispatchThreadID)
+{
+    colors[id.x].x = 1.0f - colors[id.x].x;
+    colors[id.x].y = 1.0f - colors[id.x].y;
+    colors[id.x].z = 1.0f - colors[id.x].z;
+    colors[id.x].w = 1.0f;
+}

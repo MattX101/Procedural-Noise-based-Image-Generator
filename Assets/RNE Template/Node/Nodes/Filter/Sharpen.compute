@@ -1,0 +1,50 @@
+#pragma kernel Sharpen
+
+RWStructuredBuffer<float4> colors;
+
+int resX, resY;
+
+int IndexOf(int x, int y)
+{
+    if (x >= resX)
+        return -1;
+    
+    if (y >= resY)
+        return -1;
+    
+    return y * resY + x;
+}
+
+[numthreads(32, 32, 1)]
+void Sharpen(uint3 id : SV_DispatchThreadID)
+{
+    int i = IndexOf(id.x, id.y);
+
+    int l = id.x - 1;
+    int r = id.x + 1;
+    int b = id.y - 1;
+    int t = id.y + 1;
+
+    l = l < 0 ? 1 : l;
+    r = r >= resX ? resX - 1 : r;
+    b = b < 0 ? 1 : b;
+    t = t >= resY ? resY - 1 : t;
+    
+    int lI = id.y * resY + l;
+    int rI = id.y * resY + r;
+    int bI = b * resY + id.x;
+    int tI = t * resY + id.x;
+    int bLI = b * resY + l;
+    int bRI = b * resY + r;
+    int tLI = t * resY + l;
+    int tRI = t * resY + r;
+    
+    float rC = (colors[i].x + colors[lI].x + colors[rI].x + colors[bI].x + colors[tI].x + colors[bLI].x + colors[bRI].x + colors[tLI].x + colors[tRI].x) / 9.0f;
+    float gC = (colors[i].y + colors[lI].y + colors[rI].y + colors[bI].y + colors[tI].y + colors[bLI].y + colors[bRI].y + colors[tLI].y + colors[tRI].y) / 9.0f;
+    float bC = (colors[i].z + colors[lI].z + colors[rI].z + colors[bI].z + colors[tI].z + colors[bLI].z + colors[bRI].z + colors[tLI].z + colors[tRI].z) / 9.0f;
+    
+    colors[i].x = 2.0f * colors[i].x - rC;
+    colors[i].y = 2.0f * colors[i].y - gC;
+    colors[i].z = 2.0f * colors[i].z - bC;
+    colors[i].w = 1.0f;
+}
