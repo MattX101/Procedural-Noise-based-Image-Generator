@@ -20,7 +20,7 @@ namespace RNE.Template.Node.Pointer
 
         protected override Color GetLineColor()
         {
-            return Data.Colors.Char;
+            return ProjectData.Colors.Char;
         }
     }
 }

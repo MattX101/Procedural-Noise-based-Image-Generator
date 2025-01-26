@@ -28,12 +28,12 @@ namespace RNE.Template.Node.Pointer
 
         private void CreateBuffer()
         {
-            Buffer = new ComputeBuffer(128 * 128, sizeof(float));
+            Buffer = new ComputeBuffer(Template.ProjectData.Length, sizeof(float));
         }
 
         protected override Color GetLineColor()
         {
-            return Data.Colors.Noise;
+            return ProjectData.Colors.Noise;
         }
     }
 }

@@ -1,7 +1,7 @@
 using RNE.Template.Node.Pointer.Value;
 using UnityEngine;
 
-namespace RNE.Template.Node.Pointer.Data
+namespace RNE.Template.Node.Pointer.ProjectData
 {
     public static class PointerColor
     {

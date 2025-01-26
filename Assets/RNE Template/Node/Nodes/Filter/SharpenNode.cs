@@ -17,15 +17,15 @@ namespace RNE.Template.Node
 
             if (buffer != null)
             {
-                _shader.SetInt("resX", PreviewTexture.Resolution);
-                _shader.SetInt("resY", PreviewTexture.Resolution);
+                _shader.SetInt("resX", ProjectData.Resolution);
+                _shader.SetInt("resY", ProjectData.Resolution);
 
                 int kernel = _shader.FindKernel("Sharpen");
                 _shader.SetBuffer(kernel, "colors", buffer);
                 _shader.Dispatch(
                     kernel,
-                    Mathf.CeilToInt(PreviewTexture.Resolution / 32.0f),
-                    Mathf.CeilToInt(PreviewTexture.Resolution / 32.0f),
+                    Mathf.CeilToInt(ProjectData.Resolution / 32.0f),
+                    Mathf.CeilToInt(ProjectData.Resolution / 32.0f),
                     1);
 
                 Color[] colors = new Color[buffer.count];

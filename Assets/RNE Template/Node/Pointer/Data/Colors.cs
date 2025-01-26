@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace RNE.Template.Node.Pointer.Data
+namespace RNE.Template.Node.Pointer.ProjectData
 {
     internal class Colors
     {

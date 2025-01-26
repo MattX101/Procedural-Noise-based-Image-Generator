@@ -214,8 +214,8 @@ namespace RNE.Template.Node
             }
             //
 
-            _values = new float[PreviewTexture.Length];
-            _colors = new Color[PreviewTexture.Length];
+            _values = new float[ProjectData.Length];
+            _colors = new Color[ProjectData.Length];
 
             noiseProfile.warp = Inputs[11].ConnectedOutputPointer;
             noiseProfile.Init();
@@ -226,11 +226,11 @@ namespace RNE.Template.Node
                 warpProfile.Init();
             }
 
-            ComputeBuffer noiseBuffer = new ComputeBuffer(PreviewTexture.Length, sizeof(float));
-            FastNoise2DGPU.GenerateNoise(ref noiseBuffer, PreviewTexture.Resolution, PreviewTexture.Resolution, is3D, noiseProfile, warpProfile);
+            ComputeBuffer noiseBuffer = new ComputeBuffer(ProjectData.Length, sizeof(float));
+            FastNoise2DGPU.GenerateNoise(ref noiseBuffer, ProjectData.Resolution, ProjectData.Resolution, is3D, noiseProfile, warpProfile);
             Outputs[0].GetComponent<NoiseOutputPointer>().Buffer = noiseBuffer;
 
-            ComputeBuffer colorsBuffer = new ComputeBuffer(PreviewTexture.Length, sizeof(float) * 4);
+            ComputeBuffer colorsBuffer = new ComputeBuffer(ProjectData.Length, sizeof(float) * 4);
             Coloring.ColoringGPU(ref colorsBuffer, noiseBuffer, Color.white);
 
             Color[] colors = new Color[colorsBuffer.count];

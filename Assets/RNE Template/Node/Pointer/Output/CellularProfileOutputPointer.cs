@@ -13,7 +13,7 @@ namespace RNE.Template.Node.Pointer.Assets.RNE_Template.Node.Pointer.Output
 
         protected override Color GetLineColor()
         {
-            return Data.Colors.CellularProfile;
+            return ProjectData.Colors.CellularProfile;
         }
     }
 }

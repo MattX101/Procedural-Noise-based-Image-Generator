@@ -1,7 +1,13 @@
 {
     "name": "RNE.Template",
     "rootNamespace": "RNE.Template",
-    "references": [],
+    "references": [
+        "GUID:971907e042dcd334289fba405f52b119",
+        "GUID:2ddc451d3d4ba564aa8dfea390a38ef2",
+        "GUID:35719f50b5d2c9a4aab9ec193da9455f",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:09d381e51b0834b4394362a80fa3fe6f"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

@@ -9,8 +9,8 @@ namespace RNE.Template.Node
     {
         protected override void CodeToExecute()
         {
-            ComputeBuffer buffer = new ComputeBuffer(PreviewTexture.Length, sizeof(float) * 4);
-            Color[] preview = new Color[PreviewTexture.Length];
+            ComputeBuffer buffer = new ComputeBuffer(ProjectData.Length, sizeof(float) * 4);
+            Color[] preview = new Color[ProjectData.Length];
 
             if (!Inputs[0].ConnectedOutputPointer && !Inputs[1].ConnectedOutputPointer)
             {

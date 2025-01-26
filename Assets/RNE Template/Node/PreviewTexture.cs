@@ -4,12 +4,9 @@ namespace RNE.Template.Node
 {
     internal static class PreviewTexture
     {
-        internal const int Resolution = 128;
-        internal static int Length => Resolution * Resolution;
-
         internal static Texture2D Generate(Color[] colors)
         {
-            Texture2D texture = new Texture2D(Resolution, Resolution);
+            Texture2D texture = new Texture2D(ProjectData.Resolution, ProjectData.Resolution);
 
             texture.wrapMode = TextureWrapMode.Clamp;
             texture.filterMode = FilterMode.Point;

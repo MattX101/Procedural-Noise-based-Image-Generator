@@ -21,7 +21,7 @@ namespace RNE.Template.Node.Pointer
 
         protected override Color GetLineColor()
         {
-            return Data.Colors.NoiseWarpProfile;
+            return ProjectData.Colors.NoiseWarpProfile;
         }
     }
 }
