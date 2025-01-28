@@ -13,21 +13,16 @@ namespace RNE.Template.Node
 
             if (buffer != null)
             {
-                Color[] colors = new Color[ProjectData.Length];
-                buffer.GetData(colors);
-
                 if (ProjectData.Export && ProjectData.ExportPath != null)
                 {
-                    Texture2D texture = PreviewTexture.Generate(colors);
-                    
-                    SetPreview(texture);
-                    ExportToImage.Export(texture, "Image_" + this.GetHashCode());
+                    Color[] colors = new Color[ProjectData.Length];
+                    buffer.GetData(colors);
+
+                    ExportToImage.Export(PreviewTexture.Generate(colors), "Image_" + this.GetHashCode());
                 }
-                else
-                {
-                    SetPreview(PreviewTexture.Generate(colors));
-                }
+
+                SetPreview(buffer);
             }
         }
-    }
+    } 
 }

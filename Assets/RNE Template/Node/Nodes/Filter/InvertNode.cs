@@ -21,9 +21,7 @@ namespace RNE.Template.Node
                 _shader.SetBuffer(kernel, "colors", buffer);
                 _shader.Dispatch(kernel, Mathf.CeilToInt(buffer.count / 1024.0f), 1, 1);
 
-                Color[] colors = new Color[buffer.count];
-                buffer.GetData(colors);
-                SetPreview(PreviewTexture.Generate(colors));
+                SetPreview(buffer);
 
                 Outputs[0].GetComponent<TextureOutputPointer>().Buffer = buffer;
             }

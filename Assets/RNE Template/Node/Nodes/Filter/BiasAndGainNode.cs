@@ -19,7 +19,7 @@ namespace RNE.Template.Node
 
                 Color[] colors = new Color[buffer.count];
                 buffer.GetData(colors);
-                SetPreview(PreviewTexture.Generate(colors));
+                SetPreview(buffer);
 
                 Outputs[0].GetComponent<TextureOutputPointer>().Buffer = buffer;
             }

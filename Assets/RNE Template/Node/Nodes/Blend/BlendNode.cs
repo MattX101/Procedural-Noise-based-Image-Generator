@@ -47,7 +47,7 @@ namespace RNE.Template.Node
                 buffer.GetData(preview);
             }
 
-            SetPreview(PreviewTexture.Generate(preview));
+            SetPreview(buffer);
 
             Outputs[0].GetComponent<TextureOutputPointer>().Buffer = buffer;
         }

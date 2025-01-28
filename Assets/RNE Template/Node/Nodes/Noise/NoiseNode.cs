@@ -233,9 +233,7 @@ namespace RNE.Template.Node
             ComputeBuffer colorsBuffer = new ComputeBuffer(ProjectData.Length, sizeof(float) * 4);
             Coloring.ColoringGPU(ref colorsBuffer, noiseBuffer, Color.white);
 
-            Color[] colors = new Color[colorsBuffer.count];
-            colorsBuffer.GetData(colors);
-            SetPreview(PreviewTexture.Generate(colors));
+            SetPreview(colorsBuffer);
             colorsBuffer.Release();
         }
 

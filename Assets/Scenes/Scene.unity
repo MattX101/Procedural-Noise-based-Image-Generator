@@ -8019,6 +8019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nodesParent: {fileID: 1777772063}
+  _shader: {fileID: 7200000, guid: 14b8e28ee922ee249a15dc58824d1f76, type: 3}
 --- !u!1 &1809428001
 GameObject:
   m_ObjectHideFlags: 0

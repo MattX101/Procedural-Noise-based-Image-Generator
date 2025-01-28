@@ -5,6 +5,14 @@ namespace RNE.Template
 {
     public class ImageExecution : NodeExecution
     {
+        [SerializeField]
+        private ComputeShader _shader;
+
+        private void Awake()
+        {
+            ProjectData.Shader = _shader;
+        }
+
         public void ExecutePreview()
         {
             Debug.Log("Preview Execution");

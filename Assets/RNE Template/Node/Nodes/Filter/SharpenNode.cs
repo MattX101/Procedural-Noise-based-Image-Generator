@@ -28,9 +28,7 @@ namespace RNE.Template.Node
                     Mathf.CeilToInt(ProjectData.Resolution / 32.0f),
                     1);
 
-                Color[] colors = new Color[buffer.count];
-                buffer.GetData(colors);
-                SetPreview(PreviewTexture.Generate(colors));
+                SetPreview(buffer);
 
                 Outputs[0].GetComponent<TextureOutputPointer>().Buffer = buffer;
             }

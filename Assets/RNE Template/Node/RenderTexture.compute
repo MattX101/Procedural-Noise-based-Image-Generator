@@ -1,0 +1,23 @@
+#pragma kernel RenderTexture
+
+int resX, resY;
+
+StructuredBuffer<float4> colors;
+RWTexture2D<float4> render;
+
+int Index(int x, int y)
+{
+    if (x >= resX)
+        return -1;
+    
+    if (y >= resY)
+        return -1;
+    
+    return y * resX + x;
+}
+
+[numthreads(32, 32, 1)]
+void RenderTexture(uint3 id : SV_DispatchThreadID)
+{
+    render[id.xy] = float4(colors[Index(id.x, id.y)].x, colors[Index(id.x, id.y)].y, colors[Index(id.x, id.y)].z, 1);
+}

@@ -1,7 +1,11 @@
+using UnityEngine;
+
 namespace RNE.Template
 {
     public static class ProjectData
     {
+        public static ComputeShader Shader;
+
         public static bool Export = false;
         public static string ExportPath = null;
 
