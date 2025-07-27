@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Y
       objectReference: {fileID: 0}
+    - target: {fileID: 3760592561968174242, guid: c50c186bd70f45f458e7f3324993ceb0, type: 3}
+      propertyPath: m_Name
+      value: Y Decimal Input Field
+      objectReference: {fileID: 0}
     - target: {fileID: 5052790139838924806, guid: c50c186bd70f45f458e7f3324993ceb0, type: 3}
       propertyPath: _header
       value: 
@@ -148,6 +152,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Z
       objectReference: {fileID: 0}
+    - target: {fileID: 3760592561968174242, guid: c50c186bd70f45f458e7f3324993ceb0, type: 3}
+      propertyPath: m_Name
+      value: Z Decimal Input Field
+      objectReference: {fileID: 0}
     - target: {fileID: 5052790139838924806, guid: c50c186bd70f45f458e7f3324993ceb0, type: 3}
       propertyPath: _header
       value: 
@@ -279,6 +287,10 @@ PrefabInstance:
     - target: {fileID: 2792276052588522226, guid: c50c186bd70f45f458e7f3324993ceb0, type: 3}
       propertyPath: m_Name
       value: X
+      objectReference: {fileID: 0}
+    - target: {fileID: 3760592561968174242, guid: c50c186bd70f45f458e7f3324993ceb0, type: 3}
+      propertyPath: m_Name
+      value: X Decimal Input Field
       objectReference: {fileID: 0}
     - target: {fileID: 5052790139838924806, guid: c50c186bd70f45f458e7f3324993ceb0, type: 3}
       propertyPath: _header
@@ -546,20 +558,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _endNode: 1
+  id: 0103
   _inputs:
   - {fileID: 8447279462868052213}
   - {fileID: 7274905209468763611}
   - {fileID: 5042177010212205896}
   - {fileID: 5186164102070883544}
   _outputs: []
-  Elements:
-    buttons: []
-    dropdowns: []
-    inputFields:
-    - {fileID: 8396063989981162400}
-    - {fileID: 6163177525499814707}
-    - {fileID: 6307745159430914723}
-    sliders: []
+  _inputfieldX: {fileID: 8396063989981162400}
+  _inputfieldY: {fileID: 6163177525499814707}
+  _inputfieldZ: {fileID: 6307745159430914723}
 --- !u!224 &3059932460502850724 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5461863840995386727, guid: 6e972d1ca6051d84998bc927e5362a04, type: 3}

@@ -542,16 +542,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _endNode: 0
+  id: 0300
   _inputs:
   - {fileID: 108298048752019610}
   - {fileID: 2892216806535970637}
   _outputs:
   - {fileID: 2299976730728693566}
-  Elements:
-    buttons: []
-    dropdowns: []
-    inputFields: []
-    sliders: []
   _image: {fileID: 6692131323079127322}
 --- !u!114 &3322952843950772698 stripped
 MonoBehaviour:

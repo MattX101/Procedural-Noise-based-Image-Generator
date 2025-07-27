@@ -289,12 +289,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _endNode: 1
+  id: 0105
   _inputs:
   - {fileID: 3319648136672701414}
   _outputs: []
-  Elements:
-    buttons: []
-    dropdowns: []
-    inputFields:
-    - {fileID: 7635655659021665010}
-    sliders: []
+  _inputfield: {fileID: 7635655659021665010}

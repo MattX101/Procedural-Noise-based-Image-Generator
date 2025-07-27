@@ -1,10 +1,15 @@
 using RNE.Template.Node.Pointer.Value;
+using TMPro;
 using UnityEngine;
 
 namespace RNE.Template.Node
 {
     public class Vector3OutputNode : RuntimeNodeEditor.Node.Node
     {
+        [SerializeField] private TMP_InputField _inputfieldX;
+        [SerializeField] private TMP_InputField _inputfieldY;
+        [SerializeField] private TMP_InputField _inputfieldZ;
+        
         protected override void CodeToExecute()
         {
             ExecuteInputConnection(0);
@@ -19,9 +24,9 @@ namespace RNE.Template.Node
             PointerValue.GetFloat(Inputs[2], ref v.y);
             PointerValue.GetFloat(Inputs[3], ref v.z);
 
-            Elements.SetInputField(Elements.inputFields[0], v.x.ToString());
-            Elements.SetInputField(Elements.inputFields[1], v.y.ToString());
-            Elements.SetInputField(Elements.inputFields[2], v.z.ToString());
+            _inputfieldX.text = v.x.ToString();
+            _inputfieldY.text = v.y.ToString();
+            _inputfieldZ.text = v.z.ToString();
         }
     }
 }

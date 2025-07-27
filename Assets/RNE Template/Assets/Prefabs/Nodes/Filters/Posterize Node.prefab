@@ -542,17 +542,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _endNode: 0
+  id: 0504
   _inputs:
   - {fileID: 5987515161151237508}
   _outputs:
   - {fileID: 4166611336580021793}
-  Elements:
-    buttons: []
-    dropdowns: []
-    inputFields: []
-    sliders:
-    - {fileID: 7002333825234374858}
   _image: {fileID: 7703154440790783747}
+  _posterizeSlider: {fileID: 7002333825234374858}
   _shader: {fileID: 7200000, guid: 330a18e079ca744478b67bd7dd940d61, type: 3}
 --- !u!224 &7886569812852281003 stripped
 RectTransform:

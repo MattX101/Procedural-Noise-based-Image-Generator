@@ -208,6 +208,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Octaves
       objectReference: {fileID: 0}
+    - target: {fileID: 5287451885924006417, guid: ca5891a4e7aedfd45a5f4842870951db, type: 3}
+      propertyPath: m_Name
+      value: Octave SLider
+      objectReference: {fileID: 0}
     - target: {fileID: 8063421156381077050, guid: ca5891a4e7aedfd45a5f4842870951db, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -916,6 +920,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gain
       objectReference: {fileID: 0}
+    - target: {fileID: 5130671388387440849, guid: f45844da8724cb542bee7825fd356128, type: 3}
+      propertyPath: m_Name
+      value: Gain Slider
+      objectReference: {fileID: 0}
     - target: {fileID: 7040258550191975674, guid: f45844da8724cb542bee7825fd356128, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -1575,6 +1583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _endNode: 0
+  id: 0201
   _inputs:
   - {fileID: 5067769655684199621}
   - {fileID: 6908141847901477810}
@@ -1588,25 +1597,20 @@ MonoBehaviour:
   - {fileID: 1828229335235047369}
   _outputs:
   - {fileID: 1236708951855602864}
-  Elements:
-    buttons:
-    - {fileID: 5619392879081738525}
-    dropdowns: []
-    inputFields:
-    - {fileID: 4664822557502970729}
-    - {fileID: 2591079637182425715}
-    - {fileID: 2320974914277289407}
-    - {fileID: 632049361383372493}
-    - {fileID: 637977003946737851}
-    - {fileID: 8729780502679993906}
-    - {fileID: 5897137113979987264}
-    - {fileID: 5893285336470328118}
-    - {fileID: 7660257652655016868}
-    sliders:
-    - {fileID: 8788639779863030652}
-    - {fileID: 120414276493055002}
-    - {fileID: 5220513473973367536}
-    - {fileID: 2103671748543856484}
+  _seedField: {fileID: 4664822557502970729}
+  _unvirsalScale: {fileID: 2591079637182425715}
+  _is3DToggle: {fileID: 5619392879081738525}
+  _scaleX: {fileID: 2320974914277289407}
+  _scaleY: {fileID: 632049361383372493}
+  _scaleZ: {fileID: 637977003946737851}
+  _offsetX: {fileID: 8729780502679993906}
+  _offsetY: {fileID: 5897137113979987264}
+  _offsetZ: {fileID: 5893285336470328118}
+  _warpAmp: {fileID: 7660257652655016868}
+  _octaves: {fileID: 8788639779863030652}
+  _lacunarity: {fileID: 120414276493055002}
+  _gain: {fileID: 5220513473973367536}
+  _weightedStrength: {fileID: 2103671748543856484}
 --- !u!224 &7227825649208716195 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2963061212694928928, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
@@ -1903,6 +1907,10 @@ PrefabInstance:
     - target: {fileID: 5098031853720375059, guid: f45844da8724cb542bee7825fd356128, type: 3}
       propertyPath: m_Name
       value: Lacunarity
+      objectReference: {fileID: 0}
+    - target: {fileID: 5130671388387440849, guid: f45844da8724cb542bee7825fd356128, type: 3}
+      propertyPath: m_Name
+      value: Lacunarity Slider
       objectReference: {fileID: 0}
     - target: {fileID: 7040258550191975674, guid: f45844da8724cb542bee7825fd356128, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
@@ -2711,6 +2719,10 @@ PrefabInstance:
     - target: {fileID: 5098031853720375059, guid: f45844da8724cb542bee7825fd356128, type: 3}
       propertyPath: m_Name
       value: Weighted Stregth
+      objectReference: {fileID: 0}
+    - target: {fileID: 5130671388387440849, guid: f45844da8724cb542bee7825fd356128, type: 3}
+      propertyPath: m_Name
+      value: Weighted Stregth Slider
       objectReference: {fileID: 0}
     - target: {fileID: 7040258550191975674, guid: f45844da8724cb542bee7825fd356128, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size

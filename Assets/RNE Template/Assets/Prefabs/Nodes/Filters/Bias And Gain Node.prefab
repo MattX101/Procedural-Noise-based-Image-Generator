@@ -525,18 +525,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _endNode: 0
+  id: 0500
   _inputs:
   - {fileID: 5987515161151237508}
   _outputs:
   - {fileID: 4166611336580021793}
-  Elements:
-    buttons: []
-    dropdowns: []
-    inputFields: []
-    sliders:
-    - {fileID: 9185818911186337028}
-    - {fileID: 987159676521496051}
   _image: {fileID: 7703154440790783747}
+  _biasSlider: {fileID: 9185818911186337028}
+  _gainSlider: {fileID: 987159676521496051}
 --- !u!224 &7886569812852281003 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5461863840995386727, guid: 6e972d1ca6051d84998bc927e5362a04, type: 3}

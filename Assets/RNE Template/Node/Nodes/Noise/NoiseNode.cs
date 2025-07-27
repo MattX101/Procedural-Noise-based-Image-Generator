@@ -1,15 +1,53 @@
 using RNE.Template.Node.Pointer;
 using RNE.Template.Node.Pointer.Value;
 using RNE.Template.Node.Seed;
+using TMPro;
 using Utils.Noise;
 using Utils.Noise.Profiles;
 using Utils.Colors.Coloring;
 using UnityEngine;
+using UnityEngine.UI;
+using Utils.IO.Serialization;
 
 namespace RNE.Template.Node
 {
     public class NoiseNode : NodeWithPreview
     {
+        [SerializeField] private TMP_Dropdown _noiseTypeDropdown;
+        [SerializeField] private TMP_Dropdown _fractalTypeDropdown;
+        
+        [Space]
+        
+        [SerializeField] private TMP_InputField _seedField;
+        [SerializeField] private TMP_InputField _unvirsalScale;
+        
+        [Space]
+        
+        [SerializeField] private Toggle _is3DToggle;
+        
+        [Space]
+        
+        [SerializeField] private TMP_InputField _scaleX;
+        [SerializeField] private TMP_InputField _scaleY;
+        [SerializeField] private TMP_InputField _scaleZ;
+        
+        [Space]
+        
+        [SerializeField] private TMP_InputField _offsetX;
+        [SerializeField] private TMP_InputField _offsetY;
+        [SerializeField] private TMP_InputField _offsetZ;
+        
+        [Space]
+        
+        [SerializeField] private Slider _octaves;
+        [SerializeField] private Slider _lacunarity;
+        [SerializeField] private Slider _gain;
+        [SerializeField] private Slider _weightedStrength;
+        
+        [Space]
+        
+        [SerializeField] private TMP_InputField _pingPongStrength;
+        
         private float[] _values;
         private Color[] _colors;
 
@@ -23,7 +61,7 @@ namespace RNE.Template.Node
             NoiseProfile noiseProfile = new NoiseProfile();
             WarpProfile warpProfile = null;
 
-            switch (Elements.dropdowns[0].value)
+            switch (_noiseTypeDropdown.value)
             {
                 case 0:
                     noiseProfile.SetNoiseType_Perlin();
@@ -48,7 +86,7 @@ namespace RNE.Template.Node
                     break;
             }
 
-            switch (Elements.dropdowns[1].value)
+            switch (_fractalTypeDropdown.value)
             {
                 case 0:
                     noiseProfile.SetFractalType_FBm();
@@ -68,11 +106,11 @@ namespace RNE.Template.Node
             if (Inputs[0].ConnectedOutputPointer)
             {
                 PointerValue.GetInt(Inputs[0], ref noiseProfile.seed);
-                Elements.SetInputField(Elements.inputFields[0], PointerValue.GetInt(Inputs[0]).ToString());
+                _seedField.text = PointerValue.GetInt(Inputs[0]).ToString();
             }
             else
             {
-                noiseProfile.seed = int.Parse(Elements.inputFields[0].text);
+                noiseProfile.seed = int.Parse(_seedField.text);
             }
             noiseProfile.seed += SeedData.Seed;
 
@@ -80,137 +118,155 @@ namespace RNE.Template.Node
             if (Inputs[1].ConnectedOutputPointer)
             {
                 PointerValue.GetFloat(Inputs[1], ref noiseProfile.universalScale);
-                Elements.SetInputField(Elements.inputFields[1], PointerValue.GetFloat(Inputs[1]).ToString());
+                _unvirsalScale.text = PointerValue.GetFloat(Inputs[1]).ToString();
             }
             else
             {
-                noiseProfile.universalScale = float.Parse(Elements.inputFields[1].text);
+                noiseProfile.universalScale = float.Parse(_unvirsalScale.text);
             }
 
             // Toggle 3D
-            bool is3D = false;
             if (Inputs[2].ConnectedOutputPointer)
             {
-                is3D = PointerValue.GetBool(Inputs[2]);
-                Elements.SetBoolean(Elements.buttons[0], PointerValue.GetBool(Inputs[2]));
-            }
-            else
-            {
-                is3D = Elements.buttons[0].isOn;
+                _is3DToggle.isOn = PointerValue.GetBool(Inputs[2]);
             }
 
             // Scale
             if (Inputs[3].ConnectedOutputPointer)
             {
                 PointerValue.GetVector3(Inputs[3], ref noiseProfile.scale);
-
-                Elements.SetInputField(Elements.inputFields[2], noiseProfile.scale.x.ToString());
-                Elements.SetInputField(Elements.inputFields[3], noiseProfile.scale.y.ToString());
-                Elements.SetInputField(Elements.inputFields[4], noiseProfile.scale.z.ToString());
+                
+                _scaleX.text = noiseProfile.scale.x.ToString();
+                _scaleY.text = noiseProfile.scale.y.ToString();
+                _scaleZ.text = noiseProfile.scale.z.ToString();
             }
             else
             {
-                noiseProfile.scale.x = float.Parse(Elements.inputFields[2].text);
-                noiseProfile.scale.y = float.Parse(Elements.inputFields[3].text);
-                noiseProfile.scale.z = float.Parse(Elements.inputFields[4].text);
+                noiseProfile.scale.x = float.Parse(_scaleX.text);
+                noiseProfile.scale.y = float.Parse(_scaleY.text);
+                noiseProfile.scale.z = float.Parse(_scaleZ.text);
             }
 
             // Offset
             if (Inputs[4].ConnectedOutputPointer)
             {
                 PointerValue.GetVector3(Inputs[4], ref noiseProfile.offset);
-
-                Elements.SetInputField(Elements.inputFields[5], noiseProfile.offset.x.ToString());
-                Elements.SetInputField(Elements.inputFields[6], noiseProfile.offset.y.ToString());
-                Elements.SetInputField(Elements.inputFields[7], noiseProfile.offset.z.ToString());
+                
+                _offsetX.text = noiseProfile.offset.x.ToString();
+                _offsetY.text = noiseProfile.offset.y.ToString();
+                _offsetZ.text = noiseProfile.offset.z.ToString();
             }
             else
             {
-                noiseProfile.offset.x = float.Parse(Elements.inputFields[5].text);
-                noiseProfile.offset.y = float.Parse(Elements.inputFields[6].text);
-                noiseProfile.offset.z = float.Parse(Elements.inputFields[7].text);
+                noiseProfile.offset.x = float.Parse(_offsetX.text);
+                noiseProfile.offset.y = float.Parse(_offsetY.text);
+                noiseProfile.offset.z = float.Parse(_offsetZ.text);
             }
 
             // Octaves
             if (Inputs[5].ConnectedOutputPointer)
             {
                 PointerValue.GetInt(Inputs[5], ref noiseProfile.octaves);
-                Elements.SetSlider(Elements.sliders[0], PointerValue.GetInt(Inputs[5]));
+                _octaves.value = PointerValue.GetInt(Inputs[5]);
             }
             else
             {
-                noiseProfile.octaves = (int)Elements.sliders[0].value;
+                noiseProfile.octaves = (int)_octaves.value;
             }
 
             // Lacunarity
             if (Inputs[6].ConnectedOutputPointer)
             {
                 PointerValue.GetFloat(Inputs[6], ref noiseProfile.lacunarity);
-                Elements.SetSlider(Elements.sliders[1], PointerValue.GetFloat(Inputs[6]));
+                _lacunarity.value = PointerValue.GetFloat(Inputs[6]);
             }
             else
             {
-                noiseProfile.lacunarity = Elements.sliders[1].value;
+                noiseProfile.lacunarity = _lacunarity.value;
             }
 
             // Gain
             if (Inputs[7].ConnectedOutputPointer)
             {
                 PointerValue.GetFloat(Inputs[7], ref noiseProfile.gain);
-                Elements.SetSlider(Elements.sliders[2], PointerValue.GetFloat(Inputs[7]));
+                _gain.value = PointerValue.GetFloat(Inputs[7]);
             }
             else
             {
-                noiseProfile.gain = Elements.sliders[2].value;
+                noiseProfile.gain = _gain.value;
             }
 
-            // Weighted Stregth
+            // Weighted Strength
             if (Inputs[8].ConnectedOutputPointer)
             {
                 PointerValue.GetFloat(Inputs[8], ref noiseProfile.weightedStrength);
-                Elements.SetSlider(Elements.sliders[3], PointerValue.GetFloat(Inputs[8]));
+                _weightedStrength.value = PointerValue.GetFloat(Inputs[8]);
             }
             else
             {
-                noiseProfile.weightedStrength = Elements.sliders[3].value;
+                noiseProfile.weightedStrength = _weightedStrength.value;
             }
 
             // Ping Pong
             if (Inputs[9].ConnectedOutputPointer)
             {
                 PointerValue.GetFloat(Inputs[9], ref noiseProfile.pingPongStrength);
-                Elements.SetInputField(Elements.inputFields[8], PointerValue.GetFloat(Inputs[9]).ToString());
+                _pingPongStrength.text = PointerValue.GetFloat(Inputs[9]).ToString();
             }
             else
             {
-                noiseProfile.pingPongStrength = float.Parse(Elements.inputFields[8].text);
+                noiseProfile.pingPongStrength = float.Parse(_pingPongStrength.text);
             }
 
             // Cellular Profile
             if (Inputs[10].ConnectedOutputPointer)
             {
-                switch (Inputs[10].ConnectedOutputPointer.Node.Elements.dropdowns[0].value)
+                if (TryGetComponent(out CellularProfileNode cellularProfile))
                 {
-                    case 0: noiseProfile.SetCellular_Cell(); break;
-                    case 1: noiseProfile.SetCellular_Distance(); break;
-                    case 2: noiseProfile.SetCellular_Distance2(); break;
-                    case 3: noiseProfile.SetCellular_Distance2Add(); break;
-                    case 4: noiseProfile.SetCellular_Distance2Sub(); break;
-                    case 5: noiseProfile.SetCellular_Distance2Mul(); break;
-                    case 6: noiseProfile.SetCellular_Distance2Div(); break;
-                    default: noiseProfile.SetCellular_Cell(); break;
-                }
+                    if (cellularProfile.ReturnType)
+                    {
+                        switch (cellularProfile.ReturnType.value)
+                        {
+                            case 0: noiseProfile.SetCellular_Cell(); break;
+                            case 1: noiseProfile.SetCellular_Distance(); break;
+                            case 2: noiseProfile.SetCellular_Distance2(); break;
+                            case 3: noiseProfile.SetCellular_Distance2Add(); break;
+                            case 4: noiseProfile.SetCellular_Distance2Sub(); break;
+                            case 5: noiseProfile.SetCellular_Distance2Mul(); break;
+                            case 6: noiseProfile.SetCellular_Distance2Div(); break;
+                            default: noiseProfile.SetCellular_Cell(); break;
+                        }
+                    }
+                    else
+                    {
+                        noiseProfile.SetCellular_Cell();
+                    }
 
-                switch (Inputs[10].ConnectedOutputPointer.Node.Elements.dropdowns[1].value)
+                    if (cellularProfile.DistanceType)
+                    {
+                        switch (cellularProfile.DistanceType.value)
+                        {
+                            case 0: noiseProfile.SetCellularDistanceFunction_Euclidean(); break;
+                            case 1: noiseProfile.SetCellularDistanceFunction_EuclideanSq(); break;
+                            case 2: noiseProfile.SetCellularDistanceFunction_Manhattan(); break;
+                            case 3: noiseProfile.SetCellularDistanceFunction_Hybrid(); break;
+                            default: noiseProfile.SetCellularDistanceFunction_Euclidean(); break;
+                        }
+                    }
+                    else
+                    {
+                        noiseProfile.SetCellularDistanceFunction_Euclidean();
+                    }
+
+                    noiseProfile.jitter = cellularProfile.Jitter ? cellularProfile.Jitter.value : 1.0f;
+                }
+                else
                 {
-                    case 0: noiseProfile.SetCellularDistanceFunction_Euclidean(); break;
-                    case 1: noiseProfile.SetCellularDistanceFunction_EuclideanSq(); break;
-                    case 2: noiseProfile.SetCellularDistanceFunction_Manhattan(); break;
-                    case 3: noiseProfile.SetCellularDistanceFunction_Hybrid(); break;
-                    default: noiseProfile.SetCellularDistanceFunction_Euclidean(); break;
+                    noiseProfile.SetCellular_Cell();
+                    noiseProfile.SetCellularDistanceFunction_Euclidean();
+                    
+                    noiseProfile.jitter = 1.0f;
                 }
-
-                noiseProfile.jitter = Inputs[10].ConnectedOutputPointer.Node.Elements.sliders[0].value;
             }
             //
 
@@ -227,7 +283,7 @@ namespace RNE.Template.Node
             }
 
             ComputeBuffer noiseBuffer = new ComputeBuffer(ProjectData.Length, sizeof(float));
-            FastNoise2DGPU.GenerateNoise(ref noiseBuffer, ProjectData.Resolution, ProjectData.Resolution, is3D, noiseProfile, warpProfile);
+            FastNoise2DGPU.GenerateNoise(ref noiseBuffer, ProjectData.Resolution, ProjectData.Resolution, _is3DToggle.isOn, noiseProfile, warpProfile);
             Outputs[0].GetComponent<NoiseOutputPointer>().Buffer = noiseBuffer;
 
             ComputeBuffer colorsBuffer = new ComputeBuffer(ProjectData.Length, sizeof(float) * 4);
@@ -240,6 +296,58 @@ namespace RNE.Template.Node
         protected override void CodeToReset()
         {
             Outputs[0].GetComponent<NoiseOutputPointer>().Reset();
+        }
+
+        public override void OnSave(FileWriter writer)
+        {
+            writer.Write(_noiseTypeDropdown.value);
+            writer.Write(_fractalTypeDropdown.value);
+            
+            writer.Write(_seedField.text);
+            writer.Write(_unvirsalScale.text);
+            
+            writer.Write(_is3DToggle.isOn);
+            
+            writer.Write(_scaleX.text);
+            writer.Write(_scaleY.text);
+            writer.Write(_scaleZ.text);
+            
+            writer.Write(_offsetX.text);
+            writer.Write(_offsetY.text);
+            writer.Write(_offsetZ.text);
+            
+            writer.Write(_octaves.value);
+            writer.Write(_lacunarity.value);
+            writer.Write(_gain.value);
+            writer.Write(_weightedStrength.value);
+            
+            writer.Write(_pingPongStrength.text);
+        }
+
+        public override void OnLoad(FileReader reader)
+        {
+            _noiseTypeDropdown.value = reader.ReadInt();
+            _fractalTypeDropdown.value = reader.ReadInt();
+            
+            _seedField.text = reader.ReadString();
+            _unvirsalScale.text = reader.ReadString();
+            
+            _is3DToggle.isOn = reader.ReadBool();
+            
+            _scaleX.text = reader.ReadString();
+            _scaleY.text = reader.ReadString();
+            _scaleZ.text = reader.ReadString();
+            
+            _offsetX.text = reader.ReadString();
+            _offsetY.text = reader.ReadString();
+            _offsetZ.text = reader.ReadString();
+            
+            _octaves.value = reader.ReadFloat();
+            _lacunarity.value = reader.ReadFloat();
+            _gain.value = reader.ReadFloat();
+            _weightedStrength.value = reader.ReadFloat();
+            
+            _pingPongStrength.text = reader.ReadString();
         }
     }
 }

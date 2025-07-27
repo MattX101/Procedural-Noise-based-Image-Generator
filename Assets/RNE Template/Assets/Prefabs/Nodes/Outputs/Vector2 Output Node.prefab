@@ -163,18 +163,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _endNode: 1
+  id: 0102
   _inputs:
   - {fileID: 1082387482130467528}
   - {fileID: 5618369039546573694}
   - {fileID: 8389417083227003278}
   _outputs: []
-  Elements:
-    buttons: []
-    dropdowns: []
-    inputFields:
-    - {fileID: 6739950028161905925}
-    - {fileID: 7213740122457919477}
-    sliders: []
+  _inputfieldX: {fileID: 6739950028161905925}
+  _inputfieldY: {fileID: 7213740122457919477}
 --- !u!1001 &2340729011087723349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -316,6 +312,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: X
       objectReference: {fileID: 0}
+    - target: {fileID: 3760592561968174242, guid: c50c186bd70f45f458e7f3324993ceb0, type: 3}
+      propertyPath: m_Name
+      value: X Decimal Input Field
+      objectReference: {fileID: 0}
     - target: {fileID: 5052790139838924806, guid: c50c186bd70f45f458e7f3324993ceb0, type: 3}
       propertyPath: _header
       value: 
@@ -447,6 +447,10 @@ PrefabInstance:
     - target: {fileID: 2792276052588522226, guid: c50c186bd70f45f458e7f3324993ceb0, type: 3}
       propertyPath: m_Name
       value: Y
+      objectReference: {fileID: 0}
+    - target: {fileID: 3760592561968174242, guid: c50c186bd70f45f458e7f3324993ceb0, type: 3}
+      propertyPath: m_Name
+      value: Y Decimal Input Field
       objectReference: {fileID: 0}
     - target: {fileID: 5052790139838924806, guid: c50c186bd70f45f458e7f3324993ceb0, type: 3}
       propertyPath: _header

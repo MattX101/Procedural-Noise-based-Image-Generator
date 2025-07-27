@@ -141,15 +141,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _endNode: 1
+  id: 0106
   _inputs:
   - {fileID: 5689952938013942626}
   _outputs: []
-  Elements:
-    buttons:
-    - {fileID: 4713905176823761194}
-    dropdowns: []
-    inputFields: []
-    sliders: []
+  _toggle: {fileID: 4713905176823761194}
 --- !u!224 &2580371332315384928 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5461863840995386727, guid: 6e972d1ca6051d84998bc927e5362a04, type: 3}

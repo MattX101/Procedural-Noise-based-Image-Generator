@@ -718,18 +718,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _endNode: 0
+  id: 0202
   _inputs:
   - {fileID: 1828229335235047369}
   _outputs:
   - {fileID: 6934928364967130312}
-  Elements:
-    buttons: []
-    dropdowns:
-    - {fileID: 5681913780575622097}
-    - {fileID: 8254344285310294126}
-    inputFields: []
-    sliders:
-    - {fileID: 2103671748543856484}
+  _returnType: {fileID: 5681913780575622097}
+  _distanceType: {fileID: 8254344285310294126}
+  _jitter: {fileID: 2103671748543856484}
+  _text: {fileID: 7909691208466873148}
+  _inputfield: {fileID: 0}
 --- !u!224 &7227825649208716195 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2963061212694928928, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
@@ -907,3 +905,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3077262721568116768, guid: f45844da8724cb542bee7825fd356128, type: 3}
   m_PrefabInstance: {fileID: 8972784087754494878}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7909691208466873148 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1243386751596161186, guid: f45844da8724cb542bee7825fd356128, type: 3}
+  m_PrefabInstance: {fileID: 8972784087754494878}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

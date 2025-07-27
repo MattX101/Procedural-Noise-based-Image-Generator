@@ -1,11 +1,15 @@
 ﻿using RNE.Template.Node.Pointer;
 using RNE.Template.Node.Pointer.Value;
 using UnityEngine;
+using UnityEngine.UI;
+using Utils.IO.Serialization;
 
 namespace RNE.Template.Node
 {
     public class PosterizeNode : NodeWithPreview
     {
+        [SerializeField] private Slider _posterizeSlider;
+        
         [SerializeField]
         private ComputeShader _shader;
 
@@ -17,7 +21,7 @@ namespace RNE.Template.Node
 
             if (buffer != null)
             {
-                _shader.SetFloats("step", 1.0f / (Elements.sliders[0].value - 1));
+                _shader.SetFloats("step", 1.0f / (_posterizeSlider.value - 1));
 
                 int kernel = _shader.FindKernel("Posterize");
                 _shader.SetBuffer(kernel, "colors", buffer);
@@ -32,6 +36,16 @@ namespace RNE.Template.Node
         protected override void CodeToReset()
         {
             Outputs[0].GetComponent<TextureOutputPointer>().Reset();
+        }
+
+        public override void OnSave(FileWriter writer)
+        {
+            writer.Write(_posterizeSlider.value);
+        }
+
+        public override void OnLoad(FileReader reader)
+        {
+            _posterizeSlider.value = reader.ReadFloat();
         }
     }
 }

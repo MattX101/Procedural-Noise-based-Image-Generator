@@ -104,6 +104,10 @@ PrefabInstance:
       propertyPath: _header
       value: 
       objectReference: {fileID: 3624471493311885029}
+    - target: {fileID: 6694761066117362820, guid: b7e15af8ce79f2943aa521b008b43bc6, type: 3}
+      propertyPath: m_Name
+      value: Z Decimal Input Field
+      objectReference: {fileID: 0}
     - target: {fileID: 9010807246478847979, guid: b7e15af8ce79f2943aa521b008b43bc6, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -292,6 +296,10 @@ PrefabInstance:
       propertyPath: _header
       value: 
       objectReference: {fileID: 3624471493311885029}
+    - target: {fileID: 6694761066117362820, guid: b7e15af8ce79f2943aa521b008b43bc6, type: 3}
+      propertyPath: m_Name
+      value: X Decimal Input Field
+      objectReference: {fileID: 0}
     - target: {fileID: 9010807246478847979, guid: b7e15af8ce79f2943aa521b008b43bc6, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -522,20 +530,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _endNode: 0
+  id: 0003
   _inputs: []
   _outputs:
   - {fileID: 2437573408986503758}
   - {fileID: 9033922639376530853}
   - {fileID: 5657019580849644371}
   - {fileID: 8746497229491801487}
-  Elements:
-    buttons: []
-    dropdowns: []
-    inputFields:
-    - {fileID: 4216648366510398703}
-    - {fileID: 674342343193133593}
-    - {fileID: 4520408395479313605}
-    sliders: []
+  _inputfieldX: {fileID: 4216648366510398703}
+  _inputfieldY: {fileID: 674342343193133593}
+  _inputfieldZ: {fileID: 4520408395479313605}
 --- !u!114 &3624471493311885029 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5798104940624980900, guid: 6e972d1ca6051d84998bc927e5362a04, type: 3}
@@ -656,6 +660,10 @@ PrefabInstance:
       propertyPath: _header
       value: 
       objectReference: {fileID: 3624471493311885029}
+    - target: {fileID: 6694761066117362820, guid: b7e15af8ce79f2943aa521b008b43bc6, type: 3}
+      propertyPath: m_Name
+      value: Y Decimal Input Field
+      objectReference: {fileID: 0}
     - target: {fileID: 9010807246478847979, guid: b7e15af8ce79f2943aa521b008b43bc6, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 2

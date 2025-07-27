@@ -14,7 +14,8 @@ namespace RNE.Template.Node.Spawner
         public void Spawn(int value)
         {
             BlendNode blend = _manager.ReturnSpawn(_node).GetComponent<BlendNode>();
-            blend.Elements.SetDropdown(blend.Elements.dropdowns[0], value);
+            //TODO Fix Blend spawner
+            //blend.Elements.SetDropdown(blend.Elements.dropdowns[0], value);
         }
     }
 }

@@ -1,11 +1,19 @@
 using RuntimeNodeEditor.UI.Canvas.Node.UI;
 using RNE.Template.Node.Pointer;
 using UnityEngine;
+using UnityEngine.UI;
+using Utils.IO.Serialization;
 
 namespace RNE.Template.Node
 {
     public class ColorInputNode : RuntimeNodeEditor.Node.Node
     {
+        [SerializeField] private Slider _redSlider;
+        [SerializeField] private Slider _greenSlider;
+        [SerializeField] private Slider _blueSlider;
+        
+        [Space]
+        
         [SerializeField]
         private UIColourPicker _colourPicker;
 
@@ -30,6 +38,22 @@ namespace RNE.Template.Node
             Outputs[1].GetComponent<FloatOutputPointer>().Reset();
             Outputs[2].GetComponent<FloatOutputPointer>().Reset();
             Outputs[3].GetComponent<ColorOutputPointer>().Reset();
+        }
+
+        public override void OnSave(FileWriter writer)
+        {
+            Color color = _colourPicker.CalcualteColor();
+            
+            writer.Write(color.r);
+            writer.Write(color.g);
+            writer.Write(color.b);
+        }
+
+        public override void OnLoad(FileReader reader)
+        {
+            _redSlider.value = reader.ReadFloat();
+            _greenSlider.value = reader.ReadFloat();
+            _blueSlider.value = reader.ReadFloat();
         }
     }
 }

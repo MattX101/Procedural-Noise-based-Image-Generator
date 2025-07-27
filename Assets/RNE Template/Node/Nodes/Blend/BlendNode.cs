@@ -1,12 +1,18 @@
 using RNE.Template.Node.Pointer;
 using RNE.Template.Node.Pointer.Value;
+using TMPro;
 using Utils.Colors.Blend;
 using UnityEngine;
+using UnityEngine.UI;
+using Utils.IO.Serialization;
 
 namespace RNE.Template.Node
 {
     public class BlendNode : NodeWithPreview
     {
+        [SerializeField]
+        private TMP_Dropdown _dropdown;
+        
         protected override void CodeToExecute()
         {
             ComputeBuffer buffer = new ComputeBuffer(ProjectData.Length, sizeof(float) * 4);
@@ -40,7 +46,7 @@ namespace RNE.Template.Node
                         ref buffer,
                         PointerValue.GetTexture(Inputs[0]),
                         PointerValue.GetTexture(Inputs[1]),
-                        (Blends)Elements.dropdowns[0].value
+                        (Blends)_dropdown.value
                     );
                 }
 
@@ -55,6 +61,16 @@ namespace RNE.Template.Node
         protected override void CodeToReset()
         {
             Outputs[0].GetComponent<TextureOutputPointer>().Reset();
+        }
+
+        public override void OnSave(FileWriter writer)
+        {
+            writer.Write(_dropdown.value);
+        }
+
+        public override void OnLoad(FileReader reader)
+        {
+            _dropdown.value = reader.ReadInt();
         }
     }
 }

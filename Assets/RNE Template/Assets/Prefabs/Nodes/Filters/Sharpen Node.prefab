@@ -354,15 +354,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _endNode: 0
+  id: 0503
   _inputs:
   - {fileID: 5987515161151237508}
   _outputs:
   - {fileID: 4166611336580021793}
-  Elements:
-    buttons: []
-    dropdowns: []
-    inputFields: []
-    sliders: []
   _image: {fileID: 7703154440790783747}
   _shader: {fileID: 7200000, guid: c978fb3058406ba42a7ee10de72fb974, type: 3}
 --- !u!224 &7886569812852281003 stripped
