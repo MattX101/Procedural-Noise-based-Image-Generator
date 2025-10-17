@@ -110,7 +110,15 @@ namespace RNE.Template.Node
             }
             else
             {
-                noiseProfile.seed = int.Parse(_seedField.text);
+                if (_seedField.text.Length != 0)
+                {
+                    noiseProfile.seed = int.Parse(_seedField.text);
+                }
+                else
+                {
+                    _seedField.text = "0";
+                    noiseProfile.seed = 0;
+                }
             }
             noiseProfile.seed += SeedData.Seed;
 
@@ -122,7 +130,15 @@ namespace RNE.Template.Node
             }
             else
             {
-                noiseProfile.universalScale = float.Parse(_unvirsalScale.text);
+                if (_unvirsalScale.text.Length != 0)
+                {
+                    noiseProfile.universalScale = int.Parse(_unvirsalScale.text);
+                }
+                else
+                {
+                    _unvirsalScale.text = "1";
+                    noiseProfile.universalScale = 1;
+                }
             }
 
             // Toggle 3D
@@ -142,9 +158,35 @@ namespace RNE.Template.Node
             }
             else
             {
-                noiseProfile.scale.x = float.Parse(_scaleX.text);
-                noiseProfile.scale.y = float.Parse(_scaleY.text);
-                noiseProfile.scale.z = float.Parse(_scaleZ.text);
+                if (_scaleX.text.Length != 0)
+                {
+                    noiseProfile.scale.x = float.Parse(_scaleX.text);
+                }
+                else
+                {
+                    _scaleX.text = "1";
+                    noiseProfile.scale.x = 1;
+                }
+
+                if (_scaleY.text.Length != 0)
+                {
+                    noiseProfile.scale.y = float.Parse(_scaleY.text);
+                }
+                else
+                {
+                    _scaleY.text = "1";
+                    noiseProfile.scale.y = 1;
+                }
+
+                if (_scaleZ.text.Length != 0)
+                {
+                    noiseProfile.scale.z = float.Parse(_scaleZ.text);
+                }
+                else
+                {
+                    _scaleZ.text = "1";
+                    noiseProfile.scale.z = 1;
+                }
             }
 
             // Offset
@@ -158,9 +200,35 @@ namespace RNE.Template.Node
             }
             else
             {
-                noiseProfile.offset.x = float.Parse(_offsetX.text);
-                noiseProfile.offset.y = float.Parse(_offsetY.text);
-                noiseProfile.offset.z = float.Parse(_offsetZ.text);
+                if (_offsetX.text.Length != 0)
+                {
+                    noiseProfile.offset.x = float.Parse(_offsetX.text);
+                }
+                else
+                {
+                    _offsetX.text = "0";
+                    noiseProfile.offset.x = 0;
+                }
+
+                if (_offsetY.text.Length != 0)
+                {
+                    noiseProfile.offset.y = float.Parse(_offsetY.text);
+                }
+                else
+                {
+                    _offsetY.text = "0";
+                    noiseProfile.offset.y = 0;
+                }
+
+                if (_offsetZ.text.Length != 0)
+                {
+                    noiseProfile.offset.z = float.Parse(_offsetZ.text);
+                }
+                else
+                {
+                    _offsetZ.text = "0";
+                    noiseProfile.offset.z = 0;
+                }
             }
 
             // Octaves
@@ -215,7 +283,15 @@ namespace RNE.Template.Node
             }
             else
             {
-                noiseProfile.pingPongStrength = float.Parse(_pingPongStrength.text);
+                if (_pingPongStrength.text.Length != 0)
+                {
+                    noiseProfile.pingPongStrength = float.Parse(_pingPongStrength.text);
+                }
+                else
+                {
+                    _pingPongStrength.text = "1";
+                    noiseProfile.pingPongStrength = 1;
+                }
             }
 
             // Cellular Profile

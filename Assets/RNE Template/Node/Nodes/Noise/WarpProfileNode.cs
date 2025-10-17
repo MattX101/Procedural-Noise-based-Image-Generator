@@ -64,7 +64,15 @@ namespace RNE.Template.Node
             }
             else
             {
-                _warpProfile.seed = int.Parse(_seedField.text);
+                if (_seedField.text.Length != 0)
+                {
+                    _warpProfile.seed = int.Parse(_seedField.text);
+                }
+                else
+                {
+                    _seedField.text = "0";
+                    _warpProfile.seed = 0;
+                }
             }
             _warpProfile.seed += SeedData.Seed;
 
@@ -76,7 +84,15 @@ namespace RNE.Template.Node
             }
             else
             {
-                _warpProfile.universalScale = float.Parse(_unvirsalScale.text);
+                if (_unvirsalScale.text.Length != 0)
+                {
+                    _warpProfile.universalScale = float.Parse(_unvirsalScale.text);
+                }
+                else
+                {
+                    _unvirsalScale.text = "1";
+                    _warpProfile.universalScale = 1;
+                }
             }
 
             // Toggle 3D
@@ -96,9 +112,35 @@ namespace RNE.Template.Node
             }
             else
             {
-                _warpProfile.scale.x = float.Parse(_scaleX.text);
-                _warpProfile.scale.y = float.Parse(_scaleY.text);
-                _warpProfile.scale.z = float.Parse(_scaleZ.text);
+                if (_scaleX.text.Length != 0)
+                {
+                    _warpProfile.scale.x = float.Parse(_scaleX.text);
+                }
+                else
+                {
+                    _scaleX.text = "1";
+                    _warpProfile.scale.x = 1;
+                }
+
+                if (_scaleY.text.Length != 0)
+                {
+                    _warpProfile.scale.y = float.Parse(_scaleY.text);
+                }
+                else
+                {
+                    _scaleY.text = "1";
+                    _warpProfile.scale.y = 1;
+                }
+
+                if (_scaleZ.text.Length != 0)
+                {
+                    _warpProfile.scale.z = float.Parse(_scaleZ.text);
+                }
+                else
+                {
+                    _scaleZ.text = "1";
+                    _warpProfile.scale.z = 1;
+                }
             }
 
             // Offset
@@ -112,9 +154,35 @@ namespace RNE.Template.Node
             }
             else
             {
-                _warpProfile.offset.x = float.Parse(_offsetX.text);
-                _warpProfile.offset.y = float.Parse(_offsetY.text);
-                _warpProfile.offset.z = float.Parse(_offsetZ.text);
+                if (_offsetX.text.Length != 0)
+                {
+                    _warpProfile.offset.x = float.Parse(_offsetX.text);
+                }
+                else
+                {
+                    _offsetX.text = "0";
+                    _warpProfile.offset.x = 0;
+                }
+
+                if (_offsetY.text.Length != 0)
+                {
+                    _warpProfile.offset.y = float.Parse(_offsetY.text);
+                }
+                else
+                {
+                    _offsetY.text = "0";
+                    _warpProfile.offset.y = 0;
+                }
+
+                if (_offsetZ.text.Length != 0)
+                {
+                    _warpProfile.offset.z = float.Parse(_offsetZ.text);
+                }
+                else
+                {
+                    _offsetZ.text = "0";
+                    _warpProfile.offset.z = 0;
+                }
             }
 
             // Amp
@@ -125,7 +193,15 @@ namespace RNE.Template.Node
             }
             else
             {
-                _warpProfile.warpAmp = float.Parse(_warpAmp.text);
+                if (_warpAmp.text.Length != 0)
+                {
+                    _warpProfile.warpAmp = float.Parse(_warpAmp.text);
+                }
+                else
+                {
+                    _warpAmp.text = "0";
+                    _warpProfile.warpAmp = 0;
+                }
             }
 
             // Octaves

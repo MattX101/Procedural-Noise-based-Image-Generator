@@ -23,6 +23,10 @@ namespace RNE.Template.Node
                 Outputs[1].GetComponent<FloatOutputPointer>().Value = x;
                 Outputs[0].GetComponent<Vector3OutputPointer>().Value.x = x;
             }
+            else
+            {
+                _inputfieldX.text = "0";
+            }
 
             if (_inputfieldY.text.Length != 0)
             {
@@ -31,6 +35,10 @@ namespace RNE.Template.Node
                 Outputs[2].GetComponent<FloatOutputPointer>().Value = y;
                 Outputs[0].GetComponent<Vector3OutputPointer>().Value.y = y;
             }
+            else
+            {
+                _inputfieldY.text = "0";
+            }
 
             if (_inputfieldZ.text.Length != 0)
             {
@@ -38,6 +46,10 @@ namespace RNE.Template.Node
 
                 Outputs[3].GetComponent<FloatOutputPointer>().Value = z;
                 Outputs[0].GetComponent<Vector3OutputPointer>().Value.z = z;
+            }
+            else
+            {
+                _inputfieldZ.text = "0";
             }
         }
 
