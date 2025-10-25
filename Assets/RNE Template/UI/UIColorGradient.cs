@@ -6,6 +6,9 @@ using Utils.IO.Serialization;
 
 namespace RNE.Template.UI
 {
+    /// <summary>
+    /// TODO : Rework UIColorGradient script
+    /// </summary>
     public class UIColorGradient : UIColourPicker
     {
         public Gradient Gradient

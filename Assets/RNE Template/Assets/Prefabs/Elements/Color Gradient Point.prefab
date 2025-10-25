@@ -110,7 +110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6919961903075939626, guid: 390adc2d886578e4aa93e880d02ea719, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -31.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6919961903075939626, guid: 390adc2d886578e4aa93e880d02ea719, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
