@@ -1,0 +1,12 @@
+#pragma kernel Merge
+
+StructuredBuffer<float> red;
+StructuredBuffer<float> green;
+StructuredBuffer<float> blue;
+RWStructuredBuffer<float4> result;
+
+[numthreads(1024,1,1)]
+void Merge (uint3 id : SV_DispatchThreadID)
+{
+    result[id.x] = float4(red[id.x], green[id.x], blue[id.x], 1);
+}

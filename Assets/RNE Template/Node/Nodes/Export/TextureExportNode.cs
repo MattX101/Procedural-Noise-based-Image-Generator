@@ -4,7 +4,7 @@ using UnityEngine;
 namespace RNE.Template.Node
 {
     public class TextureExportNode : NodeWithPreview
-    {
+    {        
         protected override void CodeToExecute()
         {
             ExecuteInputConnection(0);
@@ -15,6 +15,8 @@ namespace RNE.Template.Node
             {
                 if (ProjectData.Export && ProjectData.ExportPath != null)
                 {
+                    ProjectData.IncrementFrame();
+            
                     Color[] colors = new Color[ProjectData.Length];
                     buffer.GetData(colors);
 

@@ -27,11 +27,17 @@ namespace RNE.Template.Node
         private const int MaxGradientPoints = 8;
 
         private bool[] _inputPointerConnected = new bool[MaxGradientPoints];
-        
+
+        private bool _haltPreviewGeneration = false;
+
         protected override void CodeToExecute()
         {
             for (int i = 0; i < MaxGradientPoints; i++)
-            {                
+            {
+                _sliders[i].gameObject.SetActive(false);
+                _images[i].gameObject.SetActive(false);
+                _inputPointerConnected[i] = false;
+
                 if (Inputs[i].ConnectedOutputPointer != null && _inputPointerConnected[i] == false)
                 {
                     _sliders[i].gameObject.SetActive(true);
@@ -39,14 +45,7 @@ namespace RNE.Template.Node
 
                     _inputPointerConnected[i] = true;
 
-                    _sliders[i].Value = (float)i / (MaxGradientPoints - 1);
-                }
-                else if (Inputs[i].ConnectedOutputPointer == null && _inputPointerConnected[i] == true)
-                {
-                    _sliders[i].gameObject.SetActive(false);
-                    _images[i].gameObject.SetActive(false);
-
-                    _inputPointerConnected[i] = false;
+                    //_sliders[i].Value = (float)i / (MaxGradientPoints - 1);
                 }
             }
 
@@ -67,6 +66,9 @@ namespace RNE.Template.Node
 
         public void GeneratePreviewGradient()
         {
+            if (_haltPreviewGeneration)
+                return;
+            
             Gradient = new Gradient();
 
             List<GradientColorKey> keys = new List<GradientColorKey>();
@@ -111,22 +113,26 @@ namespace RNE.Template.Node
         {
             for (int i = 0; i < MaxGradientPoints; i++)
             {
-                writer.Write(_inputPointerConnected[i]);
+                writer.Write(_sliders[i].gameObject.activeSelf);
                 writer.Write(_sliders[i].Value);
             }
         }
 
         public override void OnLoad(FileReader reader)
         {
+            _haltPreviewGeneration = true;
+
             for (int i = 0; i < MaxGradientPoints; i++)
             {
                 _inputPointerConnected[i] = reader.ReadBool();
 
                 _images[i].gameObject.SetActive(_inputPointerConnected[i]);
-                
                 _sliders[i].gameObject.SetActive(_inputPointerConnected[i]);
+
                 _sliders[i].Value = reader.ReadFloat();
             }
+
+            _haltPreviewGeneration = false;
         }
     }
 }

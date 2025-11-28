@@ -1553,9 +1553,13 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8012529496666885508}
+    - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 6040428069258599498, guid: fe294f2529342dc4c8344b4f41973c50, type: 3}
+      objectReference: {fileID: 8012529496666885508}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -1578,7 +1582,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: GeneratePreviewGradient
+      value: ResetAndExecute
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -1590,7 +1594,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: RNE.Template.UI.UIColourGradient, RNE.Template.UI
+      value: RuntimeNodeEditor.Node.Node, RuntimeNodeEditor.Node
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
@@ -1837,9 +1841,13 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8012529496666885508}
+    - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 6040428069258599498, guid: fe294f2529342dc4c8344b4f41973c50, type: 3}
+      objectReference: {fileID: 8012529496666885508}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -1862,7 +1870,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: GeneratePreviewGradient
+      value: ResetAndExecute
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -1874,7 +1882,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: RNE.Template.UI.UIColourGradient, RNE.Template.UI
+      value: RuntimeNodeEditor.Node.Node, RuntimeNodeEditor.Node
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
@@ -2113,9 +2121,13 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8012529496666885508}
+    - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 6040428069258599498, guid: fe294f2529342dc4c8344b4f41973c50, type: 3}
+      objectReference: {fileID: 8012529496666885508}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -2138,7 +2150,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: GeneratePreviewGradient
+      value: ResetAndExecute
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -2150,7 +2162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: RNE.Template.UI.UIColourGradient, RNE.Template.UI
+      value: RuntimeNodeEditor.Node.Node, RuntimeNodeEditor.Node
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
@@ -3002,9 +3014,13 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8012529496666885508}
+    - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 6040428069258599498, guid: fe294f2529342dc4c8344b4f41973c50, type: 3}
+      objectReference: {fileID: 8012529496666885508}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -3027,7 +3043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: GeneratePreviewGradient
+      value: ResetAndExecute
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -3039,7 +3055,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: RNE.Template.UI.UIColourGradient, RNE.Template.UI
+      value: RuntimeNodeEditor.Node.Node, RuntimeNodeEditor.Node
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
@@ -3286,9 +3302,13 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8012529496666885508}
+    - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 6040428069258599498, guid: fe294f2529342dc4c8344b4f41973c50, type: 3}
+      objectReference: {fileID: 8012529496666885508}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -3311,7 +3331,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: GeneratePreviewGradient
+      value: ResetAndExecute
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -3323,7 +3343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: RNE.Template.UI.UIColourGradient, RNE.Template.UI
+      value: RuntimeNodeEditor.Node.Node, RuntimeNodeEditor.Node
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
@@ -3694,9 +3714,13 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8012529496666885508}
+    - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 6040428069258599498, guid: fe294f2529342dc4c8344b4f41973c50, type: 3}
+      objectReference: {fileID: 8012529496666885508}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -3719,7 +3743,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: GeneratePreviewGradient
+      value: ResetAndExecute
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -3731,7 +3755,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: RNE.Template.UI.UIColourGradient, RNE.Template.UI
+      value: RuntimeNodeEditor.Node.Node, RuntimeNodeEditor.Node
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
@@ -4471,9 +4495,13 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8012529496666885508}
+    - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 6040428069258599498, guid: fe294f2529342dc4c8344b4f41973c50, type: 3}
+      objectReference: {fileID: 8012529496666885508}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -4496,7 +4524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: GeneratePreviewGradient
+      value: ResetAndExecute
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -4508,7 +4536,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: RNE.Template.UI.UIColourGradient, RNE.Template.UI
+      value: RuntimeNodeEditor.Node.Node, RuntimeNodeEditor.Node
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
@@ -4751,9 +4779,13 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8012529496666885508}
+    - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 6040428069258599498, guid: fe294f2529342dc4c8344b4f41973c50, type: 3}
+      objectReference: {fileID: 8012529496666885508}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -4776,7 +4808,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: GeneratePreviewGradient
+      value: ResetAndExecute
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -4788,7 +4820,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: RNE.Template.UI.UIColourGradient, RNE.Template.UI
+      value: RuntimeNodeEditor.Node.Node, RuntimeNodeEditor.Node
       objectReference: {fileID: 0}
     - target: {fileID: 2201037457111565081, guid: e6b3baff003d8cb4399c7b09d7fc6094, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName

@@ -1,13 +1,13 @@
 using RNE.Template.Node.Pointer;
 using RNE.Template.Node.Pointer.Value;
 using RNE.Template.Node.Seed;
-using TMPro;
 using Utils.Noise;
 using Utils.Noise.Profiles;
 using Utils.Colors.Coloring;
+using Utils.IO.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
-using Utils.IO.Serialization;
+using TMPro;
 
 namespace RNE.Template.Node
 {
@@ -47,9 +47,6 @@ namespace RNE.Template.Node
         [Space]
         
         [SerializeField] private TMP_InputField _pingPongStrength;
-        
-        private float[] _values;
-        private Color[] _colors;
 
         protected override void CodeToExecute()
         {
@@ -345,9 +342,6 @@ namespace RNE.Template.Node
                 }
             }
             //
-
-            _values = new float[ProjectData.Length];
-            _colors = new Color[ProjectData.Length];
 
             noiseProfile.warp = Inputs[11].ConnectedOutputPointer;
             noiseProfile.Init();

@@ -1,0 +1,54 @@
+#pragma kernel Average
+#pragma kernel Luminosity
+#pragma kernel Red
+#pragma kernel Green
+#pragma kernel Blue
+#pragma kernel Lowest
+#pragma kernel Highest
+
+StructuredBuffer<float4> colors;
+RWStructuredBuffer<float> values;
+
+[numthreads(1024, 1, 1)]
+void Average (uint3 id : SV_DispatchThreadID)
+{
+    values[id.x] = (colors[id.x].x + colors[id.x].y + colors[id.x].z) / 3.0f;
+}
+
+[numthreads(1024, 1, 1)]
+void Luminosity (uint3 id : SV_DispatchThreadID)
+{
+    values[id.x] = (colors[id.x].x * 0.299f) + (colors[id.x].y * 0.587f) + (colors[id.x].z * 0.114f);
+}
+
+[numthreads(1024, 1, 1)]
+void Red (uint3 id : SV_DispatchThreadID)
+{
+    values[id.x] = colors[id.x].x;
+}
+
+[numthreads(1024, 1, 1)]
+void Green (uint3 id : SV_DispatchThreadID)
+{
+    values[id.x] = colors[id.x].y;
+}
+
+[numthreads(1024, 1, 1)]
+void Blue (uint3 id : SV_DispatchThreadID)
+{
+    values[id.x] = colors[id.x].z;
+}
+
+[numthreads(1024, 1, 1)]
+void Lowest (uint3 id : SV_DispatchThreadID)
+{
+    values[id.x] = colors[id.x].x < colors[id.x].y ? colors[id.x].x : colors[id.x].y;
+    values[id.x] = values[id.x] < colors[id.x].z ? values[id.x] : colors[id.x].z;
+}
+
+[numthreads(1024, 1, 1)]
+void Highest (uint3 id : SV_DispatchThreadID)
+{
+    values[id.x] = colors[id.x].x > colors[id.x].y ? colors[id.x].x : colors[id.x].y;
+    values[id.x] = values[id.x] > colors[id.x].z ? values[id.x] : colors[id.x].z;
+}

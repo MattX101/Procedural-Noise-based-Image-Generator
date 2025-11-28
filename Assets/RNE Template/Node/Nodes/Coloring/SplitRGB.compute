@@ -1,0 +1,14 @@
+#pragma kernel Split
+
+StructuredBuffer<float4> source;
+RWStructuredBuffer<float> red;
+RWStructuredBuffer<float> green;
+RWStructuredBuffer<float> blue;
+
+[numthreads(1024,1,1)]
+void Split (uint3 id : SV_DispatchThreadID)
+{
+    red[id.x] = source[id.x].x;
+    green[id.x] = source[id.x].y;
+    blue[id.x] = source[id.x].z;
+}

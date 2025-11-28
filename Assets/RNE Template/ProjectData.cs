@@ -52,5 +52,18 @@ namespace RNE.Template
         }
 
         internal static int ExportLength => _exportLength;
+
+        private static int _currentFrame = 0;
+        public static int CurrentFrame => _currentFrame;
+
+        public static void IncrementFrame()
+        {
+            _currentFrame++;
+        }
+
+        public static void ResetFrameCounter()
+        {
+            _currentFrame = 0;
+        }
     }
 }
