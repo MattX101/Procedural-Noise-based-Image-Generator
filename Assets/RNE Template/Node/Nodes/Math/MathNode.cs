@@ -21,27 +21,29 @@ namespace RNE.Template.Node
 
         [SerializeField] private TMP_InputField _outInputField;
 
+        private float _a, _b;
+
         protected override void CodeToExecute()
         {
             ExecuteInputConnection(0);
             ExecuteInputConnection(1);
 
-            float a = Inputs[0].ConnectedOutputPointer ? PointerValue.GetFloat(Inputs[0]) : InputFieldToFloat.Get(_aInputField.text);
-            float b = Inputs[1].ConnectedOutputPointer ? PointerValue.GetFloat(Inputs[1]) : InputFieldToFloat.Get(_bInputField.text);
+            _a = Inputs[0].ConnectedOutputPointer ? PointerValue.GetFloat(Inputs[0]) : InputFieldToFloat.Get(_aInputField.text);
+            _b = Inputs[1].ConnectedOutputPointer ? PointerValue.GetFloat(Inputs[1]) : InputFieldToFloat.Get(_bInputField.text);
 
             float value = _dropdown.value switch
             {
-                0 => a + b,
-                1 => a - b,
-                2 => a * b,
-                3 => a / b,
-                _ => a + b,
+                0 => _a + _b,
+                1 => _a - _b,
+                2 => _a * _b,
+                3 => _a / _b,
+                _ => _a + _b,
             };
 
             Outputs[0].GetComponent<FloatOutputPointer>().Value = value;
 
-            _aInputField.text = a.ToString();
-            _bInputField.text = b.ToString();
+            _aInputField.text = _a.ToString();
+            _bInputField.text = _b.ToString();
             _outInputField.text = value.ToString();
         }
 

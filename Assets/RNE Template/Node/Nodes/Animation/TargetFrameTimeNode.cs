@@ -18,19 +18,22 @@ namespace RNE.Template.Node
 
         [SerializeField]
         private TMP_InputField _frametimeInputfield;
+
+        private int _framerate;
+        private float _frametime;
         
         protected override void CodeToExecute()
         {
             ExecuteInputConnection(0);
 
-            int framerate = Inputs[0].ConnectedOutputPointer ? PointerValue.GetInt(Inputs[0]) : InputFieldToInt.Get(_framerateInputfield.text);
-            framerate = framerate <= 0 ? 30 : framerate;
-            float frametime = 1.0f / (float)framerate;
+            _framerate = Inputs[0].ConnectedOutputPointer ? PointerValue.GetInt(Inputs[0]) : InputFieldToInt.Get(_framerateInputfield.text);
+            _framerate = _framerate <= 0 ? 30 : _framerate;
+            _frametime = 1.0f / _framerate;
 
-            Outputs[0].GetComponent<FloatOutputPointer>().Value = frametime;
+            Outputs[0].GetComponent<FloatOutputPointer>().Value = _frametime;
 
-            _framerateInputfield.text = framerate.ToString();
-            _frametimeInputfield.text = frametime.ToString();
+            _framerateInputfield.text = _framerate.ToString();
+            _frametimeInputfield.text = _frametime.ToString();
         }
 
         protected override void CodeToReset()

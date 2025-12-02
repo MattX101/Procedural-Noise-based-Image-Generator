@@ -1,4 +1,3 @@
-using RuntimeNodeEditor.Node.UI.Functions;
 using RNE.Template.Node.Pointer;
 using RNE.Template.Node.Pointer.Value;
 using Utils.IO.Serialization;
@@ -13,31 +12,31 @@ namespace RNE.Template.Node
 
         [SerializeField] private TMP_InputField _outputInputField;
 
+        private float _value;
+        private float _output;
+
         protected override void CodeToExecute()
         {
             ExecuteInputConnection(0);
 
-            float value = 1.0f;
+            _value = 1.0f;
 
             // Value
             if (Inputs[0].ConnectedOutputPointer)
             {
-                PointerValue.GetFloat(Inputs[0], ref value);
+                PointerValue.GetFloat(Inputs[0], ref _value);
             }
-            else
+            else if (_valueInputField.text.Length != 0)
             {
-                if (_valueInputField.text.Length != 0)
-                {
-                    value = float.Parse(_valueInputField.text);
-                }
+                _value = float.Parse(_valueInputField.text);
             }
 
-            float output = Mathf.Sqrt(value);
+            _output = Mathf.Sqrt(_value);
 
-            Outputs[0].GetComponent<FloatOutputPointer>().Value = output;
+            Outputs[0].GetComponent<FloatOutputPointer>().Value = _output;
 
-            _valueInputField.text = value.ToString();
-            _outputInputField.text = output.ToString();
+            _valueInputField.text = _value.ToString();
+            _outputInputField.text = _output.ToString();
         }
 
         protected override void CodeToReset()

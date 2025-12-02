@@ -7,56 +7,54 @@ namespace RNE.Template.Node
 {
     public class ColoringNode : NodeWithPreview
     {
+        private ComputeBuffer _colorBuffer;
+
+        protected override void Init()
+        {
+            _colorBuffer = new ComputeBuffer(ProjectData.Length, sizeof(float) * 4);
+        }
+
         protected override void CodeToExecute()
         {
-            ComputeBuffer colorsBuffer = new ComputeBuffer(ProjectData.Length, sizeof(float) * 4);
-            Color[] preview = new Color[ProjectData.Length];
-
-            if (!Inputs[0].ConnectedOutputPointer && !Inputs[1].ConnectedOutputPointer)
+            if (Inputs[0].ConnectedOutputPointer == null)
             {
-                for (int i = 0; i < preview.Length; i++)
-                {
-                    preview[i] = Color.black;
-                }
+                return;
             }
-            else if (!Inputs[0].ConnectedOutputPointer && Inputs[1].ConnectedOutputPointer)
+
+            if (_colorBuffer.count != ProjectData.Length)
             {
-                ExecuteInputConnection(1);
-                for (int i = 0; i < preview.Length; i++)
-                {
-                    preview[i] = Color.black;
-                }
+                Init();
+            }
+
+            ExecuteInputConnection(0);
+
+            if (!Inputs[1].ConnectedOutputPointer)
+            {
+                Coloring.ColoringGPU(ref _colorBuffer, PointerValue.GetNoise(Inputs[0]), Color.white);
             }
             else
             {
-                if (Inputs[0].ConnectedOutputPointer && !Inputs[1].ConnectedOutputPointer)
-                {
-                    ExecuteInputConnection(0);
-                    Coloring.ColoringGPU(ref colorsBuffer, PointerValue.GetNoise(Inputs[0]), Color.white);
-                }
-                else
-                {
-                    ExecuteInputConnection(0);
-                    ExecuteInputConnection(1);
+                ExecuteInputConnection(1);
 
-                    Coloring.ColoringGPU(
-                        ref colorsBuffer,
-                        PointerValue.GetNoise(Inputs[0]), 
-                        PointerValue.GetColor(Inputs[1])
-                    );
-                }
-
-                colorsBuffer.GetData(preview);
+                Coloring.ColoringGPU(
+                    ref _colorBuffer,
+                    PointerValue.GetNoise(Inputs[0]),
+                    PointerValue.GetColor(Inputs[1])
+                );
             }
 
-            SetPreview(colorsBuffer);
-
-            Outputs[0].GetComponent<TextureOutputPointer>().Buffer = colorsBuffer;
+            SetPreview(_colorBuffer);
+            Outputs[0].GetComponent<TextureOutputPointer>().Buffer = _colorBuffer;
         }
 
         protected override void CodeToReset()
         {
             Outputs[0].GetComponent<TextureOutputPointer>().Reset();
+        }
+
+        void OnDestroy()
+        {
+            _colorBuffer.Release();
         }
     }
 }

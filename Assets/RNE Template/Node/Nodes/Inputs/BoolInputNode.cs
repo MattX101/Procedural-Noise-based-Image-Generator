@@ -1,7 +1,7 @@
 using RNE.Template.Node.Pointer;
+using Utils.IO.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
-using Utils.IO.Serialization;
 
 namespace RNE.Template.Node
 {

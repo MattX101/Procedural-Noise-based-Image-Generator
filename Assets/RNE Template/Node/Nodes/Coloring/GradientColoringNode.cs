@@ -1,62 +1,60 @@
 ﻿using RNE.Template.Node.Pointer;
 using RNE.Template.Node.Pointer.Value;
-using UnityEngine;
 using Utils.Colors.Coloring;
+using UnityEngine;
 
 namespace RNE.Template.Node
 {
     public class GradientColoringNode : NodeWithPreview
     {
+        private ComputeBuffer _colorBuffer;
+
+        protected override void Init()
+        {
+            _colorBuffer = new ComputeBuffer(ProjectData.Length, sizeof(float) * 4);
+        }
+
         protected override void CodeToExecute()
         {
-            ComputeBuffer buffer = new ComputeBuffer(ProjectData.Length, sizeof(float) * 4);
-            Color[] preview = new Color[ProjectData.Length];
-
-            if (!Inputs[0].ConnectedOutputPointer && !Inputs[1].ConnectedOutputPointer)
+            if ((Inputs[0].ConnectedOutputPointer && Inputs[1].ConnectedOutputPointer) == false)
             {
-                for (int i = 0; i < preview.Length; i++)
-                {
-                    preview[i] = Color.black;
-                }
+                return;
             }
-            else if (!Inputs[0].ConnectedOutputPointer && Inputs[1].ConnectedOutputPointer)
+
+            if (_colorBuffer.count != ProjectData.Length)
             {
-                ExecuteInputConnection(1);
-                for (int i = 0; i < preview.Length; i++)
-                {
-                    preview[i] = Color.black;
-                }
+                Init();
+            }
+
+            ExecuteInputConnection(0);
+
+            if (Inputs[0].ConnectedOutputPointer && !Inputs[1].ConnectedOutputPointer)
+            {
+                _colorBuffer = PointerValue.GetNoise(Inputs[0]);
             }
             else
             {
-                if (Inputs[0].ConnectedOutputPointer && !Inputs[1].ConnectedOutputPointer)
-                {
-                    ExecuteInputConnection(0);
-                    buffer = PointerValue.GetNoise(Inputs[0]);
-                }
-                else
-                {
-                    ExecuteInputConnection(0);
-                    ExecuteInputConnection(1);
+                ExecuteInputConnection(1);
 
-                    Coloring.GradientColoringGPU(
-                        ref buffer,
-                        PointerValue.GetNoise(Inputs[0]),
-                        PointerValue.GetColorGradient(Inputs[1])
-                    );
-                }
-
-                buffer.GetData(preview);
+                Coloring.GradientColoringGPU(
+                    ref _colorBuffer,
+                    PointerValue.GetNoise(Inputs[0]),
+                    PointerValue.GetColorGradient(Inputs[1])
+                );
             }
 
-            SetPreview(buffer);
-
-            Outputs[0].GetComponent<TextureOutputPointer>().Buffer = buffer;
+            SetPreview(_colorBuffer);
+            Outputs[0].GetComponent<TextureOutputPointer>().Buffer = _colorBuffer;
         }
 
         protected override void CodeToReset()
         {
             Outputs[0].GetComponent<TextureOutputPointer>().Reset();
+        }
+
+        void OnDestroy()
+        {
+            _colorBuffer.Release();
         }
     }
 }

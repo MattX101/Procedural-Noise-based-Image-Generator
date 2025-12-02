@@ -9,28 +9,31 @@ namespace RNE.Template.Editor
         private const string GameObjectPath = "GameObject/RNE Template/";
         private const string AssetsPath = "Assets/Create/RNE Template/";
 
+        private static GameObject _prefab;
+        private static GameObject _instance;
+
         private static void CreateUIPrefab(string path)
         {
-            GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path + ".prefab");
+            _prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path + ".prefab");
 
-            if (!prefab)
+            if (!_prefab)
             {
                 Debug.LogError("UI Prefab not found at the specified path.");
 
                 return;
             }
 
-            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            _instance = (GameObject)PrefabUtility.InstantiatePrefab(_prefab);
 
             if (Selection.activeGameObject)
             {
-                instance.transform.parent = Selection.activeGameObject.transform;
+                _instance.transform.parent = Selection.activeGameObject.transform;
             }
 
-            instance.transform.localPosition = Vector3.zero;
-            instance.transform.localScale = Vector3.one;
+            _instance.transform.localPosition = Vector3.zero;
+            _instance.transform.localScale = Vector3.one;
 
-            Selection.activeGameObject = instance;
+            Selection.activeGameObject = _instance;
         }
     }
 }

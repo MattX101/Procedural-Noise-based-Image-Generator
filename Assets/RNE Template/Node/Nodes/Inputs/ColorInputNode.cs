@@ -1,8 +1,8 @@
 using RuntimeNodeEditor.UI.Canvas.Node.UI;
 using RNE.Template.Node.Pointer;
+using Utils.IO.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
-using Utils.IO.Serialization;
 
 namespace RNE.Template.Node
 {
@@ -17,19 +17,21 @@ namespace RNE.Template.Node
         [SerializeField]
         private UIColourPicker _colourPicker;
 
+        private Color _color;
+
         protected override void CodeToExecute()
         {
-            Color color = _colourPicker.CalcualteColor();
+            _color = _colourPicker.CalcualteColor();
 
-            Outputs[0].GetComponent<FloatOutputPointer>().Value = (int)(color.r * 255);
-            Outputs[1].GetComponent<FloatOutputPointer>().Value = (int)(color.g * 255);
-            Outputs[2].GetComponent<FloatOutputPointer>().Value = (int)(color.b * 255);
+            Outputs[0].GetComponent<FloatOutputPointer>().Value = (int)(_color.r * 255);
+            Outputs[1].GetComponent<FloatOutputPointer>().Value = (int)(_color.g * 255);
+            Outputs[2].GetComponent<FloatOutputPointer>().Value = (int)(_color.b * 255);
 
             Outputs[3].GetComponent<ColorOutputPointer>().Value =
                 new Color(
-                    color.r,
-                    color.g,
-                    color.b);
+                    _color.r,
+                    _color.g,
+                    _color.b);
         }
 
         protected override void CodeToReset()
@@ -41,12 +43,10 @@ namespace RNE.Template.Node
         }
 
         public override void OnSave(FileWriter writer)
-        {
-            Color color = _colourPicker.CalcualteColor();
-            
-            writer.Write(color.r);
-            writer.Write(color.g);
-            writer.Write(color.b);
+        {            
+            writer.Write(_color.r);
+            writer.Write(_color.g);
+            writer.Write(_color.b);
         }
 
         public override void OnLoad(FileReader reader)

@@ -1,8 +1,8 @@
 using RuntimeNodeEditor.UI.Canvas.Node.UI;
+using Utils.IO.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using Utils.IO.Serialization;
 
 namespace RNE.Template.UI
 {
@@ -22,7 +22,7 @@ namespace RNE.Template.UI
 
         [SerializeField]
         private UISlider[] _sliders;
-        
+
         [SerializeField]
         private Image[] _images;
 
@@ -31,8 +31,28 @@ namespace RNE.Template.UI
 
         private const int MaxGradientPoints = 8;
 
-        private bool _skip = false;
+        //private bool _skip = false;
+
+        private List<GradientColorKey> _keys = new List<GradientColorKey>();
+        private GradientAlphaKey[] _alpha = new GradientAlphaKey[2]
+        {
+            new GradientAlphaKey(1, 0),
+            new GradientAlphaKey(1, 1)
+        };
         
+        private Color[] _gradientPreviewColors = new Color[100];
+        private Texture2D _texture;
+
+        private void Init()
+        {
+            Gradient = new Gradient();
+
+            _texture = new Texture2D(100, 1);
+            _texture.wrapMode = TextureWrapMode.Clamp;
+
+            _gradientPreview.texture = _texture;
+        }
+
         public void ChangePreviewImage(Image image)
         {
             /*if (!_skip)
@@ -44,47 +64,38 @@ namespace RNE.Template.UI
             SetImage(image);
 
             //SetSliders(image.color.r, image.color.g, image.color.b);
-            
+
             //OnSliderValueChange();
         }
 
         public void GeneratePreviewGradient()
         {
-            Gradient = new Gradient();
+            if (Gradient == null)
+            {
+                Init();
+            }
 
-            List<GradientColorKey> keys = new List<GradientColorKey>();
+            _keys.Clear();
             for (int i = 0; i < MaxGradientPoints; i++)
             {
                 if (_sliders[i].gameObject.activeSelf)
                 {
-                    keys.Add(
+                    _keys.Add(
                         new GradientColorKey(
                             _sliders[i].Color,
                             _sliders[i].Value)
                         );
                 }
             }
+            Gradient.SetKeys(_keys.ToArray(), _alpha);
 
-            GradientAlphaKey[] alpha = new GradientAlphaKey[2]
+            for (int i = 0; i < _gradientPreviewColors.Length; i++)
             {
-                new GradientAlphaKey(1, 0),
-                new GradientAlphaKey(1, 1)
-            };
-
-            Gradient.SetKeys(keys.ToArray(), alpha);
-
-            Color[] gradientPreview = new Color[100];
-            for (int i = 0; i < gradientPreview.Length; i++)
-            {
-                gradientPreview[i] = Gradient.Evaluate((float)i / gradientPreview.Length);
+                _gradientPreviewColors[i] = Gradient.Evaluate((float)i / _gradientPreviewColors.Length);
             }
 
-            Texture2D texture = new Texture2D(100, 1);
-            texture.wrapMode = TextureWrapMode.Clamp;
-            texture.SetPixels(gradientPreview);
-            texture.Apply();
-
-            _gradientPreview.texture = texture;
+            _texture.SetPixels(_gradientPreviewColors);
+            _texture.Apply();
         }
 
         public void SetActive(int index)
@@ -95,7 +106,9 @@ namespace RNE.Template.UI
         public void Add()
         {
             if (_activePoints >= MaxGradientPoints)
+            {
                 return;
+            }
 
             for (int i = 0; i < MaxGradientPoints; i++)
             {
@@ -146,7 +159,7 @@ namespace RNE.Template.UI
             {
                 writer.Write(slider.Value);
             }
-            
+
             foreach (Image image in _images)
             {
                 writer.Write(image.color.r);
@@ -157,8 +170,8 @@ namespace RNE.Template.UI
 
         protected override void CodeToLoad(FileReader reader)
         {
-            _skip = true;
-            
+            //_skip = true;
+
             _currentActivePoint = reader.ReadInt();
             _activePoints = reader.ReadInt();
 
@@ -171,15 +184,15 @@ namespace RNE.Template.UI
             {
                 slider.Value = reader.ReadFloat();
             }
-            
+
             foreach (Image image in _images)
             {
                 image.color = new Color(reader.ReadFloat(), reader.ReadFloat(), reader.ReadFloat(), 1);
             }
 
             GeneratePreviewGradient();
-            
-            _skip = false;
+
+            //_skip = false;
         }
     }
 }

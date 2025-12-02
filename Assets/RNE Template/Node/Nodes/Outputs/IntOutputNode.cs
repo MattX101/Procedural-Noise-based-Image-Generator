@@ -1,6 +1,6 @@
 using RNE.Template.Node.Pointer.Value;
-using TMPro;
 using UnityEngine;
+using TMPro;
 
 namespace RNE.Template.Node
 {

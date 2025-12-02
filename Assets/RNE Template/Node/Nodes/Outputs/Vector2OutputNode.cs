@@ -1,6 +1,6 @@
 using RNE.Template.Node.Pointer.Value;
-using TMPro;
 using UnityEngine;
+using TMPro;
 
 namespace RNE.Template.Node
 {
@@ -8,6 +8,8 @@ namespace RNE.Template.Node
     {
         [SerializeField] private TMP_InputField _inputfieldX;
         [SerializeField] private TMP_InputField _inputfieldY;
+
+        private Vector2 _value;
         
         protected override void CodeToExecute()
         {
@@ -16,13 +18,13 @@ namespace RNE.Template.Node
             ExecuteInputConnection(1);
             ExecuteInputConnection(2);
 
-            Vector2 v = PointerValue.GetVector2(Inputs[0]);
+            _value = PointerValue.GetVector2(Inputs[0]);
 
-            PointerValue.GetFloat(Inputs[1], ref v.x);
-            PointerValue.GetFloat(Inputs[2], ref v.y);
+            PointerValue.GetFloat(Inputs[1], ref _value.x);
+            PointerValue.GetFloat(Inputs[2], ref _value.y);
 
-            _inputfieldX.text = v.x.ToString();
-            _inputfieldY.text = v.y.ToString();
+            _inputfieldX.text = _value.x.ToString();
+            _inputfieldY.text = _value.y.ToString();
         }
     }
 }

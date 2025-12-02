@@ -1,4 +1,3 @@
-using RuntimeNodeEditor.Node.UI.Functions;
 using RNE.Template.Node.Pointer;
 using RNE.Template.Node.Pointer.Value;
 using Utils.IO.Serialization;
@@ -12,29 +11,28 @@ namespace RNE.Template.Node
         [SerializeField] private TMP_InputField _valueInputField;
         [SerializeField] private TMP_InputField _sineInputField;
 
+        private float _value, _sine;
+
         protected override void CodeToExecute()
         {
             ExecuteInputConnection(0);
             
-            float value = 1.0f;
+            _value = 1.0f;
             if (Inputs[0].ConnectedOutputPointer)
             {
-                PointerValue.GetFloat(Inputs[0], ref value);
+                PointerValue.GetFloat(Inputs[0], ref _value);
             }
-            else
+            else if (_valueInputField.text.Length != 0)
             {
-                if (_valueInputField.text.Length != 0)
-                {
-                    value = float.Parse(_valueInputField.text);
-                }
+                _value = float.Parse(_valueInputField.text);
             }
 
-            float sine = Mathf.Sin(value);
+            _sine = Mathf.Sin(_value);
 
-            Outputs[0].GetComponent<FloatOutputPointer>().Value = sine;
+            Outputs[0].GetComponent<FloatOutputPointer>().Value = _sine;
 
-            _valueInputField.text = value.ToString();
-            _sineInputField.text = sine.ToString();
+            _valueInputField.text = _value.ToString();
+            _sineInputField.text = _sine.ToString();
         }
 
         protected override void CodeToReset()

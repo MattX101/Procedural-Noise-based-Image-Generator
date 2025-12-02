@@ -3,7 +3,6 @@ using RuntimeNodeEditor.UI.Tooltip.Window;
 using Utils.IO;
 using UnityEngine;
 using TMPro;
-using System.IO;
 
 namespace RNE.Template.UI
 {
@@ -28,6 +27,8 @@ namespace RNE.Template.UI
         [SerializeField] private TMP_Text _exportPath;
 
         private readonly IOSelection _ioSelection = new IOSelection();
+
+        private string _folderPath;
 
         private void Awake()
         {
@@ -59,12 +60,12 @@ namespace RNE.Template.UI
 
         public void LocateExportPath()
         {
-            string path = _ioSelection.SelectFolder();
+            _folderPath = _ioSelection.SelectFolder();
 
-            if (path != null && path.Length > 0)
+            if (_folderPath != null && _folderPath.Length > 0)
             {
-                ProjectData.ExportPath = path;
-                _exportPath.text = path;
+                ProjectData.ExportPath = _folderPath;
+                _exportPath.text = _folderPath;
             }
         }
     }

@@ -20,22 +20,25 @@ namespace RNE.Template.Node
         
         [SerializeField]
         private TMP_InputField _targetFrameTimeInputfield;
-        
+
+        private int _currentFrame = 0;
+        private float _targetFramerate, _currentFrameTime = 0.0f;
+
         protected override void CodeToExecute()
         {
             ExecuteInputConnection(0);
             ExecuteInputConnection(1);
 
-            int currentFrame = Inputs[0].ConnectedOutputPointer ? PointerValue.GetInt(Inputs[0]) : InputFieldToInt.Get(_currentFrameInputfield.text);
-            float targetFramerate = Inputs[1].ConnectedOutputPointer ? PointerValue.GetFloat(Inputs[1]) : InputFieldToFloat.Get(_targetFramerateInputfield.text);
+            _currentFrame = Inputs[0].ConnectedOutputPointer ? PointerValue.GetInt(Inputs[0]) : InputFieldToInt.Get(_currentFrameInputfield.text);
+            _targetFramerate = Inputs[1].ConnectedOutputPointer ? PointerValue.GetFloat(Inputs[1]) : InputFieldToFloat.Get(_targetFramerateInputfield.text);
 
-            float currentFrameTime = (float)currentFrame * targetFramerate;
+            _currentFrameTime = _currentFrame * _targetFramerate;
 
-            Outputs[0].GetComponent<FloatOutputPointer>().Value = currentFrameTime;
+            Outputs[0].GetComponent<FloatOutputPointer>().Value = _currentFrameTime;
 
-            _currentFrameInputfield.text = currentFrame.ToString();
-            _targetFramerateInputfield.text = targetFramerate.ToString();
-            _targetFrameTimeInputfield.text = currentFrameTime.ToString();
+            _currentFrameInputfield.text = _currentFrame.ToString();
+            _targetFramerateInputfield.text = _targetFramerate.ToString();
+            _targetFrameTimeInputfield.text = _currentFrameTime.ToString();
         }
 
         protected override void CodeToReset()

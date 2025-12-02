@@ -10,20 +10,34 @@ namespace RNE.Template.Node
     {
         [Space]
 
-        [SerializeField] private RawImage _redImage;
-        [SerializeField] private RawImage _greenImage;
-        [SerializeField] private RawImage _blueImage;
-        [SerializeField] private RawImage _resultImage;
+        [SerializeField]
+        private RawImage _redImage, _greenImage, _blueImage, _resultImage;
 
         [Space]
 
         [SerializeField]
         private ComputeShader _shader;
 
-        private RenderTexture _redRender;
-        private RenderTexture _greenRender;
-        private RenderTexture _blueRender;
-        private RenderTexture _resultRender;
+        private int _shaderKernel = 0;
+        private ComputeBuffer _redBuffer, _greenBuffer, _blueBuffer, _resultBuffer;
+        private ComputeBuffer _previewBuffer;
+
+        private int _renderKernel = 0;
+        private RenderTexture _redRender, _greenRender, _blueRender, _resultRender;
+
+        protected override void Init()
+        {
+            _resultBuffer = new ComputeBuffer(ProjectData.Length, sizeof(float) * 4);
+            _previewBuffer = new ComputeBuffer(ProjectData.Length, sizeof(float) * 4);
+
+            CreateRenderTexture(ref _redRender);
+            CreateRenderTexture(ref _greenRender);
+            CreateRenderTexture(ref _blueRender);
+            CreateRenderTexture(ref _resultRender);
+
+            _shaderKernel = _shader.FindKernel("Merge");
+            _renderKernel = ProjectData.Shader.FindKernel("RenderTexture");
+        }
 
         protected override void CodeToExecute()
         {
@@ -36,35 +50,33 @@ namespace RNE.Template.Node
             ExecuteInputConnection(1);
             ExecuteInputConnection(2);
 
-            ComputeBuffer redBuffer = PointerValue.GetNoise(Inputs[0]);
-            ComputeBuffer greenBuffer = PointerValue.GetNoise(Inputs[1]);
-            ComputeBuffer blueBuffer = PointerValue.GetNoise(Inputs[2]);
-            ComputeBuffer resultBuffer = new ComputeBuffer(ProjectData.Length, sizeof(float) * 4);
+            if (_resultBuffer.count != ProjectData.Length)
+            {
+                Init();
+            }
 
-            int kernel = _shader.FindKernel("Merge");
-            
-            _shader.SetBuffer(kernel, "red", redBuffer);
-            _shader.SetBuffer(kernel, "green", greenBuffer);
-            _shader.SetBuffer(kernel, "blue", blueBuffer);
-            _shader.SetBuffer(kernel, "result", resultBuffer);
+            _redBuffer = PointerValue.GetNoise(Inputs[0]);
+            _greenBuffer = PointerValue.GetNoise(Inputs[1]);
+            _blueBuffer = PointerValue.GetNoise(Inputs[2]);
 
-            _shader.Dispatch(kernel, Mathf.CeilToInt(ProjectData.Length / 1024.0f), 1, 1);
+            _shader.SetBuffer(_shaderKernel, "red", _redBuffer);
+            _shader.SetBuffer(_shaderKernel, "green", _greenBuffer);
+            _shader.SetBuffer(_shaderKernel, "blue", _blueBuffer);
+            _shader.SetBuffer(_shaderKernel, "result", _resultBuffer);
+            _shader.Dispatch(_shaderKernel, Mathf.CeilToInt(ProjectData.Length / 1024.0f), 1, 1);
 
-            ComputeBuffer previewBuffer = new ComputeBuffer(ProjectData.Length, sizeof(float) * 4);
-            Coloring.ColoringGPU(ref previewBuffer, redBuffer, Color.white);
-            SetPreview(ref _redRender, _redImage, previewBuffer);
+            Coloring.ColoringGPU(ref _previewBuffer, _redBuffer, Color.white);
+            SetPreview(ref _redRender, _redImage, _previewBuffer);
 
-            Coloring.ColoringGPU(ref previewBuffer, greenBuffer, Color.white);
-            SetPreview(ref _greenRender, _greenImage, previewBuffer);
+            Coloring.ColoringGPU(ref _previewBuffer, _greenBuffer, Color.white);
+            SetPreview(ref _greenRender, _greenImage, _previewBuffer);
 
-            Coloring.ColoringGPU(ref previewBuffer, blueBuffer, Color.white);
-            SetPreview(ref _blueRender, _blueImage, previewBuffer);
+            Coloring.ColoringGPU(ref _previewBuffer, _blueBuffer, Color.white);
+            SetPreview(ref _blueRender, _blueImage, _previewBuffer);
 
-            SetPreview(ref _resultRender, _resultImage, resultBuffer);
-            
-            previewBuffer.Release();
+            SetPreview(ref _resultRender, _resultImage, _resultBuffer);
 
-            Outputs[0].GetComponent<TextureOutputPointer>().Buffer = resultBuffer;
+            Outputs[0].GetComponent<TextureOutputPointer>().Buffer = _resultBuffer;
         }
 
         protected override void CodeToReset()
@@ -72,28 +84,29 @@ namespace RNE.Template.Node
             Outputs[0].GetComponent<TextureOutputPointer>().Reset();
         }
 
-        protected void SetPreview(ref RenderTexture render, RawImage image, ComputeBuffer buffer)
+        private void SetPreview(ref RenderTexture render, RawImage image, ComputeBuffer buffer)
+        {
+            RenderTexture(render, buffer);
+            image.texture = render;
+        }
+
+        private void CreateRenderTexture(ref RenderTexture render)
         {
             render = new RenderTexture(ProjectData.Resolution, ProjectData.Resolution, 0, RenderTextureFormat.ARGB32);
             render.wrapMode = TextureWrapMode.Clamp;
             render.filterMode = FilterMode.Point;
             render.enableRandomWrite = true;
             render.Create();
-
-            RenderTexture(render, buffer);
-
-            image.texture = render;
         }
 
         private void RenderTexture(RenderTexture render, ComputeBuffer buffer)
         {
-            int kernel = ProjectData.Shader.FindKernel("RenderTexture");
-            ProjectData.Shader.SetBuffer(kernel, "colors", buffer);
-            ProjectData.Shader.SetTexture(kernel, "render", render);
+            ProjectData.Shader.SetBuffer(_renderKernel, "colors", buffer);
+            ProjectData.Shader.SetTexture(_renderKernel, "render", render);
             ProjectData.Shader.SetInt("resX", ProjectData.Resolution);
             ProjectData.Shader.SetInt("resY", ProjectData.Resolution);
             ProjectData.Shader.Dispatch(
-                kernel,
+                _renderKernel,
                 Mathf.CeilToInt((float)ProjectData.Resolution / 32.0f),
                 Mathf.CeilToInt((float)ProjectData.Resolution / 32.0f),
                 1);
@@ -101,25 +114,17 @@ namespace RNE.Template.Node
 
         private void OnDestroy()
         {
-            if (_redRender != null)
-            {
-                _redRender.Release();
-            }
+            _redBuffer.Release();
+            _greenBuffer.Release();
+            _blueBuffer.Release();
+            _resultRender.Release();
 
-            if (_greenRender != null)
-            {
-                _greenRender.Release();
-            }
+            _previewBuffer.Release();
 
-            if (_blueRender != null)
-            {
-                _blueRender.Release();
-            }
-
-            if (_resultRender != null)
-            {
-                _resultRender.Release();
-            }
+            _redRender.Release();
+            _greenRender.Release();
+            _blueRender.Release();
+            _resultRender.Release();
         }
     }
 }

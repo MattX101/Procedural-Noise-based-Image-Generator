@@ -17,6 +17,16 @@ namespace RNE.Template.Node
         [SerializeField]
         private ComputeShader _shader;
 
+        private int _shaderKernel = 0;
+        private ComputeBuffer _valuesBuffer;
+        private ComputeBuffer _previewBuffer;
+
+        protected override void Init()
+        {
+            _valuesBuffer = new ComputeBuffer(ProjectData.Length, sizeof(float));
+            _previewBuffer = new ComputeBuffer(ProjectData.Length, sizeof(float) * 4);
+        }
+
         protected override void CodeToExecute()
         {
             if (!Inputs[0].ConnectedOutputPointer)
@@ -26,50 +36,34 @@ namespace RNE.Template.Node
 
             ExecuteInputConnection(0);
 
-            ComputeBuffer colorsBuffer = PointerValue.GetTexture(Inputs[0]);
-            ComputeBuffer valuesBuffer = new ComputeBuffer(ProjectData.Length, sizeof(float));
-
-            int kernel = 0;
-            if (_dropdown.value == 0)
+            if (_valuesBuffer.count != ProjectData.Length)
             {
-                kernel = _shader.FindKernel("Average");
-            }
-            else if (_dropdown.value == 1)
-            {
-                kernel = _shader.FindKernel("Luminosity");
-            }
-            else if (_dropdown.value == 2)
-            {
-                kernel = _shader.FindKernel("Red");
-            }
-            else if (_dropdown.value == 3)
-            {
-                kernel = _shader.FindKernel("Green");
-            }
-            else if (_dropdown.value == 4)
-            {
-                kernel = _shader.FindKernel("Blue");
-            }
-            else if (_dropdown.value == 5)
-            {
-                kernel = _shader.FindKernel("Lowest");
-            }
-            else if (_dropdown.value == 6)
-            {
-                kernel = _shader.FindKernel("Highest");
+                Init();
             }
 
-            _shader.SetBuffer(kernel, "colors", colorsBuffer);
-            _shader.SetBuffer(kernel, "values", valuesBuffer);
+            _shader.SetBuffer(_shaderKernel, "colors", PointerValue.GetTexture(Inputs[0]));
+            _shader.SetBuffer(_shaderKernel, "values", _valuesBuffer);
+            _shader.Dispatch(_shaderKernel, Mathf.CeilToInt(ProjectData.Length / 1024.0f), 1, 1);
 
-            _shader.Dispatch(kernel, Mathf.CeilToInt(colorsBuffer.count / 1024.0f), 1, 1);
+            Coloring.ColoringGPU(ref _previewBuffer, _valuesBuffer, Color.white);
+            SetPreview(_previewBuffer);
 
-            ComputeBuffer previewBuffer = new ComputeBuffer(ProjectData.Length, sizeof(float) * 4);
-            Coloring.ColoringGPU(ref previewBuffer, valuesBuffer, Color.white);
-            SetPreview(previewBuffer);
-            previewBuffer.Release();
+            Outputs[0].GetComponent<NoiseOutputPointer>().Buffer = _valuesBuffer;
+        }
 
-            Outputs[0].GetComponent<NoiseOutputPointer>().Buffer = valuesBuffer;
+        public void SetKernel()
+        {
+            _shaderKernel = _dropdown.value switch
+            {
+                0 => _shader.FindKernel("Average"),
+                1 => _shader.FindKernel("Luminosity"),
+                2 => _shader.FindKernel("Red"),
+                3 => _shader.FindKernel("Green"),
+                4 => _shader.FindKernel("Blue"),
+                5 => _shader.FindKernel("Lowest"),
+                6 => _shader.FindKernel("Highest"),
+                _ => _shader.FindKernel("Average"),
+            };
         }
 
         protected override void CodeToReset()
@@ -85,6 +79,12 @@ namespace RNE.Template.Node
         public override void OnLoad(FileReader reader)
         {
             _dropdown.value = reader.ReadInt();
+        }
+
+        void OnDestroy()
+        {
+            _valuesBuffer.Release();
+            _previewBuffer.Release();
         }
     }
 }

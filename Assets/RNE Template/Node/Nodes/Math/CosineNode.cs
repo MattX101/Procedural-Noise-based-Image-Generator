@@ -1,4 +1,3 @@
-using RuntimeNodeEditor.Node.UI.Functions;
 using RNE.Template.Node.Pointer;
 using RNE.Template.Node.Pointer.Value;
 using Utils.IO.Serialization;
@@ -12,29 +11,28 @@ namespace RNE.Template.Node
         [SerializeField] private TMP_InputField _valueInputField;
         [SerializeField] private TMP_InputField _cosineInputField;
 
+        private float _value, _cosine;
+
         protected override void CodeToExecute()
         {
             ExecuteInputConnection(0);
 
-            float value = 1.0f;
+            _value = 1.0f;
             if (Inputs[0].ConnectedOutputPointer)
             {
-                PointerValue.GetFloat(Inputs[0], ref value);
+                PointerValue.GetFloat(Inputs[0], ref _value);
             }
-            else
+            else if (_valueInputField.text.Length != 0)
             {
-                if (_valueInputField.text.Length != 0)
-                {
-                    value = float.Parse(_valueInputField.text);
-                }
+                _value = float.Parse(_valueInputField.text);
             }
             
-            float cosine = Mathf.Cos(value);
+            _cosine = Mathf.Cos(_value);
 
-            Outputs[0].GetComponent<FloatOutputPointer>().Value = cosine;
+            Outputs[0].GetComponent<FloatOutputPointer>().Value = _cosine;
             
-            _valueInputField.text = value.ToString();
-            _cosineInputField.text = cosine.ToString();
+            _valueInputField.text = _value.ToString();
+            _cosineInputField.text = _cosine.ToString();
         }
         
         protected override void CodeToReset()

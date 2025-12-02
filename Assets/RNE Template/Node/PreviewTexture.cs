@@ -4,17 +4,21 @@ namespace RNE.Template.Node
 {
     internal static class PreviewTexture
     {
+        private static Texture2D _texture;
+
         internal static Texture2D Generate(Color[] colors)
         {
-            Texture2D texture = new Texture2D(ProjectData.Resolution, ProjectData.Resolution);
+            if (_texture == null || _texture.width != ProjectData.Resolution)
+            {
+                _texture = new Texture2D(ProjectData.Resolution, ProjectData.Resolution);
+                _texture.wrapMode = TextureWrapMode.Clamp;
+                _texture.filterMode = FilterMode.Point;
+            }
 
-            texture.wrapMode = TextureWrapMode.Clamp;
-            texture.filterMode = FilterMode.Point;
+            _texture.SetPixels(colors);
+            _texture.Apply();
 
-            texture.SetPixels(colors);
-            texture.Apply();
-
-            return texture;
+            return _texture;
         }
     }
 }

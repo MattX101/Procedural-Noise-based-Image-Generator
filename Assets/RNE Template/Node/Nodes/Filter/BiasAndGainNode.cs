@@ -1,9 +1,9 @@
 ﻿using RNE.Template.Node.Pointer;
 using RNE.Template.Node.Pointer.Value;
+using Utils.IO.Serialization;
 using Utils.Curves;
 using UnityEngine;
 using UnityEngine.UI;
-using Utils.IO.Serialization;
 
 namespace RNE.Template.Node
 {
@@ -11,23 +11,24 @@ namespace RNE.Template.Node
     {
         [SerializeField] private Slider _biasSlider;
         [SerializeField] private Slider _gainSlider;
-        
+
+        private ComputeBuffer _textureBuffer;
+
         protected override void CodeToExecute()
         {
+            if (Inputs[0].ConnectedOutputPointer == null)
+            {
+                return;
+            }
+
             ExecuteInputConnection(0);
 
-            ComputeBuffer buffer = PointerValue.GetTexture(Inputs[0]);
+            _textureBuffer = PointerValue.GetTexture(Inputs[0]);
 
-            if (buffer != null)
-            {
-                BiasAndGainGPU.ModifyImage(ref buffer, _biasSlider.value, _gainSlider.value);
+            BiasAndGainGPU.ModifyImage(ref _textureBuffer, _biasSlider.value, _gainSlider.value);
+            SetPreview(_textureBuffer);
 
-                Color[] colors = new Color[buffer.count];
-                buffer.GetData(colors);
-                SetPreview(buffer);
-
-                Outputs[0].GetComponent<TextureOutputPointer>().Buffer = buffer;
-            }
+            Outputs[0].GetComponent<TextureOutputPointer>().Buffer = _textureBuffer;
         }
 
         protected override void CodeToReset()

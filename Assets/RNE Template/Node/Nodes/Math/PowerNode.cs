@@ -1,4 +1,3 @@
-using RuntimeNodeEditor.Node.UI.Functions;
 using RNE.Template.Node.Pointer;
 using RNE.Template.Node.Pointer.Value;
 using Utils.IO.Serialization;
@@ -14,48 +13,45 @@ namespace RNE.Template.Node
 
         [SerializeField] private TMP_InputField _outputInputField;
 
+        private float _value, _power;
+        private float _output;
+
         protected override void CodeToExecute()
         {
             ExecuteInputConnection(0);
             ExecuteInputConnection(1);
 
-            float value = 1.0f;
-            float power = 2.0f;
+            _value = 1.0f;
+            _power = 2.0f;
 
             // Value
             if (Inputs[0].ConnectedOutputPointer)
             {
-                PointerValue.GetFloat(Inputs[0], ref value);
+                PointerValue.GetFloat(Inputs[0], ref _value);
             }
-            else
+            else if (_valueInputField.text.Length != 0)
             {
-                if (_valueInputField.text.Length != 0)
-                {
-                    value = float.Parse(_valueInputField.text);
-                }
+                _value = float.Parse(_valueInputField.text);
             }
 
             // Power
             if (Inputs[1].ConnectedOutputPointer)
             {
-                PointerValue.GetFloat(Inputs[1], ref power);
+                PointerValue.GetFloat(Inputs[1], ref _power);
             }
-            else
+            else if (_powerInputField.text.Length != 0)
             {
-                if (_powerInputField.text.Length != 0)
-                {
-                    power = float.Parse(_powerInputField.text);
-                }
+                _power = float.Parse(_powerInputField.text);
             }
 
-            float output = Mathf.Pow(value, power);
+            _output = Mathf.Pow(_value, _power);
 
-            Outputs[0].GetComponent<FloatOutputPointer>().Value = output;
+            Outputs[0].GetComponent<FloatOutputPointer>().Value = _output;
 
-            _valueInputField.text = value.ToString();
-            _powerInputField.text = power.ToString();
+            _valueInputField.text = _value.ToString();
+            _powerInputField.text = _power.ToString();
                 
-            _outputInputField.text = output.ToString();
+            _outputInputField.text = _output.ToString();
         }
 
         protected override void CodeToReset()

@@ -1,9 +1,9 @@
 ﻿using RuntimeNodeEditor.UI.Canvas.Node.UI;
 using RNE.Template.Node.Pointer;
+using Utils.IO.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using Utils.IO.Serialization;
 
 namespace RNE.Template.Node
 {
@@ -14,6 +14,10 @@ namespace RNE.Template.Node
             get;
             set;
         }
+
+        private List<GradientColorKey> _gradientColorKeys;
+        private GradientColorKey _gradientColorKey;
+        private GradientAlphaKey[] _gradientAlphaKey;
 
         [SerializeField]
         private RawImage _gradientPreview;
@@ -26,27 +30,42 @@ namespace RNE.Template.Node
 
         private const int MaxGradientPoints = 8;
 
-        private bool[] _inputPointerConnected = new bool[MaxGradientPoints];
-
         private bool _haltPreviewGeneration = false;
+
+        private Color[] _gradientPreviewColorArray;
+        private Texture2D _previewGradientTexture;
+
+        protected override void Init()
+        {
+            Gradient = new Gradient();
+            
+            _gradientColorKey = new GradientColorKey();
+            _gradientColorKeys = new List<GradientColorKey>();
+            _gradientAlphaKey = new GradientAlphaKey[2]
+            {
+                new GradientAlphaKey(1, 0),
+                new GradientAlphaKey(1, 1)
+            };
+
+            _gradientPreviewColorArray = new Color[100];
+            _previewGradientTexture = new Texture2D(100, 1);
+            _previewGradientTexture.wrapMode = TextureWrapMode.Clamp;
+        }
 
         protected override void CodeToExecute()
         {
             for (int i = 0; i < MaxGradientPoints; i++)
             {
-                _sliders[i].gameObject.SetActive(false);
-                _images[i].gameObject.SetActive(false);
-                _inputPointerConnected[i] = false;
-
-                if (Inputs[i].ConnectedOutputPointer != null && _inputPointerConnected[i] == false)
+                if (Inputs[i].ConnectedOutputPointer == null)
                 {
-                    _sliders[i].gameObject.SetActive(true);
-                    _images[i].gameObject.SetActive(true);
+                    _sliders[i].gameObject.SetActive(false);
+                    _images[i].gameObject.SetActive(false);
 
-                    _inputPointerConnected[i] = true;
-
-                    //_sliders[i].Value = (float)i / (MaxGradientPoints - 1);
+                    continue;
                 }
+
+                _sliders[i].gameObject.SetActive(true);
+                _images[i].gameObject.SetActive(true);
             }
 
             for (int i = 0; i < Inputs.Count; i++)
@@ -68,45 +87,32 @@ namespace RNE.Template.Node
         {
             if (_haltPreviewGeneration)
                 return;
-            
-            Gradient = new Gradient();
-
-            List<GradientColorKey> keys = new List<GradientColorKey>();
+                
+            _gradientColorKeys.Clear();
             for (int i = 0; i < MaxGradientPoints; i++)
             {
-                if (_inputPointerConnected[i])
+                if (Inputs[i].ConnectedOutputPointer)
                 {
-                    GradientColorKey key = new GradientColorKey();
-                    key.color = Inputs[i].ConnectedOutputPointer.GetComponent<ColorOutputPointer>().Value;
-                    key.time = _sliders[i].Value;
+                    _gradientColorKey.color = Inputs[i].ConnectedOutputPointer.GetComponent<ColorOutputPointer>().Value;
+                    _gradientColorKey.time = _sliders[i].Value;
 
-                    keys.Add(key);
+                    _gradientColorKeys.Add(_gradientColorKey);
 
-                    _images[i].color = key.color;
-                    _sliders[i].ChangeHandleColor(key.color);
+                    _images[i].color = _gradientColorKey.color;
+                    _sliders[i].ChangeHandleColor(_gradientColorKey.color);
                 }
             }
+            Gradient.SetKeys(_gradientColorKeys.ToArray(), _gradientAlphaKey);
 
-            GradientAlphaKey[] alpha = new GradientAlphaKey[2]
+            for (int i = 0; i < _gradientPreviewColorArray.Length; i++)
             {
-                new GradientAlphaKey(1, 0),
-                new GradientAlphaKey(1, 1)
-            };
-
-            Gradient.SetKeys(keys.ToArray(), alpha);
-
-            Color[] gradientPreview = new Color[100];
-            for (int i = 0; i < gradientPreview.Length; i++)
-            {
-                gradientPreview[i] = Gradient.Evaluate((float)i / gradientPreview.Length);
+                _gradientPreviewColorArray[i] = Gradient.Evaluate((float)i / _gradientPreviewColorArray.Length);
             }
 
-            Texture2D texture = new Texture2D(100, 1);
-            texture.wrapMode = TextureWrapMode.Clamp;
-            texture.SetPixels(gradientPreview);
-            texture.Apply();
+            _previewGradientTexture.SetPixels(_gradientPreviewColorArray);
+            _previewGradientTexture.Apply();
 
-            _gradientPreview.texture = texture;
+            _gradientPreview.texture = _previewGradientTexture;
         }
 
         public override void OnSave(FileWriter writer)
@@ -124,10 +130,8 @@ namespace RNE.Template.Node
 
             for (int i = 0; i < MaxGradientPoints; i++)
             {
-                _inputPointerConnected[i] = reader.ReadBool();
-
-                _images[i].gameObject.SetActive(_inputPointerConnected[i]);
-                _sliders[i].gameObject.SetActive(_inputPointerConnected[i]);
+                _images[i].gameObject.SetActive(reader.ReadBool());
+                _sliders[i].gameObject.SetActive(_images[i].IsActive());
 
                 _sliders[i].Value = reader.ReadFloat();
             }

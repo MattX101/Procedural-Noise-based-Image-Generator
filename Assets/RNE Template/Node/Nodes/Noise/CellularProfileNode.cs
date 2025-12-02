@@ -27,10 +27,13 @@ namespace RNE.Template.Node
         protected override void CodeToExecute()
         {
             ExecuteInputConnection(0);
-            if (Inputs[0].ConnectedOutputPointer)
+            
+            if (Inputs[0].ConnectedOutputPointer == null)
             {
-                _text.text = PointerValue.GetFloat(Inputs[0]).ToString();
+                return;
             }
+
+            _text.text = PointerValue.GetFloat(Inputs[0]).ToString();
         }
 
         public override void OnSave(FileWriter writer)

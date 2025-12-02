@@ -1,10 +1,9 @@
 using RNE.Template.Node.Pointer;
 using RNE.Template.Node.Pointer.Value;
-using TMPro;
+using Utils.IO.Serialization;
 using Utils.Colors.Blend;
 using UnityEngine;
-using UnityEngine.UI;
-using Utils.IO.Serialization;
+using TMPro;
 
 namespace RNE.Template.Node
 {
@@ -12,50 +11,51 @@ namespace RNE.Template.Node
     {
         [SerializeField]
         private TMP_Dropdown _dropdown;
-        
+
+        private ComputeBuffer _colorBuffer;
+
+        protected override void Init()
+        {
+            _colorBuffer = new ComputeBuffer(ProjectData.Length, sizeof(float) * 4);
+        }
+
         protected override void CodeToExecute()
         {
-            ComputeBuffer buffer = new ComputeBuffer(ProjectData.Length, sizeof(float) * 4);
-            Color[] preview = new Color[ProjectData.Length];
-
-            if (!Inputs[0].ConnectedOutputPointer && !Inputs[1].ConnectedOutputPointer)
+            if ((Inputs[0].ConnectedOutputPointer && Inputs[1].ConnectedOutputPointer) == false)
             {
-                for (int i = 0; i < preview.Length; i++)
-                {
-                    preview[i] = Color.black;
-                }
+                return;
+            }
+
+            if (_colorBuffer.count != ProjectData.Length)
+            {
+                Init();
+            }
+
+            if (Inputs[0].ConnectedOutputPointer && !Inputs[1].ConnectedOutputPointer)
+            {
+                ExecuteInputConnection(0);
+                _colorBuffer = PointerValue.GetTexture(Inputs[0]);
+            }
+            else if (!Inputs[0].ConnectedOutputPointer && Inputs[1].ConnectedOutputPointer)
+            {
+                ExecuteInputConnection(1);
+                _colorBuffer = PointerValue.GetTexture(Inputs[1]);
             }
             else
             {
-                if (Inputs[0].ConnectedOutputPointer && !Inputs[1].ConnectedOutputPointer)
-                {
-                    ExecuteInputConnection(0);
-                    buffer = PointerValue.GetTexture(Inputs[0]);
-                }
-                else if (!Inputs[0].ConnectedOutputPointer && Inputs[1].ConnectedOutputPointer)
-                {
-                    ExecuteInputConnection(1);
-                    buffer = PointerValue.GetTexture(Inputs[1]);
-                }
-                else
-                {
-                    ExecuteInputConnection(0);
-                    ExecuteInputConnection(1);
+                ExecuteInputConnection(0);
+                ExecuteInputConnection(1);
 
-                    MixGPU.Blend(
-                        ref buffer,
-                        PointerValue.GetTexture(Inputs[0]),
-                        PointerValue.GetTexture(Inputs[1]),
-                        (Blends)_dropdown.value
-                    );
-                }
-
-                buffer.GetData(preview);
+                MixGPU.Blend(
+                    ref _colorBuffer,
+                    PointerValue.GetTexture(Inputs[0]),
+                    PointerValue.GetTexture(Inputs[1]),
+                    (Blends)_dropdown.value
+                );
             }
 
-            SetPreview(buffer);
-
-            Outputs[0].GetComponent<TextureOutputPointer>().Buffer = buffer;
+            SetPreview(_colorBuffer);
+            Outputs[0].GetComponent<TextureOutputPointer>().Buffer = _colorBuffer;
         }
 
         protected override void CodeToReset()
@@ -71,6 +71,11 @@ namespace RNE.Template.Node
         public override void OnLoad(FileReader reader)
         {
             _dropdown.value = reader.ReadInt();
+        }
+
+        private void OnDestroy()
+        {
+            _colorBuffer.Release();
         }
     }
 }
