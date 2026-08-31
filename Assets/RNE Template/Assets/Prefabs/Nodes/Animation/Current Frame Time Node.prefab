@@ -117,6 +117,10 @@ PrefabInstance:
       value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 6956023495269750317, guid: 6e972d1ca6051d84998bc927e5362a04, type: 3}
+      propertyPath: _node
+      value: 
+      objectReference: {fileID: 1656079009000999289}
+    - target: {fileID: 6956023495269750317, guid: 6e972d1ca6051d84998bc927e5362a04, type: 3}
       propertyPath: _nodeTitle
       value: Current Frame Time
       objectReference: {fileID: 0}
@@ -189,6 +193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _endNode: 0
   id: 0702
+  _rectTransform: {fileID: 0}
   _inputs:
   - {fileID: 1464876495979599467}
   - {fileID: 7299907800882614807}

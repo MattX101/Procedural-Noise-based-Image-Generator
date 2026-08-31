@@ -749,6 +749,10 @@ PrefabInstance:
       value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 6986467484705591435, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
+      propertyPath: _node
+      value: 
+      objectReference: {fileID: 6752805409827909473}
+    - target: {fileID: 6986467484705591435, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
       propertyPath: _nodeTitle
       value: Blend
       objectReference: {fileID: 0}
@@ -819,6 +823,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _endNode: 0
   id: 0400
+  _rectTransform: {fileID: 0}
   _inputs:
   - {fileID: 1408634316548070804}
   - {fileID: 2970194662818485913}

@@ -230,6 +230,10 @@ PrefabInstance:
       value: 17.5
       objectReference: {fileID: 0}
     - target: {fileID: 6986467484705591435, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
+      propertyPath: _node
+      value: 
+      objectReference: {fileID: 3696422762546142562}
+    - target: {fileID: 6986467484705591435, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
       propertyPath: _nodeTitle
       value: Texture
       objectReference: {fileID: 0}
@@ -280,6 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _endNode: 1
   id: 0108
+  _rectTransform: {fileID: 0}
   _inputs:
   - {fileID: 1206571466531714427}
   _outputs: []

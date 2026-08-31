@@ -381,6 +381,10 @@ PrefabInstance:
       value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 6956023495269750317, guid: 6e972d1ca6051d84998bc927e5362a04, type: 3}
+      propertyPath: _node
+      value: 
+      objectReference: {fileID: 8168695316743404095}
+    - target: {fileID: 6956023495269750317, guid: 6e972d1ca6051d84998bc927e5362a04, type: 3}
       propertyPath: _nodeTitle
       value: Merge RGB
       objectReference: {fileID: 0}
@@ -432,6 +436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _endNode: 0
   id: 0307
+  _rectTransform: {fileID: 0}
   _inputs:
   - {fileID: 659900979572045467}
   - {fileID: 6356801476814176663}

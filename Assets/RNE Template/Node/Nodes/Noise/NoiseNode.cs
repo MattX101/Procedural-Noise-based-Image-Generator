@@ -67,10 +67,7 @@ namespace RNE.Template.Node
 
         protected override void CodeToExecute()
         {
-            if (_noiseBuffer.count != ProjectData.Length)
-            {
-                Init();
-            }
+            Init();
 
             for (int i = 0; i < Inputs.Count; i++)
             {
@@ -83,18 +80,12 @@ namespace RNE.Template.Node
                     _noiseProfile.SetNoiseType_Perlin();
                     break;
                 case 1:
-                    _noiseProfile.SetNoiseType_OpenSimplex();
+                    _noiseProfile.SetNoiseType_Simplex();
                     break;
                 case 2:
-                    _noiseProfile.SetNoiseType_OpenSimplexS();
-                    break;
-                case 3:
                     _noiseProfile.SetNoiseType_Value();
                     break;
-                case 4:
-                    _noiseProfile.SetNoiseType_ValueCubic();
-                    break;
-                case 5:
+                case 3:
                     _noiseProfile.SetNoiseType_Cellular();
                     break;
                 default:
@@ -122,39 +113,39 @@ namespace RNE.Template.Node
             // Seed
             if (Inputs[0].ConnectedOutputPointer)
             {
-                PointerValue.GetInt(Inputs[0], ref _noiseProfile.seed);
+                _noiseProfile.Seed = PointerValue.GetInt(Inputs[0]);
                 _seedField.text = PointerValue.GetInt(Inputs[0]).ToString();
             }
             else
             {
                 if (_seedField.text.Length != 0)
                 {
-                    _noiseProfile.seed = int.Parse(_seedField.text);
+                    _noiseProfile.Seed = int.Parse(_seedField.text);
                 }
                 else
                 {
                     _seedField.text = "0";
-                    _noiseProfile.seed = 0;
+                    _noiseProfile.Seed = 0;
                 }
             }
-            _noiseProfile.seed += SeedData.Seed;
+            _noiseProfile.Seed += SeedData.Seed;
 
             // Universal Scale
             if (Inputs[1].ConnectedOutputPointer)
             {
-                PointerValue.GetFloat(Inputs[1], ref _noiseProfile.universalScale);
+                _noiseProfile.UniversalScale = PointerValue.GetFloat(Inputs[1]);
                 _unvirsalScale.text = PointerValue.GetFloat(Inputs[1]).ToString();
             }
             else
             {
                 if (_unvirsalScale.text.Length != 0)
                 {
-                    _noiseProfile.universalScale = int.Parse(_unvirsalScale.text);
+                    _noiseProfile.UniversalScale = int.Parse(_unvirsalScale.text);
                 }
                 else
                 {
                     _unvirsalScale.text = "1";
-                    _noiseProfile.universalScale = 1;
+                    _noiseProfile.UniversalScale = 1;
                 }
             }
 
@@ -167,85 +158,93 @@ namespace RNE.Template.Node
             // Scale
             if (Inputs[3].ConnectedOutputPointer)
             {
-                PointerValue.GetVector3(Inputs[3], ref _noiseProfile.scale);
+                _noiseProfile.Scale = PointerValue.GetVector3(Inputs[3]);
 
-                _scaleX.text = _noiseProfile.scale.x.ToString();
-                _scaleY.text = _noiseProfile.scale.y.ToString();
-                _scaleZ.text = _noiseProfile.scale.z.ToString();
+                _scaleX.text = _noiseProfile.Scale.x.ToString();
+                _scaleY.text = _noiseProfile.Scale.y.ToString();
+                _scaleZ.text = _noiseProfile.Scale.z.ToString();
             }
             else
             {
+                Vector3 scale = _noiseProfile.Scale;
+                
                 if (_scaleX.text.Length != 0)
                 {
-                    _noiseProfile.scale.x = float.Parse(_scaleX.text);
+                    scale.x = float.Parse(_scaleX.text);
                 }
                 else
                 {
                     _scaleX.text = "1";
-                    _noiseProfile.scale.x = 1;
+                    scale.x = 1;
                 }
 
                 if (_scaleY.text.Length != 0)
                 {
-                    _noiseProfile.scale.y = float.Parse(_scaleY.text);
+                    scale.y = float.Parse(_scaleY.text);
                 }
                 else
                 {
                     _scaleY.text = "1";
-                    _noiseProfile.scale.y = 1;
+                    scale.y = 1;
                 }
 
                 if (_scaleZ.text.Length != 0)
                 {
-                    _noiseProfile.scale.z = float.Parse(_scaleZ.text);
+                    scale.z = float.Parse(_scaleZ.text);
                 }
                 else
                 {
                     _scaleZ.text = "1";
-                    _noiseProfile.scale.z = 1;
+                    scale.z = 1;
                 }
+
+                _noiseProfile.Scale = scale;
             }
 
             // Offset
             if (Inputs[4].ConnectedOutputPointer)
             {
-                PointerValue.GetVector3(Inputs[4], ref _noiseProfile.offset);
+                _noiseProfile.Offset = PointerValue.GetVector3(Inputs[4]);
 
-                _offsetX.text = _noiseProfile.offset.x.ToString();
-                _offsetY.text = _noiseProfile.offset.y.ToString();
-                _offsetZ.text = _noiseProfile.offset.z.ToString();
+                _offsetX.text = _noiseProfile.Offset.x.ToString();
+                _offsetY.text = _noiseProfile.Offset.y.ToString();
+                _offsetZ.text = _noiseProfile.Offset.z.ToString();
             }
             else
             {
+                Vector3 offset = _noiseProfile.Offset;
+
                 if (_offsetX.text.Length != 0)
                 {
-                    _noiseProfile.offset.x = float.Parse(_offsetX.text);
+                    offset.x = float.Parse(_offsetX.text);
                 }
                 else
                 {
                     _offsetX.text = "0";
-                    _noiseProfile.offset.x = 0;
+                    offset.x = 0;
                 }
 
                 if (_offsetY.text.Length != 0)
                 {
-                    _noiseProfile.offset.y = float.Parse(_offsetY.text);
+                    offset.y = float.Parse(_offsetY.text);
                 }
                 else
                 {
                     _offsetY.text = "0";
-                    _noiseProfile.offset.y = 0;
+                    offset.y = 0;
                 }
 
                 if (_offsetZ.text.Length != 0)
                 {
-                    _noiseProfile.offset.z = float.Parse(_offsetZ.text);
+                    offset.z = float.Parse(_offsetZ.text);
                 }
                 else
                 {
                     _offsetZ.text = "0";
-                    _noiseProfile.offset.z = 0;
+                    offset.z = 0;
                 }
+
+                _noiseProfile.Offset = offset;
             }
 
             // Octaves
@@ -363,6 +362,8 @@ namespace RNE.Template.Node
             }
             //
 
+            _noiseProfile.normalized = true;
+
             _noiseProfile.warp = Inputs[11].ConnectedOutputPointer;
             _noiseProfile.Init();
 
@@ -372,8 +373,8 @@ namespace RNE.Template.Node
                 _warpProfile.Init();
             }
 
-            FastNoise2DGPU.GenerateNoise(ref _noiseBuffer, ProjectData.Resolution, ProjectData.Resolution, _is3DToggle.isOn, _noiseProfile, _warpProfile);
-            Coloring.ColoringGPU(ref _colorsBuffer, _noiseBuffer, Color.white);
+            FastNoise2D.Generate(ref _noiseBuffer, ProjectData.Resolution, ProjectData.Resolution, _is3DToggle.isOn, _noiseProfile, _warpProfile);
+            Coloring.Color(ref _colorsBuffer, _noiseBuffer, Color.white);
 
             SetPreview(_colorsBuffer);
 

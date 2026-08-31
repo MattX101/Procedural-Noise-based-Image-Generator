@@ -247,6 +247,10 @@ PrefabInstance:
       value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 6956023495269750317, guid: 6e972d1ca6051d84998bc927e5362a04, type: 3}
+      propertyPath: _node
+      value: 
+      objectReference: {fileID: 8673204703220096671}
+    - target: {fileID: 6956023495269750317, guid: 6e972d1ca6051d84998bc927e5362a04, type: 3}
       propertyPath: _nodeTitle
       value: Target Frame Time
       objectReference: {fileID: 0}
@@ -260,7 +264,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8782205699199214116, guid: 6e972d1ca6051d84998bc927e5362a04, type: 3}
       propertyPath: m_Name
-      value: Target Frametime Node
+      value: Target Frame Time Node
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -324,6 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _endNode: 0
   id: 0701
+  _rectTransform: {fileID: 0}
   _inputs:
   - {fileID: 1677429953399246082}
   _outputs:

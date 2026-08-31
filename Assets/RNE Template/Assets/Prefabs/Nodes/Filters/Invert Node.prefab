@@ -290,6 +290,10 @@ PrefabInstance:
       value: 185
       objectReference: {fileID: 0}
     - target: {fileID: 6956023495269750317, guid: 6e972d1ca6051d84998bc927e5362a04, type: 3}
+      propertyPath: _node
+      value: 
+      objectReference: {fileID: 5239863017487976511}
+    - target: {fileID: 6956023495269750317, guid: 6e972d1ca6051d84998bc927e5362a04, type: 3}
       propertyPath: _nodeTitle
       value: Invert
       objectReference: {fileID: 0}
@@ -355,12 +359,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _endNode: 0
   id: 0501
+  _rectTransform: {fileID: 0}
   _inputs:
   - {fileID: 5987515161151237508}
   _outputs:
   - {fileID: 4166611336580021793}
   _image: {fileID: 7703154440790783747}
-  _shader: {fileID: 7200000, guid: 5b59b3ec7d9ddcf428d77bcd581fb569, type: 3}
+  _shader: {fileID: 7200000, guid: 976934f1c21554949a7fb808eef0e7cd, type: 3}
 --- !u!224 &7886569812852281003 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5461863840995386727, guid: 6e972d1ca6051d84998bc927e5362a04, type: 3}

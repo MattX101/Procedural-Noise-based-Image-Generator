@@ -59,39 +59,39 @@ namespace RNE.Template.Node
             // Seed
             if (Inputs[0].ConnectedOutputPointer)
             {
-                PointerValue.GetInt(Inputs[0], ref _warpProfile.seed);
+                _warpProfile.Seed = PointerValue.GetInt(Inputs[0]);
                 _seedField.text = PointerValue.GetInt(Inputs[0]).ToString();
             }
             else
             {
                 if (_seedField.text.Length != 0)
                 {
-                    _warpProfile.seed = int.Parse(_seedField.text);
+                    _warpProfile.Seed = int.Parse(_seedField.text);
                 }
                 else
                 {
                     _seedField.text = "0";
-                    _warpProfile.seed = 0;
+                    _warpProfile.Seed = 0;
                 }
             }
-            _warpProfile.seed += SeedData.Seed;
+            _warpProfile.Seed += SeedData.Seed;
 
             // Universal Scale
             if (Inputs[1].ConnectedOutputPointer)
             {
-                PointerValue.GetFloat(Inputs[1], ref _warpProfile.universalScale);
+                _warpProfile.UniversalScale = PointerValue.GetFloat(Inputs[1]);
                 _unvirsalScale.text = PointerValue.GetFloat(Inputs[1]).ToString();
             }
             else
             {
                 if (_unvirsalScale.text.Length != 0)
                 {
-                    _warpProfile.universalScale = float.Parse(_unvirsalScale.text);
+                    _warpProfile.UniversalScale = float.Parse(_unvirsalScale.text);
                 }
                 else
                 {
                     _unvirsalScale.text = "1";
-                    _warpProfile.universalScale = 1;
+                    _warpProfile.UniversalScale = 1;
                 }
             }
 
@@ -104,85 +104,93 @@ namespace RNE.Template.Node
             // Scale
             if (Inputs[3].ConnectedOutputPointer)
             {
-                PointerValue.GetVector3(Inputs[3], ref _warpProfile.scale);
+                _warpProfile.Scale = PointerValue.GetVector3(Inputs[3]);
 
-                _scaleX.text = _warpProfile.scale.x.ToString();
-                _scaleY.text = _warpProfile.scale.y.ToString();
-                _scaleZ.text = _warpProfile.scale.z.ToString();
+                _scaleX.text = _warpProfile.Scale.x.ToString();
+                _scaleY.text = _warpProfile.Scale.y.ToString();
+                _scaleZ.text = _warpProfile.Scale.z.ToString();
             }
             else
             {
+                Vector3 scale = _warpProfile.Scale;
+
                 if (_scaleX.text.Length != 0)
                 {
-                    _warpProfile.scale.x = float.Parse(_scaleX.text);
+                    scale.x = float.Parse(_scaleX.text);
                 }
                 else
                 {
                     _scaleX.text = "1";
-                    _warpProfile.scale.x = 1;
+                    scale.x = 1;
                 }
 
                 if (_scaleY.text.Length != 0)
                 {
-                    _warpProfile.scale.y = float.Parse(_scaleY.text);
+                    scale.y = float.Parse(_scaleY.text);
                 }
                 else
                 {
                     _scaleY.text = "1";
-                    _warpProfile.scale.y = 1;
+                    scale.y = 1;
                 }
 
                 if (_scaleZ.text.Length != 0)
                 {
-                    _warpProfile.scale.z = float.Parse(_scaleZ.text);
+                    scale.z = float.Parse(_scaleZ.text);
                 }
                 else
                 {
                     _scaleZ.text = "1";
-                    _warpProfile.scale.z = 1;
+                    scale.z = 1;
                 }
+
+                _warpProfile.Scale = scale;
             }
 
             // Offset
             if (Inputs[4].ConnectedOutputPointer)
             {
-                PointerValue.GetVector3(Inputs[4], ref _warpProfile.offset);
+                _warpProfile.Offset = PointerValue.GetVector3(Inputs[4]);
 
-                _offsetX.text = _warpProfile.offset.x.ToString();
-                _offsetY.text = _warpProfile.offset.y.ToString();
-                _offsetZ.text = _warpProfile.offset.z.ToString();
+                _offsetX.text = _warpProfile.Offset.x.ToString();
+                _offsetY.text = _warpProfile.Offset.y.ToString();
+                _offsetZ.text = _warpProfile.Offset.z.ToString();
             }
             else
             {
+                Vector3 offset = _warpProfile.Offset;
+
                 if (_offsetX.text.Length != 0)
                 {
-                    _warpProfile.offset.x = float.Parse(_offsetX.text);
+                    offset.x = float.Parse(_offsetX.text);
                 }
                 else
                 {
                     _offsetX.text = "0";
-                    _warpProfile.offset.x = 0;
+                    offset.x = 0;
                 }
 
                 if (_offsetY.text.Length != 0)
                 {
-                    _warpProfile.offset.y = float.Parse(_offsetY.text);
+                    offset.y = float.Parse(_offsetY.text);
                 }
                 else
                 {
                     _offsetY.text = "0";
-                    _warpProfile.offset.y = 0;
+                    offset.y = 0;
                 }
 
                 if (_offsetZ.text.Length != 0)
                 {
-                    _warpProfile.offset.z = float.Parse(_offsetZ.text);
+                    offset.z = float.Parse(_offsetZ.text);
                 }
                 else
                 {
                     _offsetZ.text = "0";
-                    _warpProfile.offset.z = 0;
+                    offset.z = 0;
                 }
+
+                _warpProfile.Offset = offset;
             }
 
             // Amp

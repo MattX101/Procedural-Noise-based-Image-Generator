@@ -492,6 +492,10 @@ PrefabInstance:
       value: 122.5
       objectReference: {fileID: 0}
     - target: {fileID: 6986467484705591435, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
+      propertyPath: _node
+      value: 
+      objectReference: {fileID: 8974026046116894201}
+    - target: {fileID: 6986467484705591435, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
       propertyPath: _nodeTitle
       value: Coloring
       objectReference: {fileID: 0}
@@ -543,6 +547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _endNode: 0
   id: 0300
+  _rectTransform: {fileID: 0}
   _inputs:
   - {fileID: 108298048752019610}
   - {fileID: 2892216806535970637}

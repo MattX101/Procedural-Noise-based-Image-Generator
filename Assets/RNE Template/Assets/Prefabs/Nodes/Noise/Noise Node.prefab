@@ -1706,6 +1706,10 @@ PrefabInstance:
       value: 210
       objectReference: {fileID: 0}
     - target: {fileID: 6986467484705591435, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
+      propertyPath: _node
+      value: 
+      objectReference: {fileID: 6017535372087027474}
+    - target: {fileID: 6986467484705591435, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
       propertyPath: _nodeTitle
       value: Noise
       objectReference: {fileID: 0}
@@ -1809,6 +1813,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _endNode: 0
   id: 0200
+  _rectTransform: {fileID: 0}
   _inputs:
   - {fileID: 5067769655684199621}
   - {fileID: 6908141847901477810}
@@ -2930,7 +2935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
       propertyPath: m_Options.m_Options.Array.size
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
       propertyPath: m_Options.m_Options.Array.data[0].m_Text
@@ -2938,19 +2943,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
       propertyPath: m_Options.m_Options.Array.data[1].m_Text
-      value: Open Simplex 2
+      value: Simplex
       objectReference: {fileID: 0}
     - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
       propertyPath: m_Options.m_Options.Array.data[2].m_Text
-      value: Open Simplex 2S
-      objectReference: {fileID: 0}
-    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
-      propertyPath: m_Options.m_Options.Array.data[3].m_Text
       value: Value
       objectReference: {fileID: 0}
     - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[3].m_Text
+      value: Cellular
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
       propertyPath: m_Options.m_Options.Array.data[4].m_Text
-      value: Value Cubic
+      value: Cellular
       objectReference: {fileID: 0}
     - target: {fileID: 7828967828289502738, guid: 70f1dbcb9ec1b954e9de6beca828da20, type: 3}
       propertyPath: m_Options.m_Options.Array.data[5].m_Text

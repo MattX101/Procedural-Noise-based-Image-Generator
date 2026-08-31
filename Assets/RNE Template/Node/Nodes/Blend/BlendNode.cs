@@ -25,11 +25,8 @@ namespace RNE.Template.Node
             {
                 return;
             }
-
-            if (_colorBuffer.count != ProjectData.Length)
-            {
-                Init();
-            }
+            
+            Init();
 
             if (Inputs[0].ConnectedOutputPointer && !Inputs[1].ConnectedOutputPointer)
             {
@@ -46,7 +43,7 @@ namespace RNE.Template.Node
                 ExecuteInputConnection(0);
                 ExecuteInputConnection(1);
 
-                MixGPU.Blend(
+                Mix.Blend(
                     ref _colorBuffer,
                     PointerValue.GetTexture(Inputs[0]),
                     PointerValue.GetTexture(Inputs[1]),

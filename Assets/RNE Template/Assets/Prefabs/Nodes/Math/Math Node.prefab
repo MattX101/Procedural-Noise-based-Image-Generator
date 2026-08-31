@@ -690,6 +690,10 @@ PrefabInstance:
       value: 52.5
       objectReference: {fileID: 0}
     - target: {fileID: 6986467484705591435, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
+      propertyPath: _node
+      value: 
+      objectReference: {fileID: 5957896290458315863}
+    - target: {fileID: 6986467484705591435, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
       propertyPath: _nodeTitle
       value: Math
       objectReference: {fileID: 0}
@@ -761,6 +765,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _endNode: 0
   id: 0800
+  _rectTransform: {fileID: 0}
   _inputs:
   - {fileID: 6639154425163070222}
   - {fileID: 3921683319184011328}

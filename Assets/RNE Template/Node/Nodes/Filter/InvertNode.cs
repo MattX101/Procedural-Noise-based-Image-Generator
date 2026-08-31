@@ -22,8 +22,8 @@ namespace RNE.Template.Node
                 return;
             }
 
-            _kernel = _shader.FindKernel("Invert");
-            _shader.SetBuffer(_kernel, "colors", _textureBuffer);
+            _kernel = _shader.FindKernel("InvertColor");
+            _shader.SetBuffer(_kernel, "sourceColor", _textureBuffer);
             _shader.Dispatch(_kernel, Mathf.CeilToInt(_textureBuffer.count / 1024.0f), 1, 1);
 
             SetPreview(_textureBuffer);

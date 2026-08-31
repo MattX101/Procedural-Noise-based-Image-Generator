@@ -459,6 +459,10 @@ PrefabInstance:
       value: 207.5
       objectReference: {fileID: 0}
     - target: {fileID: 6956023495269750317, guid: 6e972d1ca6051d84998bc927e5362a04, type: 3}
+      propertyPath: _node
+      value: 
+      objectReference: {fileID: 7985148125489492030}
+    - target: {fileID: 6956023495269750317, guid: 6e972d1ca6051d84998bc927e5362a04, type: 3}
       propertyPath: _nodeTitle
       value: Bias & Gain
       objectReference: {fileID: 0}
@@ -526,6 +530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _endNode: 0
   id: 0500
+  _rectTransform: {fileID: 0}
   _inputs:
   - {fileID: 5987515161151237508}
   _outputs:

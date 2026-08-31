@@ -2597,6 +2597,10 @@ PrefabInstance:
       value: 225
       objectReference: {fileID: 0}
     - target: {fileID: 6956023495269750317, guid: 6e972d1ca6051d84998bc927e5362a04, type: 3}
+      propertyPath: _node
+      value: 
+      objectReference: {fileID: 8012529496666885508}
+    - target: {fileID: 6956023495269750317, guid: 6e972d1ca6051d84998bc927e5362a04, type: 3}
       propertyPath: _nodeTitle
       value: Color Gradient
       objectReference: {fileID: 0}
@@ -2699,6 +2703,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _endNode: 0
   id: 0302
+  _rectTransform: {fileID: 0}
   _inputs:
   - {fileID: 3541825430224880213}
   - {fileID: 1751933051897642114}

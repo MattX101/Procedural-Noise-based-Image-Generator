@@ -49,11 +49,8 @@ namespace RNE.Template.Node
             ExecuteInputConnection(0);
             ExecuteInputConnection(1);
             ExecuteInputConnection(2);
-
-            if (_resultBuffer.count != ProjectData.Length)
-            {
-                Init();
-            }
+            
+            Init();
 
             _redBuffer = PointerValue.GetNoise(Inputs[0]);
             _greenBuffer = PointerValue.GetNoise(Inputs[1]);
@@ -65,13 +62,13 @@ namespace RNE.Template.Node
             _shader.SetBuffer(_shaderKernel, "result", _resultBuffer);
             _shader.Dispatch(_shaderKernel, Mathf.CeilToInt(ProjectData.Length / 1024.0f), 1, 1);
 
-            Coloring.ColoringGPU(ref _previewBuffer, _redBuffer, Color.white);
+            Coloring.Color(ref _previewBuffer, _redBuffer, Color.white);
             SetPreview(ref _redRender, _redImage, _previewBuffer);
 
-            Coloring.ColoringGPU(ref _previewBuffer, _greenBuffer, Color.white);
+            Coloring.Color(ref _previewBuffer, _greenBuffer, Color.white);
             SetPreview(ref _greenRender, _greenImage, _previewBuffer);
 
-            Coloring.ColoringGPU(ref _previewBuffer, _blueBuffer, Color.white);
+            Coloring.Color(ref _previewBuffer, _blueBuffer, Color.white);
             SetPreview(ref _blueRender, _blueImage, _previewBuffer);
 
             SetPreview(ref _resultRender, _resultImage, _resultBuffer);

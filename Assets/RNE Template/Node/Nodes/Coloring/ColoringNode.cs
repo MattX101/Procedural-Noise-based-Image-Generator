@@ -20,23 +20,20 @@ namespace RNE.Template.Node
             {
                 return;
             }
-
-            if (_colorBuffer.count != ProjectData.Length)
-            {
-                Init();
-            }
+            
+            Init();
 
             ExecuteInputConnection(0);
 
             if (!Inputs[1].ConnectedOutputPointer)
             {
-                Coloring.ColoringGPU(ref _colorBuffer, PointerValue.GetNoise(Inputs[0]), Color.white);
+                Coloring.Color(ref _colorBuffer, PointerValue.GetNoise(Inputs[0]), Color.white);
             }
             else
             {
                 ExecuteInputConnection(1);
 
-                Coloring.ColoringGPU(
+                Coloring.Color(
                     ref _colorBuffer,
                     PointerValue.GetNoise(Inputs[0]),
                     PointerValue.GetColor(Inputs[1])

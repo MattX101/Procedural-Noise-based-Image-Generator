@@ -261,6 +261,10 @@ PrefabInstance:
       value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 6986467484705591435, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
+      propertyPath: _node
+      value: 
+      objectReference: {fileID: 3655663800751749055}
+    - target: {fileID: 6986467484705591435, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
       propertyPath: _nodeTitle
       value: Power
       objectReference: {fileID: 0}
@@ -329,6 +333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _endNode: 0
   id: 0801
+  _rectTransform: {fileID: 0}
   _inputs:
   - {fileID: 7152556512140948014}
   - {fileID: 5082977051891216452}

@@ -50,11 +50,8 @@ namespace RNE.Template.Node
             }
 
             ExecuteInputConnection(0);
-
-            if (_redBuffer.count != ProjectData.Length)
-            {
-                Init();
-            }
+            
+            Init();
 
             _sourceBuffer = PointerValue.GetTexture(Inputs[0]);
 
@@ -66,13 +63,13 @@ namespace RNE.Template.Node
 
             SetPreview(ref _sourceRender, _sourceImage, _sourceBuffer);
 
-            Coloring.ColoringGPU(ref _previewBuffer, _redBuffer, Color.white);
+            Coloring.Color(ref _previewBuffer, _redBuffer, Color.white);
             SetPreview(ref _redRender, _redImage, _previewBuffer);
 
-            Coloring.ColoringGPU(ref _previewBuffer, _greenBuffer, Color.white);
+            Coloring.Color(ref _previewBuffer, _greenBuffer, Color.white);
             SetPreview(ref _greenRender, _greenImage, _previewBuffer);
 
-            Coloring.ColoringGPU(ref _previewBuffer, _blueBuffer, Color.white);
+            Coloring.Color(ref _previewBuffer, _blueBuffer, Color.white);
             SetPreview(ref _blueRender, _blueImage, _previewBuffer);
 
             Outputs[0].GetComponent<NoiseOutputPointer>().Buffer = _redBuffer;

@@ -21,13 +21,13 @@ namespace RNE.Template.Node
             ExecuteInputConnection(0);
 
             _textureBuffer = PointerValue.GetTexture(Inputs[0]);
-            if (_textureBuffer != null)
+            if (_textureBuffer == null)
             {
                 return;
             }
 
             _kernel = _shader.FindKernel("Posterize");
-            _shader.SetFloats("step", 1.0f / (_posterizeSlider.value - 1));
+            _shader.SetInt("step", (int)(_posterizeSlider.value - 1));
             _shader.SetBuffer(_kernel, "colors", _textureBuffer);
             _shader.Dispatch(_kernel, Mathf.CeilToInt(_textureBuffer.count / 1024.0f), 1, 1);
 

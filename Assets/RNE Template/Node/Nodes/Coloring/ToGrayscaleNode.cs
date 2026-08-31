@@ -35,17 +35,14 @@ namespace RNE.Template.Node
             }
 
             ExecuteInputConnection(0);
-
-            if (_valuesBuffer.count != ProjectData.Length)
-            {
-                Init();
-            }
+            
+            Init();
 
             _shader.SetBuffer(_shaderKernel, "colors", PointerValue.GetTexture(Inputs[0]));
             _shader.SetBuffer(_shaderKernel, "values", _valuesBuffer);
             _shader.Dispatch(_shaderKernel, Mathf.CeilToInt(ProjectData.Length / 1024.0f), 1, 1);
 
-            Coloring.ColoringGPU(ref _previewBuffer, _valuesBuffer, Color.white);
+            Coloring.Color(ref _previewBuffer, _valuesBuffer, Color.white);
             SetPreview(_previewBuffer);
 
             Outputs[0].GetComponent<NoiseOutputPointer>().Buffer = _valuesBuffer;

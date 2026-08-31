@@ -644,6 +644,10 @@ PrefabInstance:
       value: 52.5
       objectReference: {fileID: 0}
     - target: {fileID: 6986467484705591435, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
+      propertyPath: _node
+      value: 
+      objectReference: {fileID: 5888109252052662200}
+    - target: {fileID: 6986467484705591435, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}
       propertyPath: _nodeTitle
       value: Cellular Profile
       objectReference: {fileID: 0}
@@ -719,6 +723,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _endNode: 0
   id: 0202
+  _rectTransform: {fileID: 0}
   _inputs:
   - {fileID: 1828229335235047369}
   _outputs:
@@ -727,7 +732,6 @@ MonoBehaviour:
   _distanceType: {fileID: 8254344285310294126}
   _jitter: {fileID: 2103671748543856484}
   _text: {fileID: 7909691208466873148}
-  _inputfield: {fileID: 0}
 --- !u!224 &7227825649208716195 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2963061212694928928, guid: 0becbdcdeda75eb48a75fffbe9e723d6, type: 3}

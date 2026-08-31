@@ -2,13 +2,13 @@
 
 RWStructuredBuffer<float4> colors;
 
-float step;
+int step;
 
 [numthreads(1024,1,1)]
 void Posterize(uint3 id : SV_DispatchThreadID)
 {
-    colors[id.x].x = round(colors[id.x].x / step) * step;
-    colors[id.x].y = round(colors[id.x].y / step) * step;
-    colors[id.x].z = round(colors[id.x].z / step) * step;
+    colors[id.x].x = round((colors[id.x].x * 255) / (255 / step)) / step;
+    colors[id.x].y = round((colors[id.x].y * 255) / (255 / step)) / step;
+    colors[id.x].z = round((colors[id.x].z * 255) / (255 / step)) / step;
     colors[id.x].w = 1.0f;
 }

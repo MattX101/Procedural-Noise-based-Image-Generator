@@ -840,6 +840,10 @@ PrefabInstance:
       value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 6956023495269750317, guid: 6e972d1ca6051d84998bc927e5362a04, type: 3}
+      propertyPath: _node
+      value: 
+      objectReference: {fileID: 2042808554041869132}
+    - target: {fileID: 6956023495269750317, guid: 6e972d1ca6051d84998bc927e5362a04, type: 3}
       propertyPath: _nodeTitle
       value: Vector 3
       objectReference: {fileID: 0}
@@ -903,6 +907,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _endNode: 0
   id: 0003
+  _rectTransform: {fileID: 0}
   _inputs:
   - {fileID: 7261384705109116061}
   - {fileID: 2339598211158872767}

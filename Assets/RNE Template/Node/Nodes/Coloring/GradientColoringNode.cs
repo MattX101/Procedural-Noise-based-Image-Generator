@@ -20,11 +20,8 @@ namespace RNE.Template.Node
             {
                 return;
             }
-
-            if (_colorBuffer.count != ProjectData.Length)
-            {
-                Init();
-            }
+            
+            Init();
 
             ExecuteInputConnection(0);
 
@@ -36,7 +33,7 @@ namespace RNE.Template.Node
             {
                 ExecuteInputConnection(1);
 
-                Coloring.GradientColoringGPU(
+                Coloring.GradientColoring(
                     ref _colorBuffer,
                     PointerValue.GetNoise(Inputs[0]),
                     PointerValue.GetColorGradient(Inputs[1])

@@ -25,7 +25,7 @@ namespace RNE.Template.Node
 
             _textureBuffer = PointerValue.GetTexture(Inputs[0]);
 
-            BiasAndGainGPU.ModifyImage(ref _textureBuffer, _biasSlider.value, _gainSlider.value);
+            BiasAndGain.ModifyImage(ref _textureBuffer, _biasSlider.value, _gainSlider.value);
             SetPreview(_textureBuffer);
 
             Outputs[0].GetComponent<TextureOutputPointer>().Buffer = _textureBuffer;
